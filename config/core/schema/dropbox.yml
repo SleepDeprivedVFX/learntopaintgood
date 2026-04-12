@@ -10,7 +10,7 @@
 
 # the type of dynamic content
 type: "project"
-name: "dropbox_exchange"
+name: "dropbox"
 
 # name of project root as defined in roots.yml
 root_name: "dropbox"
