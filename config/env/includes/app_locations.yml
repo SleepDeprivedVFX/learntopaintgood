@@ -144,4 +144,8 @@ apps.tk-mari-projectmanager.location:
   name: tk-mari-projectmanager
   type: app_store
   version: v1.4.1
+apps.tk-nuke.location:
+  type: app_store
+  name: tk-nuke
+  version: v0.16.0
 frameworks: '@frameworks'

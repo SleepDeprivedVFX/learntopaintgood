@@ -16,10 +16,10 @@ description: Apps and Engines related to Shot based work.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-desktop2.yml
-- ./includes/settings/tk-3dsmax.yml
+#- ./includes/settings/tk-3dsmax.yml
 - ./includes/settings/tk-houdini.yml
 - ./includes/settings/tk-maya.yml
-- ./includes/settings/tk-motionbuilder.yml
+#- ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-aftereffects.yml

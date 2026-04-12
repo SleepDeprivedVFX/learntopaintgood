@@ -13,18 +13,18 @@
 
 ################################################################################
 
-engines.tk-3dsmax.location:
-  type: app_store
-  name: tk-3dsmax
-  version: v1.4.6
+#engines.tk-3dsmax.location:
+#  type: app_store
+#  name: tk-3dsmax
+#  version: v1.4.6
 engines.tk-aftereffects.location:
   type: app_store
   name: tk-aftereffects
   version: v0.4.7
-engines.tk-alias.location:
-  type: app_store
-  name: tk-alias
-  version: v4.2.1
+#engines.tk-alias.location:
+#  type: app_store
+#  name: tk-alias
+#  version: v4.2.1
 engines.tk-desktop.location:
   type: app_store
   name: tk-desktop
@@ -33,30 +33,31 @@ engines.tk-desktop2.location:
   type: app_store
   name: tk-desktop2
   version: v1.6.1
-engines.tk-flame.location:
-  type: app_store
-  name: tk-flame
-  version: v1.19.7
+#engines.tk-flame.location:
+#  type: app_store
+#  name: tk-flame
+#  version: v1.19.7
 engines.tk-houdini.location:
   type: app_store
   name: tk-houdini
   version: v1.9.9
-engines.tk-mari.location:
-  type: app_store
-  name: tk-mari
-  version: v1.4.5
+#engines.tk-mari.location:
+#  type: app_store
+#  name: tk-mari
+#  version: v1.4.5
 engines.tk-maya.location:
   type: app_store
   name: tk-maya
   version: v0.13.7
-engines.tk-motionbuilder.location:
-  type: app_store
-  name: tk-motionbuilder
-  version: v0.8.6
+#engines.tk-motionbuilder.location:
+#  type: app_store
+#  name: tk-motionbuilder
+#  version: v0.8.6
 engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.16.0
+  args: "--indie"
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
@@ -69,7 +70,7 @@ engines.tk-shotgun.location:
   type: app_store
   name: tk-shotgun
   version: v0.11.1
-engines.tk-vred.location:
-  type: app_store
-  name: tk-vred
-  version: v3.5.4
+#engines.tk-vred.location:
+#  type: app_store
+#  name: tk-vred
+#  version: v3.5.4

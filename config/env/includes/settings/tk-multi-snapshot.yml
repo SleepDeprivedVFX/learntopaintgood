@@ -17,25 +17,25 @@ includes:
 
 # ---- 3dsMax
 
-settings.tk-multi-snapshot.3dsmax.asset_step:
-  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
-  template_snapshot: max_asset_snapshot
-  template_work: max_asset_work
-  location: "@apps.tk-multi-snapshot.location"
-settings.tk-multi-snapshot.3dsmax.shot_step:
-  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
-  template_snapshot: max_shot_snapshot
-  template_work: max_shot_work
-  location: "@apps.tk-multi-snapshot.location"
+#settings.tk-multi-snapshot.3dsmax.asset_step:
+#  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+#  template_snapshot: max_asset_snapshot
+#  template_work: max_asset_work
+#  location: "@apps.tk-multi-snapshot.location"
+#settings.tk-multi-snapshot.3dsmax.shot_step:
+#  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+#  template_snapshot: max_shot_snapshot
+#  template_work: max_shot_work
+#  location: "@apps.tk-multi-snapshot.location"
 
 ################################################################################
 
 # ---- Hiero
 
-settings.tk-multi-snapshot.hiero:
-  template_snapshot: hiero_project_snapshot
-  template_work: hiero_project_work
-  location: "@apps.tk-multi-snapshot.location"
+#settings.tk-multi-snapshot.hiero:
+#  template_snapshot: hiero_project_snapshot
+#  template_work: hiero_project_work
+#  location: "@apps.tk-multi-snapshot.location"
 
 ################################################################################
 
@@ -123,14 +123,14 @@ settings.tk-multi-snapshot.aftereffects.shot_step:
 
 # ---- Motion Builder
 
-# asset step
-settings.tk-multi-snapshot.motionbuilder.asset_step:
-  template_snapshot: mobu_asset_snapshot
-  template_work: mobu_asset_work
-  location: "@apps.tk-multi-snapshot.location"
-
-# shot step
-settings.tk-multi-snapshot.motionbuilder.shot_step:
-  template_snapshot: mobu_shot_snapshot
-  template_work: mobu_shot_work
-  location: "@apps.tk-multi-snapshot.location"
+## asset step
+#settings.tk-multi-snapshot.motionbuilder.asset_step:
+#  template_snapshot: mobu_asset_snapshot
+#  template_work: mobu_asset_work
+#  location: "@apps.tk-multi-snapshot.location"
+#
+## shot step
+#settings.tk-multi-snapshot.motionbuilder.shot_step:
+#  template_snapshot: mobu_shot_snapshot
+#  template_work: mobu_shot_work
+#  location: "@apps.tk-multi-snapshot.location"

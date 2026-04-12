@@ -1,90 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Trying to get this to work with two schemas">
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="The basic - basic Dropbox multi-pipeline is working!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/3dsmax.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/3dsmax.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/3dsmax/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/3dsmax/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/alias.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/alias.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/alias/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/alias/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/caches/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/caches/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/elements/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/elements/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/houdini.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/houdini.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/houdini/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/houdini/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/mari/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/mari/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/maya.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/maya.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/maya/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/maya/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/mobu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/mobu.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/mobu/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/mobu/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/nuke.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/nuke/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/nuke/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/photoshop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/photoshop.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/photoshop/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/photoshop/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/vred.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/vred.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/vred/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/publish/vred/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/reference/artwork/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/reference/artwork/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/reference/footage/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/reference/footage/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/review/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/review/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/3dsmax.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/3dsmax.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/3dsmax/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/3dsmax/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/alias.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/alias.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/alias/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/alias/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/houdini.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/houdini.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/houdini/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/houdini/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/images/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/images/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/maya.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/maya.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/maya/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/maya/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/maya/workspace.mel" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/maya/workspace.mel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/mobu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/mobu.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/mobu/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/mobu/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/nuke.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/nuke/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/nuke/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/photoshop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/photoshop.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/photoshop/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/photoshop/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/vred.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/vred.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/vred/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox/Assets/asset_type/asset/step/work/vred/snapshots/placeholder" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/editorial/publish/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/editorial/work/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/reference/artwork/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/reference/footage/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/editorial/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/3dsmax.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/3dsmax/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/elements/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/houdini.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/houdini/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/maya.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/maya/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/mobu.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/mobu/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/nuke.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/nuke/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/photoshop.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/photoshop/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/reference/artwork/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/reference/footage/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/review/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/3dsmax.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/3dsmax/snapshots/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/houdini.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/houdini/snapshots/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/images/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/maya.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/maya/snapshots/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/maya/workspace.mel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/mobu.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/mobu/snapshots/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/nuke.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/nuke/snapshots/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/photoshop.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/photoshop/snapshots/placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/templates.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/asset_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset_step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/app_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/app_locations.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/engine_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/engine_locations.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-launchapp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-launchapp.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-snapshot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-snapshot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-nuke.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-shell.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-shell.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-shotgun.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-shotgun.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/software_paths.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/software_paths.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/playlist.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/playlist.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/project.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/sequence.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/version.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/version.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/info.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/info.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775961069583</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="The basic - basic Dropbox multi-pipeline is working!">
+      <option name="closed" value="true" />
+      <created>1775972324689</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775972324689</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +144,7 @@
     <MESSAGE value="Creating new SG Implementation  Part 2" />
     <MESSAGE value="Starting to modify the files" />
     <MESSAGE value="Trying to get this to work with two schemas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to get this to work with two schemas" />
+    <MESSAGE value="The basic - basic Dropbox multi-pipeline is working!" />
+    <option name="LAST_COMMIT_MESSAGE" value="The basic - basic Dropbox multi-pipeline is working!" />
   </component>
 </project>
