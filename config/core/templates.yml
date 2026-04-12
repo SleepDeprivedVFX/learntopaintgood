@@ -80,6 +80,9 @@ keys:
         type: sequence
         format_spec: "04"
 
+    Episode:
+        type: str
+
     # Represents a frame sequence exported from Flame
     flame.frame:
         type: sequence
@@ -181,61 +184,14 @@ paths:
     #
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
-    shot_root: sequences/{Sequence}/{Shot}/{Step}
+    shot_root: Ep/{Episode}/{Sequence}/{Shot}/{Step}
     asset_root: Assets/{sg_asset_type}/{Asset}/{Step}
-    sequence_root: sequences/{Sequence}
+    sequence_root: Ep/{Episode}/{Sequence}
 
 
     ##########################################################################################
     # Project level paths
     #
-#
-#    #
-#    # Hiero
-#    #
-#
-#    # The location of WIP files
-#    hiero_project_work:
-#        definition: 'editorial/work/{name}_v{version}.hrox'
-#    hiero_project_work_area:
-#        definition: 'editorial/work'
-#    # The location of backups of WIP files
-#    hiero_project_snapshot:
-#        definition: 'editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
-#    # The location of published hiero files
-#    hiero_project_publish:
-#        definition: 'editorial/publish/{name}_v{version}.hrox'
-#    hiero_project_publish_area:
-#        definition: 'editorial/publish'
-#
-#
-#    ##########################################################################################
-#    # Sequence level paths
-#    #
-#
-#
-#    ##########################################################################################
-#    # Shot level paths
-#    #
-#
-#    #
-#    # Flame
-#    #
-#
-#    flame_segment_clip:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/sources/{segment_name}.clip'
-#    flame_shot_clip:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/{Shot}.clip'
-#    flame_shot_batch:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/batch/{Shot}.v{version}.batch'
-#    flame_shot_render_dpx:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.dpx'
-#    flame_shot_render_exr:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.exr'
-#    flame_shot_comp_dpx:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.dpx'
-#    flame_shot_comp_exr:
-#        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.exr'
 
     #
     # Photoshop
@@ -353,48 +309,6 @@ paths:
 
 
     #
-    # 3dsmax
-    #
-
-    # define the location of a work area
-#    shot_work_area_max:
-#        definition: '@shot_root/work/3dsmax'
-#    # define the location of a publish area
-#    shot_publish_area_max:
-#        definition: '@shot_root/publish/3dsmax'
-#    # The location of WIP files
-#    max_shot_work:
-#        definition: '@shot_root/work/3dsmax/{name}.v{version}.max'
-#    # The location of backups of WIP files
-#    max_shot_snapshot:
-#        definition: '@shot_root/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max'
-#    # The location of published max files
-#    max_shot_publish:
-#        definition: '@shot_root/publish/3dsmax/{name}.v{version}.max'
-
-
-    #
-    # Motionbuilder
-#    #
-#
-#    # define the location of a work area
-#    shot_work_area_mobu:
-#        definition: '@shot_root/work/mobu'
-#    # define the location of a publish area
-#    shot_publish_area_mobu:
-#        definition: '@shot_root/publish/mobu'
-#    # The location of WIP files
-#    mobu_shot_work:
-#        definition: '@shot_root/work/mobu/{name}.v{version}.fbx'
-#    # The location of backups of WIP files
-#    mobu_shot_snapshot:
-#        definition: '@shot_root/work/mobu/snapshots/{name}.v{version}.{timestamp}.fbx'
-#    # The location of published mobu files
-#    mobu_shot_publish:
-#        definition: '@shot_root/publish/mobu/{name}.v{version}.fbx'
-
-
-    #
     # Nuke
     #
 
@@ -428,16 +342,7 @@ paths:
     nuke_shot_render_movie:
         definition: '@shot_root/review/{Shot}_{name}_{nuke.output}_v{version}.mov'
 
-    #
-    # Hiero
-    #
 
-#    # export of shot asset data from hiero
-#    hiero_plate_path:
-#        definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/plates/{project}_{Shot}.mov'
-#    hiero_render_path:
-#        definition: 'sequences/{Sequence}/{Shot}/editorial/{YYYY}_{MM}_{DD}/renders/{project}_{Shot}.{SEQ}.dpx'
-#
 #    ##########################################################################################
     # Asset pipeline
 
@@ -505,13 +410,6 @@ paths:
         definition: '@asset_root/review/{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
 
 
-    #
-    # Mari
-#    #
-#    asset_mari_texture_tif:
-#        definition: '@asset_root/publish/mari/{name}_{mari.channel}[_{mari.layer}].v{version}.{UDIM}.tif'
-#
-#    #
     # Maya
     #
 
@@ -571,48 +469,6 @@ paths:
 
 
     #
-    # 3dsmax
-    #
-
-#    # define the location of a work area
-#    asset_work_area_max:
-#        definition: '@asset_root/work/3dsmax'
-#    # define the location of a publish area
-#    asset_publish_area_max:
-#        definition: '@asset_root/publish/3dsmax'
-#    # The location of WIP files
-#    max_asset_work:
-#        definition: '@asset_root/work/3dsmax/{name}.v{version}.max'
-#    # The location of backups of WIP files
-#    max_asset_snapshot:
-#        definition: '@asset_root/work/3dsmax/snapshots/{name}.v{version}.{timestamp}.max'
-#    # The location of published max files
-#    max_asset_publish:
-#        definition: '@asset_root/publish/3dsmax/{name}.v{version}.max'
-
-
-    #
-    # Motionbuilder
-    #
-
-#    # define the location of a work area
-#    asset_work_area_mobu:
-#        definition: '@asset_root/work/mobu'
-#    # define the location of a publish area
-#    asset_publish_area_mobu:
-#        definition: '@asset_root/publish/mobu'
-#    # The location of WIP files
-#    mobu_asset_work:
-#        definition: '@asset_root/work/mobu/{name}.v{version}.fbx'
-#    # The location of backups of WIP files
-#    mobu_asset_snapshot:
-#        definition: '@asset_root/work/mobu/snapshots/{name}.v{version}.{timestamp}.fbx'
-#    # The location of published Motionbuilder files
-#    mobu_asset_publish:
-#        definition: '@asset_root/publish/mobu/{name}.v{version}.fbx'
-
-
-    #
     # Nuke
     #
 
@@ -641,78 +497,6 @@ paths:
     # The location of published nuke script files
     nuke_asset_publish:
         definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
-
-    #
-    # Alias
-    #
-
-#    # define the location of a work area
-#    asset_work_area_alias:
-#        definition: '@asset_root/work/alias'
-#    # define the location of a publish area
-#    asset_publish_area_alias:
-#        definition: '@asset_root/publish/alias'
-#    # The location of WIP files
-#    alias_asset_work:
-#        definition: '@asset_root/work/alias/{name}.v{version}.wire'
-#    # The location of backups of WIP files
-#    alias_asset_snapshot:
-#        definition: '@asset_root/work/alias/snapshots/{name}.v{version}.{timestamp}.wire'
-#    # The location of published Alias files
-#    alias_asset_publish:
-#        definition: '@asset_root/publish/alias/{name}.v{version}.wire'
-
-    # Alias translations
-#
-#    # The location of the reference created on the fly by Alias when importing a file as ref
-#    alias_asset_reference_publish:
-#        definition: '@asset_root/publish/alias/translations/{name}_{alias.extension}.v{version}.wref'
-#    alias_asset_igs_publish:
-#        definition: '@asset_root/publish/alias/translations/{name}.v{version}.igs'
-#    alias_asset_catpart_publish:
-#        definition: '@asset_root/publish/alias/translations/{name}.v{version}.CATPart'
-#    alias_asset_jt_publish:
-#        definition: '@asset_root/publish/alias/translations/{name}.v{version}.jt'
-#    alias_asset_stp_publish:
-#        definition: '@asset_root/publish/alias/translations/{name}.v{version}.stp'
-#    alias_asset_wref_publish:
-#        definition: '@asset_root/publish/alias/translations/{name}.v{version}.wref'
-
-    #
-    # VRED
-    #
-
-    # define the location of a work area
-#    asset_work_area_vred:
-#        definition: '@asset_root/work/vred'
-#    # define the location of a publish area
-#    asset_publish_area_vred:
-#        definition: '@asset_root/publish/vred'
-#    # The location of WIP files
-#    vred_asset_work:
-#        definition: '@asset_root/work/vred/{name}.v{version}.vpb'
-#    # The location of backups of WIP files
-#    vred_asset_snapshot:
-#        definition: '@asset_root/work/vred/snapshots/{name}.v{version}.{timestamp}.vpb'
-#    # The location of published VRED files
-#    vred_asset_publish:
-#        definition: '@asset_root/publish/vred/{name}.v{version}.vpb'
-#
-#    # define the location of the WIP render images
-#    vred_asset_render_work:
-#        definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
-#
-#    # define the location of the WIP renderings for an image sequence
-#    vred_asset_render_sequence_work:
-#        definition: '@asset_root/work/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
-#
-#    # define the location of the published render images
-#    vred_asset_render_publish:
-#        definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}].{vred.render_extension}'
-#
-#    # define the location of the published renderings for an image sequence
-#    vred_asset_render_sequence_publish:
-#        definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
 
 #

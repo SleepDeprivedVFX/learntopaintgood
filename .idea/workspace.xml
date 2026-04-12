@@ -1,28 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="The basic - basic Dropbox multi-pipeline is working!">
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Ugh... ok.  Nuke is loading now, but it ain't pretty.">
+      <change afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/editorial/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/editorial/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/3dsmax.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/3dsmax.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/3dsmax/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/3dsmax/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/elements/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/elements/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/houdini.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/houdini.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/houdini/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/houdini/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/maya.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/maya.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/maya/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/maya/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/mobu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/mobu.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/mobu/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/mobu/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/nuke.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/nuke/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/nuke/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/photoshop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/photoshop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/publish/photoshop/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/publish/photoshop/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/reference/artwork/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/reference/artwork/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/reference/footage/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/reference/footage/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/review/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/review/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/3dsmax.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/3dsmax.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/3dsmax/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/3dsmax/snapshots/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/houdini.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/houdini.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/houdini/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/houdini/snapshots/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/images/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/images/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/maya.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/maya.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/maya/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/maya/snapshots/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/maya/workspace.mel" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/maya/workspace.mel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/mobu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/mobu.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/mobu/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/mobu/snapshots/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/nuke.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/nuke/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/nuke/snapshots/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/photoshop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/photoshop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/project/sequences/sequence/shot/step/work/photoshop/snapshots/placeholder" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/project/Ep/episode/sequence/shot/step/work/photoshop/snapshots/placeholder" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/asset_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset_step.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/app_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/app_locations.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/engine_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/engine_locations.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-desktop2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-launchapp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-launchapp.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-snapshot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-snapshot.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-nuke.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-shell.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-shell.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-shotgun.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-shotgun.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/software_paths.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/software_paths.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/playlist.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/playlist.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/project.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/sequence.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/version.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/version.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/info.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/info.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/install/app_store/tk-framework-desktopserver/v1.8.5/python/tk_framework_desktopserver/shotgun/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/install/app_store/tk-framework-desktopserver/v1.8.5/python/tk_framework_desktopserver/shotgun/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/install/app_store/tk-hiero-export/v0.8.3/python/tk_hiero_export/sg_shot_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/install/app_store/tk-hiero-export/v0.8.3/python/tk_hiero_export/sg_shot_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/install/core/scripts/tank_cmd.py" beforeDir="false" afterPath="$PROJECT_DIR$/install/core/scripts/tank_cmd.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +94,7 @@
       <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema\project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema\project\Ep\Episode" />
       <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema" />
     </key>
   </component>
@@ -133,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775972324689</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ugh... ok.  Nuke is loading now, but it ain't pretty.">
+      <option name="closed" value="true" />
+      <created>1775977585548</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775977585549</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +173,7 @@
     <MESSAGE value="Starting to modify the files" />
     <MESSAGE value="Trying to get this to work with two schemas" />
     <MESSAGE value="The basic - basic Dropbox multi-pipeline is working!" />
-    <option name="LAST_COMMIT_MESSAGE" value="The basic - basic Dropbox multi-pipeline is working!" />
+    <MESSAGE value="Ugh... ok.  Nuke is loading now, but it ain't pretty." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ugh... ok.  Nuke is loading now, but it ain't pretty." />
   </component>
 </project>

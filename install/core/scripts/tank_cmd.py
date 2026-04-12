@@ -87,7 +87,7 @@ SHOTGUN_ENTITY_TYPES = [
     "Department",
     "Element",
     "ElementShotConnection",
-    "Episode",
+    "episode",
     "EventLogEntry",
     "FilesystemLocation",
     "Group",

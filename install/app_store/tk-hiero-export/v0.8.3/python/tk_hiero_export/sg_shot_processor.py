@@ -584,7 +584,7 @@ class ShotgunShotProcessor(ShotgunHieroObjectBase, FnShotProcessor.ShotProcessor
                 "The method 'get_shot_parent' could not be found in the "
                 "'hook_get_shot' hook. In order to properly link the "
                 "Cut entity in PTR, you will need to implement this method "
-                "to return a Sequence, Episode, or some other entity "
+                "to return a Sequence, episode, or some other entity "
                 "that corresponds to the Hiero sequence in your workflow."
             )
             pass

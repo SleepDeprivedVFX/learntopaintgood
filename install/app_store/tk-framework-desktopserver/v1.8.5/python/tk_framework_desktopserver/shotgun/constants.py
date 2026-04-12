@@ -38,7 +38,7 @@ PUBLISHED_FILE_ENTITY = "PublishedFile"
 # The base set of supported entity types. All others are provided
 # by the PublishedFile entity's schema, where we pull the list of
 # entity types that it can be linked to. Out of the box, this will
-# include things like Asset, Shot, Episode, and Level.
+# include things like Asset, Shot, episode, and Level.
 #
 # Once combined with the PublishedFile's entity link types, this
 # forms the list of entity types that we provide action menu items
