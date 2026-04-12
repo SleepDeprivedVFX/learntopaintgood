@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Further Harmony integration work.">
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Testing git cache">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776025614434</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Testing git cache">
+      <option name="closed" value="true" />
+      <created>1776025730672</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776025730672</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +179,7 @@
     <MESSAGE value="Close to getting episodes to work, but no banana" />
     <MESSAGE value="Trying to add in Harmony while also getting the Episodes to work" />
     <MESSAGE value="Further Harmony integration work." />
-    <option name="LAST_COMMIT_MESSAGE" value="Further Harmony integration work." />
+    <MESSAGE value="Testing git cache" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing git cache" />
   </component>
 </project>

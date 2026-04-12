@@ -9,8 +9,8 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 # the type of dynamic content
-type: "shit"
+type: "project"
 name: "dropbox"
 
 # name of project root as defined in roots.yml
-root_name: "dropbox"
+root_name: "Fart"
