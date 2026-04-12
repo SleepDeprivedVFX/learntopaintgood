@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Trying to add in Harmony while also getting the Episodes to work">
-      <change afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-harmony.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/env/sequence_step.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-breakdown.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-breakdown.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-shotgunpanel.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-shotgunpanel.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-workfiles2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-workfiles2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/project.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/sequence.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Further Harmony integration work.">
+      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776024632987</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Further Harmony integration work.">
+      <option name="closed" value="true" />
+      <created>1776025614434</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776025614434</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +169,7 @@
     <MESSAGE value="Ugh... ok.  Nuke is loading now, but it ain't pretty." />
     <MESSAGE value="Close to getting episodes to work, but no banana" />
     <MESSAGE value="Trying to add in Harmony while also getting the Episodes to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to add in Harmony while also getting the Episodes to work" />
+    <MESSAGE value="Further Harmony integration work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Further Harmony integration work." />
   </component>
 </project>
