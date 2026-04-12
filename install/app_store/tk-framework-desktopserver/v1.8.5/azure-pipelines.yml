@@ -1,0 +1,59 @@
+# Imports the shared Azure CI tools from the master branch of shotgunsoftware/tk-ci-tools
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: shotgunsoftware/tk-ci-tools
+      ref: refs/heads/master
+      endpoint: shotgunsoftware
+
+# We want builds to trigger for 3 reasons:
+# - The master branch sees new commits
+# - Each PR should get rebuilt when commits are added to it.
+# - When we tag something
+trigger:
+  branches:
+    include:
+    - master
+  tags:
+    include:
+    - v*
+pr:
+  branches:
+    include:
+    - "*"
+
+# This pulls in a variable group from Azure. Variables can be encrypted or not.
+variables:
+- group: deploy-secrets
+
+# Launch into the build pipeline.
+jobs:
+- template: build-pipeline.yml@templates
+  parameters:
+    additional_repositories:
+      - name: tk-framework-desktopclient
+      - name: tk-shotgun
+    extra_test_dependencies:
+      # Required when binary dependencies are not bundled
+      - attrs==22.2.0    # Fix version. Otherwise tk-ci-tools will install latest
+      - Twisted==22.10.0 # Last version supporting Python 3.7
+      - websocket-client==1.6.1 # Last version supporting Python 3.7
+    post_tests_steps:
+      - bash: python -m pytest tests/integration_tests/interpreters.py -v
+        displayName: Run interpreter integration tests
+        env:
+          CI: 1  # Used to skip certain tests on Azure
+          SHOTGUN_HOST: $(sg.ci.host)
+          SHOTGUN_SCRIPT_NAME: $(sg.ci.script.name)
+          SHOTGUN_SCRIPT_KEY: $(sg.ci.script.key)
+          TK_TOOLCHAIN_HOST: $(sg.ci.host)
+          TK_TOOLCHAIN_USER_LOGIN: $(sg.ci.human.login)
+          TK_TOOLCHAIN_USER_PASSWORD: $(sg.ci.human.password)
+          # Sandbox each test executing based on the Azure agent name. Those are
+          # Azure Pipelines 1-10
+          SHOTGUN_TEST_ENTITY_SUFFIX: '$(Agent.Name)'
+
+- template: resources/python/pipelines/pipelines.yml
+  parameters:
+    branch: $(System.PullRequest.SourceBranch)-automated

@@ -1,0 +1,389 @@
+﻿alias\_api
+==========
+
+.. automodule:: alias_api
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      add_async_task
+      add_message_handler
+      adjust_window
+      al_are_equal
+      al_is_valid
+      apply_iterator_to_dag_nodes
+      apply_iterator_to_shaders
+      assign_children_to_parent_layer
+      assign_nodes_to_layer
+      cleanup_geometry_model
+      clear_pick_list
+      clear_queued_events
+      convert_face_node_to_trimmed_surface_node
+      convert_to_trimmed_surface_node
+      copy_object
+      copy_object_cleanup
+      create_alternative
+      create_construction_plane
+      create_group_for_layer
+      create_layer
+      create_layer_folder
+      create_layered_shader
+      create_orthographic_camera
+      create_perspective_camera
+      create_reference
+      create_reference_alternative
+      create_shader
+      create_stage
+      create_switch_shader
+      create_texture_node
+      current_window
+      delete_all
+      delete_all_construction_entities
+      delete_all_construction_history
+      delete_all_locators
+      delete_construction_history
+      delete_dag_nodes_by_name
+      delete_history
+      delete_layers_by_name
+      delete_null_nodes
+      delete_sets_by_name
+      do_updates
+      expand_instances
+      export_by_layer
+      export_by_layer_sequentially
+      find_dag_node_by_name
+      find_top_level_dag_node_by_name
+      first_construction_entity
+      first_dag_node
+      first_environment
+      first_layer
+      first_layered_shader
+      first_locator
+      first_pick_item
+      first_set
+      first_shader
+      first_switch_shader
+      flatten_group_nodes
+      get_alternative_by_name
+      get_alternatives
+      get_annotation_locator_strings
+      get_annotation_locators
+      get_bounding_box_from_hanger
+      get_children
+      get_construction_plane_by_name
+      get_current_path
+      get_current_pick_item
+      get_current_stage
+      get_dag_nodes_by_name
+      get_empty_layers
+      get_empty_sets
+      get_layer_by_name
+      get_layer_by_number
+      get_layered_shader_by_name
+      get_layered_shader_by_node
+      get_layered_shaders
+      get_layers
+      get_layers_by_name
+      get_layers_using_multiple_shaders
+      get_locator_by_name
+      get_locators
+      get_locators_by_name
+      get_main_window_id
+      get_nesting_groups
+      get_perspective_camera_by_name
+      get_perspective_cameras
+      get_pick_item_dag_nodes
+      get_pick_items
+      get_product_information
+      get_reference_by_name
+      get_reference_by_path
+      get_reference_by_uuid
+      get_references
+      get_references_by_name
+      get_sets_by_name
+      get_shader_by_name
+      get_shaders
+      get_shaders_by_name
+      get_shaders_by_node
+      get_stages
+      get_switch_shader_by_name
+      get_switch_shader_by_node
+      get_switch_shaders
+      get_top_dag_nodes
+      get_variants
+      has_annotation_locator
+      has_construction_history
+      has_history
+      has_queued_events
+      has_reference
+      has_variants
+      import_file
+      import_reference
+      import_subdiv
+      import_subdivision
+      initialize_universe
+      is_construction_layer
+      is_copy_of_vred_shader
+      is_empty_file
+      is_queuing_events
+      is_stage_empty
+      linear_scale
+      linear_units
+      log_message
+      log_to_errlog
+      log_to_prompt
+      log_to_prompt_no_history
+      log_to_stderr
+      log_to_stdout
+      next_construction_entity
+      next_layer
+      next_locator
+      next_pick_item
+      next_shader
+      next_switch_shader
+      node_first_shader
+      node_switch_shader
+      open_file
+      pick
+      pick_all_layers
+      pick_all_locators
+      pick_by_name
+      pick_layers
+      pick_locators
+      pick_nodes
+      pick_nodes_assigned_to_layers
+      pick_nodes_assigned_to_shaders
+      pop_pick_list
+      prev_pick_item
+      push_pick_list
+      queue_events
+      redraw_screen
+      remove_message_handler
+      remove_message_handlers
+      remove_reference
+      remove_references
+      reset
+      reset_pivots
+      reset_stages
+      retrieve
+      retrieve_options
+      save_file
+      save_file_as
+      save_layers
+      search_dag
+      search_node_has_history
+      search_node_has_non_origin_pivot
+      search_node_has_non_zero_transform
+      search_node_is_instance
+      search_node_is_template
+      search_node_layer_does_not_match_parent_layer
+      search_node_unused_curves_on_surface
+      search_node_unused_curves_on_surface_with_history
+      set_layer_symmetry
+      set_parent_window
+      set_retrieve_options
+      set_store_options
+      store
+      store_active
+      store_current_window
+      store_options
+      tessellate_adaptive
+      tessellate_chord_height_deviation
+      tessellate_chord_height_deviation_accurate
+      tessellate_chord_height_deviation_fast
+      tessellate_number
+      tessellate_render_settings
+      tessellate_uniform
+      traverse_dag
+      ungroup
+      unpick
+      unpick_all_layers
+      unpick_all_locators
+      update_reference
+      zero_transform
+      zero_transform_top_level
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      AlAction
+      AlActionExtrapType
+      AlAngleLocator
+      AlAnimatable
+      AlAnnotationLocator
+      AlArcAttributes
+      AlAttributes
+      AlCamera
+      AlCameraNode
+      AlChannel
+      AlChannelDataType
+      AlCloud
+      AlCluster
+      AlClusterMember
+      AlClusterNode
+      AlClusterable
+      AlConicAttributes
+      AlConicType
+      AlConstructionEntity
+      AlConstructionPlane
+      AlCoordinateSystem
+      AlCopyOptions
+      AlCurve
+      AlCurveAttributes
+      AlCurveCV
+      AlCurveFormType
+      AlCurveNode
+      AlCurveNodeJoinErrors
+      AlCurveOnSurface
+      AlCurveOnSurfacePoint
+      AlCurvePoint
+      AlDagNode
+      AlDeviationLocator
+      AlDisplayModeType
+      AlDistanceLocator
+      AlEnvironment
+      AlFace
+      AlFaceNode
+      AlFileType
+      AlGroupNode
+      AlHashable
+      AlIKHandle
+      AlIKHandleNode
+      AlIterator
+      AlKeyframe
+      AlLayer
+      AlLayeredShader
+      AlLight
+      AlLightNode
+      AlLineAttributes
+      AlLinkItem
+      AlList
+      AlLocator
+      AlMesh
+      AlMeshNode
+      AlMessageType
+      AlMinmaxLocator
+      AlObject
+      AlObjectType
+      AlOrthographicCamera
+      AlParamAction
+      AlPerspectiveCamera
+      AlPickable
+      AlPlaneAttributes
+      AlPoint
+      AlPointType
+      AlRadialLocator
+      AlReferenceFile
+      AlReferenceFileSet
+      AlReferenceLayer
+      AlRetrieveOptions
+      AlRetrieveOptions._ai
+      AlRetrieveOptions._autocad
+      AlRetrieveOptions._c4
+      AlRetrieveOptions._catiav4_atf
+      AlRetrieveOptions._catiav5_atf
+      AlRetrieveOptions._edf
+      AlRetrieveOptions._fbx
+      AlRetrieveOptions._granite_atf
+      AlRetrieveOptions._iges
+      AlRetrieveOptions._iges_atf
+      AlRetrieveOptions._inventor_atf
+      AlRetrieveOptions._jamais
+      AlRetrieveOptions._jt_atf
+      AlRetrieveOptions._level_map
+      AlRetrieveOptions._nx_atf
+      AlRetrieveOptions._parasolid_atf
+      AlRetrieveOptions._sat
+      AlRetrieveOptions._solidworks_atf
+      AlRetrieveOptions._step_atf
+      AlRetrieveOptions._stl_atf
+      AlRetrieveOptions._trimming_map
+      AlRetrieveOptions._vdafs
+      AlRetrieveOptions._vdais
+      AlRetrieveOptions._wire
+      AlRevSurfAttributes
+      AlSet
+      AlSetMember
+      AlSettable
+      AlShader
+      AlShadingFields
+      AlShell
+      AlShellNode
+      AlSpacePoint
+      AlStatusCode
+      AlStoreOptions
+      AlStoreOptions._ai
+      AlStoreOptions._autocad
+      AlStoreOptions._c4
+      AlStoreOptions._catiav5_atf
+      AlStoreOptions._catv5
+      AlStoreOptions._edf
+      AlStoreOptions._fbx
+      AlStoreOptions._granite_atf
+      AlStoreOptions._iges
+      AlStoreOptions._iges_atf
+      AlStoreOptions._jamais
+      AlStoreOptions._jt_atf
+      AlStoreOptions._level_map
+      AlStoreOptions._nx_atf
+      AlStoreOptions._parasolid_atf
+      AlStoreOptions._sat
+      AlStoreOptions._trimming_map
+      AlStoreOptions._usd_atf
+      AlStoreOptions._vdafs
+      AlStoreOptions._vdais
+      AlStoreOptions._wire
+      AlSurface
+      AlSurfaceNode
+      AlSurfacePoint
+      AlSwitchShader
+      AlTM
+      AlTangentType
+      AlTessellateTypes
+      AlTexture
+      AlTextureNode
+      AlTripleComponent
+      AlWindow
+      LinearUnit
+      Menu
+      MenuItem
+      MessageResult
+      ReferenceFileStatus
+      Stage
+      SymmetryState
+      TraverseDagInputData
+      TraverseDagOutputData
+      Type
+      UngroupOption
+      Variant
+      Vec3
+      VectorAlTangentType
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      AliasCompatibilityException
+      AliasOpenModelException
+      AliasPythonException
+   
+   
+
+
+

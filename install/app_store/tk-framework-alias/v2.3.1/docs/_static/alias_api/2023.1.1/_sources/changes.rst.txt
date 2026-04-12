@@ -1,0 +1,76 @@
+What's Changed
+####################
+
+Summary
+---------------------
+
+Summary of changes in the Alias Python API version |version|.
+
+New
+=========
+
+.. automodule:: alias_api
+
+    .. autosummary::
+        :nosignatures:
+
+        assign_children_to_parent_layer
+        assign_nodes_to_layer
+        create_group_for_layer
+        delete_all_construction_history
+        delete_all
+        delete_dag_nodes_by_name
+        delete_layers_by_name
+        delete_sets_by_name
+        do_updates
+        get_dag_nodes_by_name
+        get_empty_sets
+        get_layers
+        get_layers_by_name
+        get_locators
+        get_locators_by_name
+        get_references_by_name
+        get_sets_by_name
+        get_shaders_by_name
+        pick_all
+        pick_all_locators
+        pick_all_layers
+        pick_layers
+        pick_locators
+        pick_nodes
+        pick_nodes_assigned_to_layers
+        pick_nodes_assigned_to_shaders
+        remove_references
+        reset_pivots
+        search_node_is_template
+        set_layer_symmetry
+        unpick_all
+        unpick_all_layers
+        unpick_all_locators
+        AlGroupNode.add_children
+        TraverseDagInputData.node_names
+        TraverseDagInputData.nodeNamesInclusive
+        TraverseDagOutputData.count
+
+
+Updated
+=========
+
+.. autosummary::
+    :nosignatures:
+
+    search_node_has_non_origin_pivot:
+    search_node_is_instance
+    search_node_layer_does_not_match_parent_layer
+    search_node_unused_curves_on_surface
+    search_node_unused_curves_on_surface_with_history
+    TraverseDagInputData
+
+**Details:**
+
+- Function :func:`search_node_has_non_origin_pivot` has new parameter ``reset``.
+- Function :func:`search_node_is_instance` has new parameter ``expand``.
+- Function :func:`search_node_layer_does_not_match_parent_layer` has new parameter ``returnParent``.
+- Function :func:`search_node_unused_curves_on_surface` has new parameter ``deleteUnused``.
+- Function :func:`search_node_unused_curves_on_surface_with_history` has new parameter ``deleteHistory``.
+- Default constructor :class:`TraverseDagInputData` has new optional parameters ``node_names``, ``node_names_inclusive``, ``node_types``, ``node_types_inclusive``, ``layers``, ``layers_inclusive``, ``shaders`` and ``shaders_inclusive``.

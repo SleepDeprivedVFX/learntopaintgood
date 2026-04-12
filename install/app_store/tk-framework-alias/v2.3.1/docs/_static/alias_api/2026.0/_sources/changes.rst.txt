@@ -1,0 +1,28 @@
+What's Changed
+####################
+
+Summary
+---------------------
+
+Summary of changes in the Alias Python API version |version|.
+
+New
+=========
+
+.. automodule:: alias_api
+
+    .. autosummary::
+        :nosignatures:
+
+        add_async_task
+    
+Added members
+~~~~~~~~~~~~~~~~~~~
+
+* ``AlStoreOptions.jt_atf.store_want_subnode``
+
+
+Removed members
+================
+
+* ``AlStoreOptions.jt_atf.store_want_xtbrep``

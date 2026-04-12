@@ -1,0 +1,7 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities
+version: v1.25.0
+exclude:
+  global:
+    # Exclude Python 3.7 deps because Snyk only scans with supported versions
+    - dist/Python/Python37/requirements.txt
+    - dist/Python/Python37/packages/frozen_requirements.txt

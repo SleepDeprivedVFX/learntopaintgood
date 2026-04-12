@@ -1,0 +1,10 @@
+# Flow Production Tracking Toolkit configuration file
+# This file was automatically created by setup_project
+# This file reflects the paths in the primary pipeline
+# configuration defined for this project.
+
+Windows: 'C:\Users\sleep\OneDrive\Pipeline\learntopaintgood'
+Darwin: ''
+Linux: ''
+
+# End of file.

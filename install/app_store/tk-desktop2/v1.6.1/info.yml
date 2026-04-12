@@ -1,0 +1,25 @@
+# Copyright 2018 Autodesk, Inc.  All rights reserved.
+#
+# Use of this software is subject to the terms of the Autodesk license agreement
+# provided at the time of installation or download, or which otherwise accompanies
+# this software in either electronic or hard copy form.
+#
+# Metadata defining the behaviour and requirements for this engine
+
+# expected fields in the configuration file for this engine
+configuration:
+
+# the Shotgun fields that this engine needs in order to operate correctly
+requires_shotgun_fields:
+
+
+# More verbose description of this item
+display_name: "Flow Production Tracking Engine for Desktop app v2"
+description: "Flow Production Tracking Support in Desktop app v2"
+
+# Required minimum versions for this item to run
+requires_shotgun_version:
+requires_core_version: "v0.19.1"
+
+frameworks:
+  - {"name": "tk-framework-shotgunutils", "version": "v5.x.x", "minimum_version": "v5.7.4"}

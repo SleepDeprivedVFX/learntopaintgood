@@ -1,0 +1,4 @@
+v4.0.1
+=====================
+
+* Fix Alias Engine restart after Alias application exits unexpectedly

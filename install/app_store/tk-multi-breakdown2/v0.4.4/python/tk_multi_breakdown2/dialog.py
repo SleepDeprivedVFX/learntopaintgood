@@ -1,0 +1,1655 @@
+# Copyright (c) 2021 Autodesk, Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk, Inc.
+
+import sgtk
+from sgtk.platform.qt import QtGui, QtCore
+from tank.errors import TankHookMethodDoesNotExistError
+
+from .dialog_ui import DialogUI
+
+from .file_item_model import FileTreeItemModel as FileModel
+from .file_history_model import FileHistoryModel
+from .actions import ActionManager
+from .framework_qtwidgets import (
+    FilterItem,
+    FilterMenu,
+    ShotgunOverlayWidget,
+    ViewItemDelegate,
+    ThumbnailViewItemDelegate,
+    SGQIcon,
+    utils,
+)
+from .file_proxy_model import FileProxyModel
+from .decorators import wait_cursor
+
+task_manager = sgtk.platform.import_framework(
+    "tk-framework-shotgunutils", "task_manager"
+)
+BackgroundTaskManager = task_manager.BackgroundTaskManager
+
+settings = sgtk.platform.import_framework("tk-framework-shotgunutils", "settings")
+shotgun_globals = sgtk.platform.import_framework(
+    "tk-framework-shotgunutils", "shotgun_globals"
+)
+
+
+class AppDialog(QtGui.QWidget):
+    """
+    The main App dialog.
+    """
+
+    # Settings keys for storing and restoring user prefs
+    VIEW_MODE_SETTING = "view_mode"
+    LIST_SIZE_SCALE_VALUE = "view_item_list_size_scale"
+    GRID_SIZE_SCALE_VALUE = "view_item_grid_size_scale"
+    THUMBNAIL_SIZE_SCALE_VALUE = "view_item_thumb_size_scale"
+    DETAILS_PANEL_VISIBILITY_SETTING = "details_panel_visibility"
+    SETTINGS_WIDGET_GEOMETRY = "breakdown2_dialog_geometry"
+    SPLITTER_STATE = "splitter_state"
+    FILTER_MENU_STATE = "filter_menu_state"
+    FILTER_MENU_DOCKED_SETTING = "filter_menu_docked_state"
+    GROUP_BY_SETTING = "group_by"
+    AUTO_REFRESH_SETTING = "auto_refresh"
+    DYNAMIC_LOADING_SETTING = "dynamic_loading"
+
+    (
+        THUMBNAIL_VIEW_MODE,
+        LIST_VIEW_MODE,
+        GRID_VIEW_MODE,
+    ) = range(3)
+
+    def __init__(self, parent=None):
+        """
+        :param parent: The parent QWidget for this control
+        """
+
+        QtGui.QWidget.__init__(self, parent)
+
+        self._bundle = sgtk.platform.current_bundle()
+
+        # Use Loader App api to handle all our file item actions. Pass the Breakdown2 App
+        # bundle to the Loader api in order to define the actions in the Breakdown2 App
+        # config settings.
+        loader_app = self._bundle.engine.apps.get("tk-multi-loader2")
+        if loader_app:
+            try:
+                self.__loader_manager = loader_app.create_loader_manager(self._bundle)
+            except TypeError:
+                self.__loader_manager = None
+                self._bundle.logger.warning(
+                    "The current Loader API (tk-multi-loader2) version {} does not support Scene Breakdown custom actions. Update the Loader API to version 1.25.0 or later.".format(
+                        loader_app.version
+                    )
+                )
+            except Exception:
+                # Catch all for any error that occurred trying to create the Loader API instance.
+                self.__loader_manager = None
+                self._bundle.logger.warning(
+                    "Failed to get the Loader API. Custom actions will not be available."
+                )
+        else:
+            self.__loader_manager = None
+            self._bundle.logger.warning(
+                "Configure the Loader API (tk-multi-loader2) to use custom actions."
+            )
+
+        # This property indicates if the app should listen for DCC events to perform data
+        # refreshes automatically.
+        self._auto_refresh = False
+        # This property indicates if the app should load the data in dynamically as it is
+        # retrieved async.
+        self._dynamic_loading = False
+
+        # Flag to indicate when an action is executing that affects multiple items.
+        self.__executing_bulk_action = False
+
+        # create a single instance of the task manager that manages all
+        # asynchronous work/tasks
+        self._bg_task_manager = BackgroundTaskManager(self, max_threads=2)
+        self._bg_task_manager.start_processing()
+
+        shotgun_globals.register_bg_task_manager(self._bg_task_manager)
+
+        # create a settings manager where we can pull and push prefs later
+        # prefs in this manager are shared
+        self._settings_manager = settings.UserSettings(self._bundle)
+        # Define another QSettings object to store raw values. This is a work around for storing QByteArray objects in Python 3,
+        # since the settings manager converts QByteArray objects to str, which causes an error when retrieving it and trying
+        # to set the splitter state with a str instead of QByteArray object.
+        self._raw_values_settings = QtCore.QSettings(
+            "ShotGrid Software", "{app}_raw_values".format(app=self._bundle.name)
+        )
+
+        # -----------------------------------------------------
+        # Get the UI from the DialogUI class
+
+        self._ui = DialogUI.ui(self)
+
+        # -----------------------------------------------------
+        # Set up buttons
+
+        self._ui.list_view_btn.setToolTip("List view mode")
+        self._ui.thumbnail_view_btn.setToolTip("Thumbnail view mode")
+        self._ui.grid_view_btn.setToolTip("Grid view mode")
+
+        self._ui.details_button.setIcon(SGQIcon.info(size=SGQIcon.SIZE_40x40))
+        self._ui.details_button.setToolTip("Show/Hide details")
+
+        # Set up the refresh button menu
+        refresh_action = QtGui.QAction(SGQIcon.refresh(), "Refresh", self)
+        refresh_action.triggered.connect(self._reload_file_model)
+        self._auto_refresh_option_action = QtGui.QAction("Turn On Auto-Refresh", self)
+        self._auto_refresh_option_action.setCheckable(True)
+        self._auto_refresh_option_action.triggered.connect(self._on_toggle_auto_refresh)
+        self._dynamic_loading_action = QtGui.QAction("Turn On Dynamic Loading", self)
+        self._dynamic_loading_action.setCheckable(True)
+        self._dynamic_loading_action.triggered.connect(self._on_toggle_dynamic_loading)
+        refresh_button_menu = QtGui.QMenu(self)
+        refresh_button_menu.addActions(
+            [
+                refresh_action,
+                self._auto_refresh_option_action,
+                self._dynamic_loading_action,
+            ]
+        )
+        self._ui.refresh_btn.setMenu(refresh_button_menu)
+        self._ui.refresh_btn.setPopupMode(QtGui.QToolButton.MenuButtonPopup)
+        self._ui.refresh_btn.clicked.connect(self._on_refresh_clicked)
+
+        # -----------------------------------------------------
+        # Restore setting required to set up widgets. The rest of the settings will be
+
+        # Restore the auto-refresh option in the refresh menu. First check if there a user
+        # setting saved for this property, else default to the config setting.
+        self._auto_refresh = self._settings_manager.retrieve(
+            self.AUTO_REFRESH_SETTING, None
+        )
+        if self._auto_refresh is None:
+            self._auto_refresh = self._bundle.get_setting("auto_refresh", True)
+        self._auto_refresh_option_action.setChecked(self._auto_refresh)
+        self._ui.refresh_btn.setChecked(self._auto_refresh)
+
+        # Restore the dynamic loading option in the refresh menu. This property indicates
+        # if the app should load the data in dynamically as it is retrieved async.
+        self._dynamic_loading = self._settings_manager.retrieve(
+            self.DYNAMIC_LOADING_SETTING, True
+        )
+        self._dynamic_loading_action.setChecked(self._dynamic_loading)
+
+        # restored in the designated retore_state method
+        group_by = self._settings_manager.retrieve(self.GROUP_BY_SETTING, None)
+
+        # -----------------------------------------------------
+        # main file view
+
+        self._ui.file_view.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
+        self._ui.file_view.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+
+        if group_by is None:
+            group_by = self._bundle.get_setting("group_by", None)
+
+        self._file_model = FileModel(
+            self,
+            self._bg_task_manager,
+            group_by=group_by,
+            polling=self._auto_refresh,
+            dynamic_loading=self._dynamic_loading,
+        )
+
+        self._file_proxy_model = FileProxyModel(self)
+        self._file_proxy_model.setDynamicSortFilter(True)
+        self._file_proxy_model.setSortRole(QtCore.Qt.DisplayRole)
+        self._file_proxy_model.sort(0, QtCore.Qt.AscendingOrder)
+        self._file_proxy_model.setSourceModel(self._file_model)
+        self._ui.file_view.setModel(self._file_proxy_model)
+
+        self._file_model_overlay = ShotgunOverlayWidget(self._ui.file_view)
+        self._filter_widget_overlay = ShotgunOverlayWidget(
+            self._ui.content_filter_scroll_area
+        )
+
+        # Set up group combobox
+        group_by_fields = self._bundle.get_setting("group_by_fields")
+        fields = sorted(self._file_model.get_group_by_fields())
+        added_fields = []
+        group_by_index = 0
+        for field in fields:
+            # Do not allow grouping by these special fields
+            if field.startswith("<") and field.endswith(">"):
+                continue
+
+            # Only use the specified group by fields, if any specified
+            if group_by_fields and field not in group_by_fields:
+                continue
+
+            # Make sure this field has not already been added
+            if field in added_fields:
+                continue
+
+            field_display_name = shotgun_globals.get_field_display_name(
+                "PublishedFile", field
+            )
+
+            # For linked fields, just take the first part of the linked field
+            field_parts = field.split(".")
+            if len(field_parts) > 1:
+                # Check if this is a linked field, if so, add prefix to the field name to more
+                # accurately describe what the field is
+                prefix = " ".join([f.title() for f in field_parts[0].split("_")])
+                field_display_name = "{} {}".format(prefix, field_display_name)
+
+            # As we add the items, check if this group by field should be the current index,
+            # so that the combo box current index can be set after it has been init
+            if field == self._file_model.group_by:
+                group_by_index = self._ui.group_by_combo_box.count()
+
+            self._ui.group_by_combo_box.addItem(field_display_name, field)
+
+            # Keep track of what fields we've added so that there are no duplicates
+            added_fields.append(field_display_name)
+
+        # Set the intiial group by value
+        self._ui.group_by_combo_box.setCurrentIndex(group_by_index)
+
+        # Enable mouse tracking to allow the delegate to receive mouse events
+        self._ui.file_view.setMouseTracking(True)
+
+        # Create a delegate for the file view. Set the row width to None
+        thumbnail_item_delegate = self._create_file_item_delegate(thumbnail=True)
+        # Create a delegate for the list and grid view. The delegate can toggled to
+        # display either mode.
+        list_item_delegate = self._create_file_item_delegate()
+
+        # Filtering
+        self._display_text_filter = FilterItem(
+            None,  # Don't really need an ID for this filter.
+            FilterItem.FilterType.STR,
+            FilterItem.FilterOp.IN,
+            data_func=list_item_delegate.get_displayed_text,
+        )
+        self._filter_menu = FilterMenu(
+            self, refresh_on_show=False, dock_widget=self._ui.content_filter_scroll_area
+        )
+        # TODO allow this list of filters to be defined in the config.
+        self._filter_menu.set_accept_fields(
+            [
+                "{sg_data_role}.PublishedFile.created_at".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.created_by.HumanUser.name".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.description".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.entity".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.name".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.project".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.published_file_type".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.sg_status_list".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.tags".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.task".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.task.Task.sg_status_list".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{sg_data_role}.PublishedFile.version_number".format(
+                    sg_data_role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ),
+                "{status_model_role}.status".format(
+                    status_model_role=self._file_model.STATUS_FILTER_DATA_ROLE
+                ),
+            ]
+        )
+        self._filter_menu.set_filter_model(self._file_proxy_model)
+        self._filter_menu.set_filter_roles(
+            [
+                self._file_model.STATUS_FILTER_DATA_ROLE,
+                self._file_model.FILE_ITEM_SG_DATA_ROLE,
+            ]
+        )
+        self._ui.filter_btn.setMenu(self._filter_menu)
+        self._filter_menu.menu_about_to_be_refreshed.connect(
+            lambda: self._filter_widget_overlay.start_spin()
+        )
+        self._filter_menu.menu_refreshed.connect(self._on_filter_menu_refreshed)
+
+        # Set up the view modes
+        self.view_modes = [
+            {
+                "mode": self.THUMBNAIL_VIEW_MODE,
+                "button": self._ui.thumbnail_view_btn,
+                "delegate": thumbnail_item_delegate,
+                "default_size": 64,
+                "size_settings_key": self.THUMBNAIL_SIZE_SCALE_VALUE,
+            },
+            {
+                "mode": self.LIST_VIEW_MODE,
+                "button": self._ui.list_view_btn,
+                "delegate": list_item_delegate,
+                "default_size": 85,
+                "size_settings_key": self.LIST_SIZE_SCALE_VALUE,
+            },
+            {
+                "mode": self.GRID_VIEW_MODE,
+                "button": self._ui.grid_view_btn,
+                "delegate": list_item_delegate,
+                "default_size": 260,
+                "size_settings_key": self.GRID_SIZE_SCALE_VALUE,
+            },
+        ]
+
+        self._ui.search_widget.set_placeholder_text("Search Files")
+
+        # Get the last view mode used from the settings manager, default to the first view if
+        # no settings found
+        cur_view_mode = self._settings_manager.retrieve(
+            self.VIEW_MODE_SETTING, self.LIST_VIEW_MODE
+        )
+        self._set_view_mode(cur_view_mode)
+
+        # -----------------------------------------------------
+        # details view
+
+        self._details_panel_visible = False
+
+        # Overlays for when there is multiple or no selection, and no details are available.
+        self._details_overlay = ShotgunOverlayWidget(self._ui.details_panel)
+
+        # format the details main widget
+        main_file_details_history_config = self._bundle.execute_hook_method(
+            "hook_ui_config", "main_file_history_details"
+        )
+        self._ui.file_details.set_formatting(
+            main_file_details_history_config.get("header"),
+            main_file_details_history_config.get("body"),
+            main_file_details_history_config.get("thumbnail"),
+        )
+
+        self._file_history_model = FileHistoryModel(self, self._bg_task_manager)
+
+        self._file_history_proxy_model = QtGui.QSortFilterProxyModel(self)
+        self._file_history_proxy_model.setSourceModel(self._file_history_model)
+
+        # now use the proxy model to sort the data to ensure
+        # higher version numbers appear earlier in the list
+        # the history model is set up so that the default display
+        # role contains the version number field in
+        # Flow Production Tracking. This field is what the proxy model
+        # sorts by default We set the dynamic filter to true, meaning
+        # QT will keep continuously sorting. And then tell it to use
+        # column 0 (we only have one column in our models) and descending
+        # order.
+        self._file_history_proxy_model.setDynamicSortFilter(True)
+        self._file_history_proxy_model.setSortRole(FileHistoryModel.SORT_ROLE)
+        self._file_history_proxy_model.sort(0, QtCore.Qt.DescendingOrder)
+
+        self._ui.file_history_view.setModel(self._file_history_proxy_model)
+
+        history_delegate = self._create_file_history_item_delegate()
+        self._ui.file_history_view.setItemDelegate(history_delegate)
+        self._ui.file_history_view.setMouseTracking(True)
+
+        details_panel_visibility = self._settings_manager.retrieve(
+            self.DETAILS_PANEL_VISIBILITY_SETTING, False
+        )
+        self._set_details_panel_visibility(details_panel_visibility)
+
+        # Restore the app settings for the user.
+        self.restore_state()
+
+        # -----------------------------------------------------
+        # Connect signals
+
+        # Model & Views
+        self._file_model.modelAboutToBeReset.connect(self._on_file_model_reset_begin)
+        self._file_model.modelReset.connect(self._on_file_model_reset_end)
+        self._file_model.layoutChanged.connect(self._on_file_model_layout_changed)
+        self._file_model.dataChanged.connect(self._on_file_model_item_changed)
+        self._file_proxy_model.layoutChanged.connect(self._update_file_view_overlay)
+
+        self._ui.file_view.selectionModel().selectionChanged.connect(
+            self._on_file_selection
+        )
+
+        # Views
+        self._ui.file_view.customContextMenuRequested.connect(
+            self._on_context_menu_requested
+        )
+
+        # Widgets
+        self._ui.details_button.clicked.connect(self._toggle_details_panel)
+        self._ui.select_all_outdated_button.clicked.connect(
+            self._on_select_all_outdated
+        )
+        self._ui.update_selected_button.clicked.connect(
+            self._on_update_selected_to_latest
+        )
+
+        for i, view_mode in enumerate(self.view_modes):
+            view_mode["button"].clicked.connect(
+                lambda checked=False, mode=i: self._set_view_mode(mode)
+            )
+
+        self._ui.group_by_combo_box.currentTextChanged.connect(
+            self._on_group_by_changed
+        )
+
+        self._ui.size_slider.valueChanged.connect(self._on_view_item_size_slider_change)
+        self._ui.search_widget.search_changed.connect(
+            lambda text: self._update_search_text_filter()
+        )
+
+        # Create the scene operations hook instance and connect the scene change callback if
+        # the hook defines the necessary method
+        scene_operations_hook_path = self._bundle.get_setting("hook_scene_operations")
+        self._scene_operations_hook = self._bundle.create_hook_instance(
+            scene_operations_hook_path
+        )
+        self.__can_register_scene_change_callback = hasattr(
+            self.scene_operations_hook, "register_scene_change_callback"
+        )
+        self.__can_unregister_scene_change_callback = hasattr(
+            self.scene_operations_hook, "unregister_scene_change_callback"
+        )
+        self._listen_for_events(self._auto_refresh)
+
+        # -----------------------------------------------------
+        # Prepare for app start up
+
+        # Flag indicating if the model data should reload on the app show event. Initialize the
+        # flag to True to load the model the first time the app is shown.
+        self.__update_on_show = True
+
+        # Log metric for app usage
+        self._bundle._log_metric_viewed_app()
+
+    ######################################################################################################
+    # Proeprties
+
+    @property
+    def scene_operations_hook(self):
+        """Get the scene operations hook instance."""
+        return self._scene_operations_hook
+
+    ######################################################################################################
+    # Override Qt methods
+
+    def showEvent(self, event):
+        """
+        Override the base method.
+
+        :param event: The show event object.
+        :type event: QtGui.QShowEvent
+        """
+
+        # Do not refresh when show event is caused by the window system, only internal events
+        if event.spontaneous():
+            return
+
+        if self.__update_on_show:
+            # There were changes while the app was hiding, reset the flag and refresh the
+            # model data
+            self.__update_on_show = False
+            self._reload_file_model()
+
+        super().showEvent(event)
+
+    def closeEvent(self, event):
+        """
+        Override the base method.
+
+        This slot is triggered when the widget is closed. Clean up as much as possible to help
+        the GC.
+
+        :param event: The close event object.
+        :type event: QtGui.QCloseEvent
+        """
+
+        # First save any app settings
+        self.save_state()
+
+        # Tell the main app instance that we are closing
+        self._bundle._on_dialog_close(self)
+
+        # Disconnect any signals that were set up for handlding scene changes
+        if self.__can_unregister_scene_change_callback:
+            self.scene_operations_hook.unregister_scene_change_callback()
+
+        # clear the selection in the main views.
+        # this is to avoid re-triggering selection
+        # as items are being removed in the models
+        #
+        # note that we pull out a fresh handle to the selection model
+        # as these objects sometimes are deleted internally in the view
+        # and therefore persisting python handles may not be valid
+        self._ui.file_view.selectionModel().clear()
+        self._ui.file_history_view.selectionModel().clear()
+
+        # clear up the various data models
+        if self._file_model:
+            self._file_model.destroy()
+            self._file_model = None
+
+        if self._file_history_model:
+            self._file_history_model.clear()
+            self._file_history_model = None
+
+        self._ui.file_view.setItemDelegate(None)
+        for view_mode in self.view_modes:
+            delegate = view_mode.get("delegate")
+            if delegate:
+                delegate.setParent(None)
+                delegate.deleteLater()
+                delegate = None
+
+        file_history_delegate = self._ui.file_history_view.itemDelegate()
+        self._ui.file_history_view.setItemDelegate(None)
+        file_history_delegate.setParent(None)
+        file_history_delegate.deleteLater()
+        file_history_delegate = None
+
+        # and shut down the task manager
+        if self._bg_task_manager:
+            shotgun_globals.unregister_bg_task_manager(self._bg_task_manager)
+            self._bg_task_manager.shut_down()
+            self._bg_task_manager = None
+
+        super().closeEvent(event)
+
+    ######################################################################################################
+    # Public methods
+
+    def save_state(self):
+        """
+        Save the app user settings.
+
+        This method should be called when the app is exiting/closing to save the current user
+        settings, so that they can be restored on opening the app for the user next time.
+        """
+
+        self._settings_manager.store(
+            self.SETTINGS_WIDGET_GEOMETRY,
+            self.saveGeometry(),
+            pickle_setting=False,
+        )
+        self._settings_manager.store(self.GROUP_BY_SETTING, self._file_model.group_by)
+        self._settings_manager.store(self.AUTO_REFRESH_SETTING, self._auto_refresh)
+        self._settings_manager.store(
+            self.DYNAMIC_LOADING_SETTING, self._dynamic_loading
+        )
+        self._settings_manager.store(
+            self.FILTER_MENU_DOCKED_SETTING,
+            self._filter_menu.docked,
+        )
+
+        # Store the raw QByteArray object (cannot use the settings manager because it
+        # will convert QByteArray objects to str when storing).
+        self._raw_values_settings.setValue(
+            self.SPLITTER_STATE, self._ui.details_splitter.saveState()
+        )
+
+        self._settings_manager.store(
+            self.FILTER_MENU_STATE, self._filter_menu.save_state()
+        )
+
+    def restore_state(self):
+        """
+        Restore the app user settings.
+
+        This method should be called on app init, after all widgets have been created to
+        ensure all widgets are available to apply the restored state.
+
+        NOTE some settings may be restored in the init method if they are required at the time
+        of creating the widgets.
+        """
+
+        widget_geometry = self._settings_manager.retrieve(
+            self.SETTINGS_WIDGET_GEOMETRY, None
+        )
+        if widget_geometry:
+            self.restoreGeometry(widget_geometry)
+
+        # Restore the splitter state that divides the main view and the details
+        # First try to restore the state from the settings manager
+        splitter_state = self._settings_manager.retrieve(self.SPLITTER_STATE, None)
+        if not splitter_state:
+            # Splitter state was not found in the settings manager, check the raw values settings.
+            splitter_state = self._raw_values_settings.value(self.SPLITTER_STATE)
+
+        if splitter_state:
+            self._ui.details_splitter.restoreState(splitter_state)
+        else:
+            # Splitter state was not restored, default to set details size to 1 (the min value
+            # to show the details, but will be at a minimal size)
+            self._ui.details_splitter.setSizes([800, 1])
+
+        # Restore the filter menu state
+        menu_state = self._settings_manager.retrieve(self.FILTER_MENU_STATE, None)
+        if not menu_state:
+            menu_state = {
+                "{role}.status".format(
+                    role=self._file_model.STATUS_FILTER_DATA_ROLE
+                ): {},
+                "{role}.PublishedFile.published_file_type.PublishedFileType.code".format(
+                    role=self._file_model.FILE_ITEM_SG_DATA_ROLE
+                ): {},
+            }
+        self._filter_menu.restore_state(menu_state)
+
+        menu_docked = self._settings_manager.retrieve(
+            self.FILTER_MENU_DOCKED_SETTING, False
+        )
+        if menu_docked:
+            self._filter_menu.dock_filters()
+
+    ######################################################################################################
+    # Protected methods
+
+    def _create_file_item_delegate(self, thumbnail=False):
+        """
+        Create and return a :class:`ViewItemDelegate` object for the File view.
+
+        :return: The created delegate.
+        :rtype: :class:`ViewItemDelegate`
+        """
+
+        if thumbnail:
+            delegate = ThumbnailViewItemDelegate(self._ui.file_view)
+            delegate.text_role = FileModel.VIEW_ITEM_SHORT_TEXT_ROLE
+            delegate.thumbnail_size = QtCore.QSize(164, 128)
+            delegate.text_padding = ViewItemDelegate.Padding(4, 7, 4, 7)
+
+        else:
+            delegate = ViewItemDelegate(self._ui.file_view)
+            delegate.text_role = FileModel.VIEW_ITEM_TEXT_ROLE
+            delegate.text_padding = ViewItemDelegate.Padding(5, 7, 7, 7)
+
+        # Set the delegate model data roles
+        delegate.header_role = FileModel.VIEW_ITEM_HEADER_ROLE
+        delegate.subtitle_role = FileModel.VIEW_ITEM_SUBTITLE_ROLE
+        delegate.thumbnail_role = FileModel.VIEW_ITEM_THUMBNAIL_ROLE
+        delegate.icon_role = FileModel.VIEW_ITEM_ICON_ROLE
+        delegate.height_role = FileModel.VIEW_ITEM_HEIGHT_ROLE
+        delegate.loading_role = FileModel.VIEW_ITEM_LOADING_ROLE
+        delegate.separator_role = FileModel.VIEW_ITEM_SEPARATOR_ROLE
+
+        # Add LEFT side actions: group header expand and status icon
+        delegate.add_actions(
+            [
+                {
+                    "icon": SGQIcon.tree_arrow(),
+                    "show_always": True,
+                    "padding": 0,
+                    "features": QtGui.QStyleOptionButton.Flat,
+                    "get_data": get_expand_action_data,
+                    "callback": lambda view, index, pos: view.toggle_expand(index),
+                },
+                {
+                    "icon": QtGui.QIcon(),  # The get_data callback will set the icon based on status.
+                    "icon_size": QtCore.QSize(20, 20),
+                    "show_always": True,
+                    "padding": 0,
+                    "features": QtGui.QStyleOptionButton.Flat,
+                    "get_data": (
+                        get_thumbnail_header_status_action_data
+                        if thumbnail
+                        else get_status_action_data
+                    ),
+                },
+            ],
+            ViewItemDelegate.LEFT,
+        )
+        # Add the menu actions buton on top right
+        delegate.add_action(
+            {
+                "icon": SGQIcon.tree_arrow(),
+                "padding": 0,
+                "callback": self._actions_menu_requested,
+            },
+            ViewItemDelegate.TOP_RIGHT,
+        )
+        if thumbnail:
+            # Thumbnail delegate specifc actions
+            # Add status icon to top left for non gorup header items
+            delegate.add_action(
+                {
+                    "icon": QtGui.QIcon(),  # The get_data callback will set the icon based on status.
+                    "icon_size": QtCore.QSize(20, 20),
+                    "show_always": True,
+                    "padding": 0,
+                    "features": QtGui.QStyleOptionButton.Flat,
+                    "get_data": get_thumbnail_status_action_data,
+                },
+                ViewItemDelegate.TOP_LEFT,
+            )
+        else:
+            # Non-thumbnail specific actions
+            # Add non-actionable item to display the created timestamp
+            delegate.add_action(
+                {
+                    "name": "",  # The get_data callback will set the text.
+                    "show_always": True,
+                    "features": QtGui.QStyleOptionButton.Flat,
+                    "get_data": get_timestamp_action_data,
+                },
+                ViewItemDelegate.FLOAT_RIGHT,
+            )
+
+        return delegate
+
+    def _create_file_history_item_delegate(self):
+        """
+        Create and return a :class:`ViewItemDelegate` object for the File History view.
+
+        :param set_delegate: If True, set the delegate on the file history view.
+        :type set_delegate: bool (default=True)
+        :return: The created delegate.
+        :rtype: :class:`ViewItemDelegate`
+        """
+
+        delegate = ViewItemDelegate(self._ui.file_history_view)
+
+        # Set the delegate model data roles
+        delegate.thumbnail_role = FileHistoryModel.VIEW_ITEM_THUMBNAIL_ROLE
+        delegate.header_role = FileHistoryModel.VIEW_ITEM_HEADER_ROLE
+        delegate.subtitle_role = FileHistoryModel.VIEW_ITEM_SUBTITLE_ROLE
+        delegate.text_role = FileHistoryModel.VIEW_ITEM_TEXT_ROLE
+        delegate.icon_role = FileHistoryModel.VIEW_ITEM_ICON_ROLE
+        delegate.separator_role = FileHistoryModel.VIEW_ITEM_SEPARATOR_ROLE
+
+        # Override tooltips applied to model items outside of the delegate.
+        delegate.override_item_tooltip = True
+
+        # Set up delegaet styling
+        delegate.item_padding = 4
+        delegate.text_padding = ViewItemDelegate.Padding(4, 4, 4, 12)
+        delegate.thumbnail_padding = ViewItemDelegate.Padding(4, 0, 4, 4)
+        # Set the thumbnail width to ensure text aligns between rows.
+        delegate.thumbnail_width = 64
+
+        # Add the menu actions button.
+        delegate.add_action(
+            {
+                "icon": SGQIcon.tree_arrow(),
+                "padding": 0,
+                "callback": self._show_history_item_context_menu,
+            },
+            ViewItemDelegate.TOP_RIGHT,
+        )
+
+        return delegate
+
+    def _show_context_menu(self, widget, pnt):
+        """
+        Show a context menu for the selected items.
+
+        :param widget: The source widget.
+        :param pnt: The position for the context menu relative to the source widget.
+        """
+
+        # map the point to a global position:
+        pnt = widget.mapToGlobal(pnt)
+
+        # build the context menu
+        context_menu = QtGui.QMenu(self)
+
+        # build the actions
+        update_to_latest_action = QtGui.QAction("Update to Latest")
+        update_to_latest_action.triggered.connect(
+            lambda checked=False: self._on_update_selected_to_latest()
+        )
+        context_menu.addAction(update_to_latest_action)
+
+        # Add action to show details for the item that the context menu is shown for.
+        show_details_action = QtGui.QAction("Show Details")
+        show_details_action.triggered.connect(
+            lambda: self._set_details_panel_visibility(True)
+        )
+        context_menu.addAction(show_details_action)
+
+        # Get custom actions defined in the config.
+        custom_actions = self.__get_custom_actions()
+        if custom_actions:
+            context_menu.addSeparator()
+        context_menu.addActions(custom_actions)
+
+        context_menu.exec_(pnt)
+
+    def _show_history_item_context_menu(self, view, index, pos):
+        """
+        Create and show the menu item actions for a history file item.
+
+        :param index: The file history item model index.
+        :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+        :param pos: The mouse position, relative to the view, when the action was triggered.
+        :type pos: :class:`sgtk.platform.qt.QtCore.QPoint`.
+        :param view: The view (self._ui.file_history_view) that this index belongs to.
+        :type view: :class:`sgtk.platform.qt.QtGui.QListView`
+        :return: None
+        """
+
+        actions = []
+
+        # Clear and set the current selection
+        self._ui.file_history_view.selectionModel().select(
+            index, QtGui.QItemSelectionModel.ClearAndSelect
+        )
+
+        # Get the selected file items from the main view
+        selected_indexes = self._ui.file_view.selectionModel().selectedIndexes()
+
+        if selected_indexes:
+            # Get the currently selected file item to be updated.
+            update_item_index = selected_indexes[0]
+            if isinstance(update_item_index.model(), QtGui.QSortFilterProxyModel):
+                update_item_index = update_item_index.model().mapToSource(
+                    update_item_index
+                )
+            file_item_to_update = update_item_index.data(FileModel.FILE_ITEM_ROLE)
+
+            # Get the data from the file history item to update the selected file item with. The index
+            # passed in references the file history item.
+            if isinstance(index.model(), QtGui.QSortFilterProxyModel):
+                index = index.model().mapToSource(index)
+            history_item = index.model().itemFromIndex(index)
+            sg_data = history_item.get_sg_data()
+
+            update_action = ActionManager.add_update_to_specific_version_action(
+                file_item_to_update, self._file_model, sg_data, None
+            )
+            actions.append(update_action)
+
+        if not actions:
+            no_action = QtGui.QAction("No Actions")
+            no_action.setEnabled(False)
+            actions.append(no_action)
+
+        menu = QtGui.QMenu()
+        menu.addActions(actions)
+        menu.exec_(view.mapToGlobal(pos))
+
+    def _set_details_panel_visibility(self, visible):
+        """
+        Specifies if the details panel should be visible or not
+
+        :param visible: Boolean to indicate whether the details panel should be visible or not
+        """
+
+        self._details_panel_visible = visible
+        self._ui.details_panel.setVisible(visible)
+        self._ui.details_button.setChecked(visible)
+
+        if visible:
+            # Set up the details panel with the current selection.
+            selection_model = self._ui.file_view.selectionModel()
+            self._setup_details_panel(selection_model.selectedIndexes())
+
+        self._settings_manager.store(self.DETAILS_PANEL_VISIBILITY_SETTING, visible)
+
+    def _setup_details_panel(self, selected_items):
+        """
+        Set up the details panel according to the selected items.
+
+        :param selected_items:  Model indexes of the selected items.
+        """
+
+        if not selected_items:
+            self._clear_details_panel()
+            self._details_overlay.show_message("Select an item to see more details.")
+
+        elif len(selected_items) > 1:
+            self._clear_details_panel()
+            self._details_overlay.show_message(
+                "Select a single item to see more details."
+            )
+
+        else:
+            self._details_overlay.hide()
+
+            model_index = selected_items[0]
+            file_item = model_index.data(FileModel.FILE_ITEM_ROLE)
+            if not file_item:
+                return
+            thumbnail = model_index.data(QtCore.Qt.DecorationRole)
+
+            # display file item details
+            self._ui.file_details.set_text(file_item.sg_data)
+            self._ui.file_details.set_thumbnail(thumbnail)
+
+            # load file history
+            self._file_history_model.load_data(file_item)
+
+    def _clear_details_panel(self):
+        """
+        Clear the details panel.
+        """
+
+        self._file_history_model.clear()
+        self._ui.file_details.clear()
+
+    def _set_view_mode(self, mode_index):
+        """
+        Sets up the view mode for the UI `file_view`.
+
+        :param mode_index: The view mode index to set the view to.
+        :type mode_index: int
+        :return: None
+        """
+
+        assert 0 <= mode_index < len(self.view_modes), "Undefined view mode"
+
+        for i, view_mode in enumerate(self.view_modes):
+            is_cur_mode = i == mode_index
+            view_mode["button"].setChecked(is_cur_mode)
+
+            if is_cur_mode:
+                delegate = view_mode["delegate"]
+                self._ui.file_view.setItemDelegate(view_mode["delegate"])
+
+                if view_mode["mode"] == self.LIST_VIEW_MODE:
+                    delegate.scale_thumbnail_to_item_height(2.0)
+
+                elif view_mode["mode"] == self.GRID_VIEW_MODE:
+                    delegate.thumbnail_width = 164
+                    delegate.scale_thumbnail_to_item_height(None)
+
+                # Get the value to set item size value to set on the delegate, after all views have been updated.
+                slider_value = self._settings_manager.retrieve(
+                    view_mode["size_settings_key"], view_mode["default_size"]
+                )
+
+        # Set the slider value for the current view, this will also update the viewport.
+        self._ui.size_slider.setValue(slider_value)
+        self._on_view_item_size_slider_change(slider_value)
+
+        self._settings_manager.store(self.VIEW_MODE_SETTING, mode_index)
+
+    def _update_file_view_overlay(self):
+        """Show an overlay message if no items are displayed in the file view."""
+
+        if self._file_model.rowCount() <= 0:
+            # No data in the file model.
+            self._file_model_overlay.show_message("No items found.")
+
+        elif self._file_proxy_model.rowCount() <= 0:
+            # There is data in the model, but it is currently all filtered out.
+            self._file_model_overlay.show_message("Reset filters to see results.")
+
+        else:
+            # There are results, hide the overlay.
+            self._file_model_overlay.hide()
+
+    def _reload_file_model(self):
+        """
+        Reload the file model.
+
+        This will scan the scene again to gather any new file data.
+        """
+
+        if not self._file_model:
+            # Cannot reload the model if it does not exist yet.
+            return
+
+        self._file_model.reload()
+
+    def _scene_changed(self, event_type="reload", data=None):
+        """
+        Handle a scene changed event.
+
+        :param event_type: The scene change event type. Defaults to "reload".
+        :type event_type: "reload" | "add" | "remove"
+        :param data: The data that has changed.
+        :type data: str | dict
+        """
+
+        if not self.isVisible():
+            # Do not perform any actions while the app is hiding. Record that there was a
+            # change and reload the model next time on show.
+            self.__update_on_show = True
+            return
+
+        invalidate_filtering = False
+        is_reload = event_type == "reload"
+
+        if is_reload:
+            self._reload_file_model()
+        else:
+            if event_type == "add":
+                if self._file_model:
+                    # Special case handling when adding an item that requires a new group to be
+                    # created, filtering does not accept the newly added item. Set the flag to
+                    # invalidate the proxy model at the end of this operation.
+                    # TODO understand exactly why this happens.
+                    invalidate_filtering = True
+
+                    self._file_model.add_item(data)
+
+            elif event_type == "remove":
+                if self._file_model:
+                    self._file_model.remove_item_by_file_path(data)
+
+            # Refresh the filter menu after the data has loaded.
+            self._filter_menu.refresh()
+
+            if invalidate_filtering:
+                self._file_proxy_model.invalidate()
+                self._expand_all_groups()
+
+    def _listen_for_events(self, listen):
+        """
+        Listen for DCC specific events that require the app to update.
+
+        :param listen: True will listen for DCC events, else False will to not listen for events.
+        :type listen: bool
+        """
+
+        if listen:
+            # Start listening to DCC scene change events to trigger reload.
+            if self.__can_register_scene_change_callback:
+                self.scene_operations_hook.register_scene_change_callback(
+                    scene_change_callback=self._scene_changed
+                )
+        else:
+            # Stop listening to DCC events to trigger updates
+            if self.__can_unregister_scene_change_callback:
+                self.scene_operations_hook.unregister_scene_change_callback()
+
+    ################################################################################################
+    # UI/Widget callbacks
+
+    def _on_refresh_clicked(self, checked=False):
+        """Slot triggered when the refresh button has been clicked."""
+
+        # The refresh button is checkable, which means that its check state is toggled each
+        # the button is clicked, but we want the check state to reflect the auto-refresh state.
+        # So keep the refresh button checked state the same auto refresh state
+
+        self._ui.refresh_btn.setChecked(self._auto_refresh)
+
+        # Now handle the button click event
+        self._reload_file_model()
+
+    def _on_toggle_auto_refresh(self, checked):
+        """
+        Slot triggered when the auto-refresh option value changed from the refresh menu.
+
+        :param checked: True if auto-refresh is checked, else False.
+        :type checked: bool
+        """
+
+        self._auto_refresh = checked
+        self._ui.refresh_btn.setChecked(self._auto_refresh)
+
+        # Turn on/off polling for published file updates
+        self._file_model.polling = self._auto_refresh
+
+        # Start/stop listening for DCC change events
+        self._listen_for_events(self._auto_refresh)
+
+    def _on_toggle_dynamic_loading(self, checked):
+        """
+        Slot triggered when the dynamic loading option value changed from the refresh menu.
+
+        :param checked: True if dynamic loading is checked, else False.
+        :type checked: bool
+        """
+
+        self._dynamic_loading = checked
+        self._file_model.dynamic_loading = self._dynamic_loading
+
+    def _on_group_by_changed(self, text):
+        """
+        Slot triggered when the group by combo box text has changed.
+
+        Update the file model grouping and refresh it to reflect the new grouping.
+
+        :param text: The current text of the combo box
+        :type text: str
+        """
+
+        self._file_model.group_by = self._ui.group_by_combo_box.currentData()
+        self._file_model.refresh()
+
+    def _toggle_details_panel(self):
+        """
+        Slot triggered when someone clicks the show/hide details button
+        """
+        if self._ui.details_panel.isVisible():
+            self._set_details_panel_visibility(False)
+        else:
+            self._set_details_panel_visibility(True)
+
+    def _on_file_model_reset_begin(self):
+        """
+        Slot triggered when the file model signal 'modelAboutToBeReset' has been fired.
+
+        Show the file model overlay spinner and disable UI components while the model is
+        loading
+        """
+
+        self._file_model_overlay.start_spin()
+
+        # Do not allow user to interact with UI while the model is async reloading
+        self._ui.group_by_combo_box.setEnabled(False)
+        self._ui.group_by_label.setEnabled(False)
+        self._ui.refresh_btn.setEnabled(False)
+        self._ui.filter_btn.setEnabled(False)
+        self._ui.select_all_outdated_button.setEnabled(False)
+        self._ui.update_selected_button.setEnabled(False)
+
+    def _on_file_model_reset_end(self):
+        """
+        Slot triggered once the main file model has finished resetting and has emitted
+        the `modelRest` signal.
+        """
+
+        # Re-enable buttons that were disabled during reset
+        self._ui.group_by_combo_box.setEnabled(True)
+        self._ui.group_by_label.setEnabled(True)
+        self._ui.refresh_btn.setEnabled(True)
+        self._ui.select_all_outdated_button.setEnabled(True)
+        self._ui.update_selected_button.setEnabled(True)
+
+        # Update the details panel
+        selected_indexes = self._ui.file_view.selectionModel().selectedIndexes()
+        self._setup_details_panel(selected_indexes)
+
+        # Ensure all the file groupings are expand after a model reset. This is a bit of a
+        # work around for how filtering works - the group indexes are never accepted by the
+        # filter model and only accepted if a child index is accepted. By not explicitly
+        # accepting the group index, this causes the group to collapse, even thoug there are
+        # children in it
+        self._expand_all_groups()
+
+        # Refresh the filter menu after the data has loaded
+        self._filter_menu.refresh()
+
+    def _on_filter_menu_refreshed(self):
+        """Callback triggered when the filter menu has finished refreshing."""
+
+        if self._file_model.rowCount() <= 0:
+            # No data in the file model to generate any filters.
+            self._filter_widget_overlay.show_message("No filter data.")
+        elif self._filter_menu.is_empty():
+            # There is data in the model, but no filters were generated from the data.
+            self._filter_widget_overlay.show_message("No filters found.")
+        else:
+            # There are filters to show, hide the overlay.
+            self._filter_widget_overlay.hide()
+
+    def _on_file_model_layout_changed(self):
+        """Callback triggered when the file model's layout has changed."""
+
+        # Update the details panel
+        selected_indexes = self._ui.file_view.selectionModel().selectedIndexes()
+        self._setup_details_panel(selected_indexes)
+
+        # Ensure all the file groupings are expand after a model reset. This is a bit of a
+        # work around for how filtering works - the group indexes are never accepted by the
+        # filter model and only accepted if a child index is accepted. By not explicitly
+        # accepting the group index, this causes the group to collapse, even thoug there are
+        # children in it
+        self._expand_all_groups()
+
+    def _on_context_menu_requested(self, pnt):
+        """
+        Slot triggered when a context menu has been requested from one of the file views.
+        Call the method to show the context menu.
+
+        :param pnt: The position for the context menu relative to the source widget.
+        """
+
+        self._show_context_menu(self.sender(), pnt)
+
+    def _on_file_selection(self):
+        """
+        Slot triggered when selection changed in the main view. This will collect details about
+        the selected file in order to display them in the details panel.
+        """
+
+        selected_indexes = self._ui.file_view.selectionModel().selectedIndexes()
+        self._setup_details_panel(selected_indexes)
+
+    def _on_file_model_item_changed(self, top_left_index, bottom_right_index, roles):
+        """
+        Slot triggered when an item in the file_model has changed.
+
+        Update the history details based if the changed item, is also the currently
+        selected item.
+
+        :param model_item: The changed item
+        :type model_item: :class:`sgtk.platform.qt.QtGui.QStandardItem`
+        """
+
+        # Only update the filter menu if the item data changed is relevant, and not in the
+        # middle of executing a bulk action
+        if not self.__executing_bulk_action and self._filter_menu.has_role(roles):
+            self._filter_menu.refresh()
+
+        selected = self._ui.file_view.selectionModel().selectedIndexes()
+        if not selected or len(selected) > 1:
+            return
+
+        selected_index = selected[0]
+        if isinstance(selected_index.model(), QtGui.QSortFilterProxyModel):
+            selected_index = selected_index.model().mapToSource(selected_index)
+
+        # The two indexes are expected to have the same parent.
+        parent_index = top_left_index.parent()
+        start_row = top_left_index.row()
+        end_row = bottom_right_index.row()
+        for row in range(start_row, end_row + 1):
+            changed_index = self._file_model.index(row, 0, parent_index)
+            if selected_index == changed_index:
+                # The item that changed was the currently selected on, update the details panel.
+                self._setup_details_panel([selected_index])
+
+                # Exit since there the only index was found
+                return
+
+    def _on_view_item_size_slider_change(self, value):
+        """
+        Slot triggered on the view item size slider value changed.
+
+        :param value: The value of the slider.
+        :return: None
+        """
+
+        for view_mode in self.view_modes:
+            delegate = view_mode["delegate"]
+
+            if view_mode["button"].isChecked():
+                # Store the item size value by view mode in the settings manager.
+                self._settings_manager.store(view_mode["size_settings_key"], value)
+
+                # Update the delegate to resize the items based on the slider value
+                # and current view mode
+                if view_mode["mode"] == self.THUMBNAIL_VIEW_MODE:
+                    width = value * (16 / 9.0)
+                    delegate.thumbnail_size = QtCore.QSize(width, value)
+
+                elif view_mode["mode"] == self.LIST_VIEW_MODE:
+                    delegate.item_height = value
+                    delegate.item_width = -1
+
+                elif view_mode["mode"] == self.GRID_VIEW_MODE:
+                    delegate.item_height = None
+                    delegate.item_width = value * 2
+
+        self._ui.file_view._update_all_item_info = True
+        self._ui.file_view.viewport().update()
+
+    @wait_cursor
+    def _on_select_all_outdated(self):
+        """
+        Callback triggered when the "Select all Outdated" button is clicked. This will
+        select all items in the file view that are not using the latest version.
+        """
+
+        selection_model = self._ui.file_view.selectionModel()
+        if not selection_model:
+            return
+
+        selection_model.clearSelection()
+
+        outdated_selection = QtGui.QItemSelection()
+        group_rows = self._file_model.rowCount()
+
+        for group_row in range(group_rows):
+            parent_index = self._file_model.index(group_row, 0)
+            file_item_rows = self._file_model.rowCount(parent_index)
+
+            for file_item_row in range(file_item_rows):
+                index = self._file_model.index(file_item_row, 0, parent_index)
+                if (
+                    self._file_model.data(index, FileModel.STATUS_ROLE)
+                    == FileModel.STATUS_OUT_OF_SYNC
+                ):
+                    proxy_index = self._file_proxy_model.mapFromSource(index)
+                    outdated_selection.select(proxy_index, proxy_index)
+
+        if outdated_selection.indexes():
+            selection_model.select(outdated_selection, QtGui.QItemSelectionModel.Select)
+            self._ui.file_view.scrollTo(outdated_selection.indexes()[0])
+
+    def _on_update_selected_to_latest(self):
+        """
+        Callback triggere when the "Update Selected" button is clicked. This will update
+        all selected items to the latest version.
+        """
+
+        file_items = self.__get_selected_items_data()
+        if not file_items:
+            return
+
+        # Turn off event handling while executing the action, we do not want the UI to handle
+        # events while performating the action.
+        self.__executing_bulk_action = True
+        if self._auto_refresh:
+            self._listen_for_events(False)
+        try:
+            ActionManager.execute_update_to_latest_action(file_items, self._file_model)
+        finally:
+            self.__executing_bulk_action = False
+            # Turn on event handling if it was on before
+            if self._auto_refresh:
+                self._listen_for_events(self._auto_refresh)
+            self._filter_menu.refresh()
+
+    def _update_search_text_filter(self):
+        """
+        Slot triggered when the up to date filter button is checked.
+        """
+
+        self._display_text_filter.filter_value = (
+            self._ui.search_widget._get_search_text()
+        )
+
+        # Set the search text filter to trigger the filter model to re-validate the data.
+        self._file_proxy_model.search_text_filter_item = self._display_text_filter
+
+    def _expand_all_groups(self):
+        """Expand all the groupings in the main file view."""
+
+        # The file view must first update its item info to get any potentially new model
+        # indexes (e.g. after a model reset), to ensure all grouping indexes are found to
+        # then exapnd.
+        # TODO ideally the view would handle this for us.. look into updating the
+        # GroupedItemView in qtwidgets framework
+        self._ui.file_view._update_item_info()
+
+        for row in range(self._file_model.rowCount()):
+            index = self._file_model.index(row, 0)
+            self._ui.file_view.expand(index)
+
+    ################################################################################################
+    # Private utility methods
+
+    def __get_selected_items_data(self, data_roles=FileModel.FILE_ITEM_ROLE):
+        """
+        Return the data associated with the selected items in the file view.
+
+        :param data_roles: The data model role(s) to retrieve the specific data for the
+            selected items. If only a single role is given, the return value is a flat
+            list of the data. If more than one role is given, a dictionary mapping of
+            role to the respective data is returned. Default is `FileModel.FILE_ITEM_ROLE`.
+        :type data_roles: int | List[int]
+        :return: The data for the selected items.
+        :rtype: list | dict
+        """
+
+        selection_model = self._ui.file_view.selectionModel()
+        if not selection_model:
+            return []
+
+        if not isinstance(data_roles, list):
+            data_roles = [data_roles]
+
+        data = {}
+        for role in data_roles:
+            data[role] = []
+
+        indexes = selection_model.selectedIndexes()
+        for index in indexes:
+            if isinstance(index.model(), QtGui.QSortFilterProxyModel):
+                index = index.model().mapToSource(index)
+            for role in data_roles:
+                data[role].append(index.data(role))
+
+        if len(data_roles) == 1:
+            return data[data_roles[0]]
+        return data
+
+    def __get_custom_actions(self):
+        """
+        Return the custom actions for the selected items.
+
+        The custom actions are defined in the Breakdown2 App config settings. The Loader App
+        api is used to handle creating and executing the actions. This requires the Loader App
+        to be configured for the current running environment.
+
+        :return: The actions for the selected items.
+        :rtype: List[QtGui.QAction]
+        """
+
+        if not self.__loader_manager:
+            return []
+
+        data = self.__get_selected_items_data(
+            [FileModel.FILE_ITEM_ROLE, FileModel.FILE_ITEM_SG_DATA_ROLE]
+        )
+        file_items = data[FileModel.FILE_ITEM_ROLE]
+        if not file_items:
+            return []
+
+        actions = []
+        if len(file_items) == 1:
+            # Create actions for a single file item
+            file_item = file_items[0]
+            item_actions = self.__loader_manager.get_actions_for_publish(
+                file_item.sg_data, self.__loader_manager.UI_AREA_MAIN
+            )
+
+            for item_action in item_actions:
+                # Add the FileItem to the action params. This may be needed to execute the action.
+                if item_action["params"] is None:
+                    item_action["params"] = {"file_item": file_item.to_dict()}
+                else:
+                    item_action["params"]["file_item"] = file_item.to_dict()
+
+                display_name = item_action.get("caption") or item_action["name"]
+                action = QtGui.QAction(display_name)
+                action.triggered.connect(
+                    lambda checked=False, d=file_item.sg_data, a=item_action: self.__loader_manager.execute_action(
+                        d, a
+                    )
+                )
+                actions.append(action)
+        else:
+            # Create common actions for multiple file items
+            sg_data_list = data[FileModel.FILE_ITEM_SG_DATA_ROLE]
+            item_actions = self.__loader_manager.get_actions_for_publishes(
+                sg_data_list, self.__loader_manager.UI_AREA_MAIN
+            )
+            for action_name, actions_list in item_actions.items():
+                if not actions_list:
+                    continue
+
+                for item_action in actions_list:
+                    try:
+                        file_item = next(
+                            fi
+                            for fi in file_items
+                            if fi.sg_data == item_action["sg_publish_data"]
+                        )
+                        if item_action["params"] is None:
+                            item_action["params"] = {"file_item": file_item.to_dict()}
+                        else:
+                            item_action["params"]["file_item"] = file_item.to_dict()
+                    except StopIteration:
+                        continue
+
+                display_name = (
+                    actions_list[0].get("action", {}).get("caption") or action_name
+                )
+                action = QtGui.QAction(display_name)
+                action.triggered.connect(
+                    lambda checked=False, actions=actions_list: self.__loader_manager.execute_multiple_actions(
+                        actions
+                    )
+                )
+                actions.append(action)
+
+        return actions
+
+    ################################################################################################
+    # ViewItemDelegate action method callbacks item's action is clicked
+
+    def _actions_menu_requested(self, view, index, pos):
+        """
+        Callback triggered when a view item's action menu is requested to be shown.
+        This will clear and select the given index, and show the item's actions menu.
+
+        :param view: The view the item belongs to.
+        :type view: :class:`GroupItemView`
+        :param index: The index of the item.
+        :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+        :param pos: The position that the menu should be displayed at.
+        :type pos: :class:`sgtk.platform.qt.QtCore.QPoent`
+
+        :return: None
+        """
+
+        selection_model = view.selectionModel()
+        if selection_model:
+            view.selectionModel().select(
+                index, QtGui.QItemSelectionModel.ClearAndSelect
+            )
+
+        self._show_context_menu(view, pos)
+
+
+####################################################################################################
+# ViewItemDelegate action function callbacks
+
+
+def get_expand_action_data(parent, index):
+    """
+    Return the action data for the group header expand action, and for the given index.
+    This data will determine how the action is displayed for the index.
+
+    :param parent: This is the parent of the :class:`ViewItemDelegate`, which is the file view.
+    :type parent: :class:`GroupItemView`
+    :param index: The index the action is for.
+    :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+    :return: The data for the action and index.
+    :rtype: dict, e.g.:
+        {
+            "visible": bool  # Flag indicating whether the action is displayed or not
+            "state": :class:`sgtk.platform.qt.QtGui.QStyle.StateFlag`  # Flag indicating state of the icon
+                                                                       # e.g. enabled/disabled, on/off, etc.
+            "name": str # Override the default action name for this index
+        }
+    """
+
+    visible = not index.parent().isValid()
+    state = QtGui.QStyle.State_Active | QtGui.QStyle.State_Enabled
+
+    if parent.is_expanded(index):
+        state |= QtGui.QStyle.State_Off
+    else:
+        state |= QtGui.QStyle.State_On
+
+    return {"visible": visible, "state": state}
+
+
+def get_thumbnail_header_status_action_data(parent, index):
+    """
+    Return the action data for the status action icon, and for the given index.
+    This data will determine how the action icon is displayed for the index.
+
+    :param parent: This is the parent of the :class:`ViewItemDelegate`, which is the file view.
+    :type parent: :class:`GroupItemView`
+    :param index: The index the action is for.
+    :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+    :return: The data for the action and index.
+    :rtype: dict, e.g.:
+    """
+
+    visible = index.data(FileModel.FILE_ITEM_ROLE) is None
+    status = index.data(FileModel.STATUS_ROLE)
+    status_icon = FileModel.get_status_icon(status)
+
+    return {
+        "visible": visible,
+        "icon": status_icon,
+    }
+
+
+def get_thumbnail_status_action_data(parent, index):
+    """
+    Return the action data for the status action icon, and for the given index.
+    This data will determine how the action icon is displayed for the index.
+
+    :param parent: This is the parent of the :class:`ViewItemDelegate`, which is the file view.
+    :type parent: :class:`GroupItemView`
+    :param index: The index the action is for.
+    :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+    :return: The data for the action and index.
+    :rtype: dict, e.g.:
+    """
+
+    visible = index.data(FileModel.FILE_ITEM_ROLE) is not None
+    status = index.data(FileModel.STATUS_ROLE)
+    status_icon = FileModel.get_status_icon(status)
+
+    return {
+        "visible": visible,
+        "icon": status_icon,
+    }
+
+
+def get_status_action_data(parent, index):
+    """
+    Return the action data for the status action icon, and for the given index.
+    This data will determine how the action icon is displayed for the index.
+
+    :param parent: This is the parent of the :class:`ViewItemDelegate`, which is the file view.
+    :type parent: :class:`GroupItemView`
+    :param index: The index the action is for.
+    :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+    :return: The data for the action and index.
+    :rtype: dict, e.g.:
+    """
+
+    status = index.data(FileModel.STATUS_ROLE)
+    status_icon = FileModel.get_status_icon(status)
+
+    return {
+        "icon": status_icon,
+    }
+
+
+def get_timestamp_action_data(parent, index):
+    """
+    Return the action data for the status action icon, and for the given index.
+    This data will determine how the action icon is displayed for the index.
+
+    :param parent: This is the parent of the :class:`ViewItemDelegate`, which is the file view.
+    :type parent: :class:`GroupItemView`
+    :param index: The index the action is for.
+    :type index: :class:`sgtk.platform.qt.QtCore.QModelIndex`
+    :return: The data for the action and index.
+    :rtype: dict, e.g.:
+    """
+
+    visible = index.parent().isValid()
+    datetime_obj = index.data(FileModel.FILE_ITEM_CREATED_AT_ROLE)
+    timestamp, _ = utils.create_human_readable_timestamp(
+        datetime_obj, "short_timestamp"
+    )
+    return {
+        "visible": visible,
+        "name": timestamp,
+    }

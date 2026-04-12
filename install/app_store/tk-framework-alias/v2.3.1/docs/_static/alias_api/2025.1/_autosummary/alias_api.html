@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>alias_api &mdash; Alias Python API  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference" href="../reference.html" />
+    <link rel="prev" title="Module Overview" href="../module_summary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Alias Python API
+          </a>
+              <div class="version">
+                5.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../module_summary.html">Module Overview</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">alias_api</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">What’s Changed</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Alias Python API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../module_summary.html">Module Overview</a> &raquo;</li>
+      <li>alias_api</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_autosummary/alias_api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-alias_api">
+<span id="alias-api"></span><h1>alias_api<a class="headerlink" href="#module-alias_api" title="Permalink to this headline"></a></h1>
+<p>Python bindings to Alias C++ API</p>
+<p class="rubric">Functions</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.add_message_handler" title="alias_api.add_message_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_message_handler</span></code></a>(message_type, callback_func)</p></td>
+<td><p>Install a message handler in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.adjust_window" title="alias_api.adjust_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust_window</span></code></a>(hwnd)</p></td>
+<td><p>Adjust the specified child window such that it is centered over the Alias main window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.al_are_equal" title="alias_api.al_are_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">al_are_equal</span></code></a>(al_object1, al_object2)</p></td>
+<td><p>Return True if the two Alias Objects are equal, else False.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.al_is_valid" title="alias_api.al_is_valid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">al_is_valid</span></code></a>(al_object)</p></td>
+<td><p>Return True if the Alias Object is valid, else False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.apply_iterator_to_dag_nodes" title="alias_api.apply_iterator_to_dag_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_iterator_to_dag_nodes</span></code></a>(iter, retcode)</p></td>
+<td><p>Applies the iterator to all AlDagNodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.apply_iterator_to_shaders" title="alias_api.apply_iterator_to_shaders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_iterator_to_shaders</span></code></a>(iter, retcode)</p></td>
+<td><p>Apply the iterator to each AlShader.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.assign_children_to_parent_layer" title="alias_api.assign_children_to_parent_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_children_to_parent_layer</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.assign_nodes_to_layer" title="alias_api.assign_nodes_to_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_nodes_to_layer</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.cleanup_geometry_model" title="alias_api.cleanup_geometry_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cleanup_geometry_model</span></code></a>([face_to_surf, ...])</p></td>
+<td><p>Clean up the geometry of the model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.clear_pick_list" title="alias_api.clear_pick_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_pick_list</span></code></a>()</p></td>
+<td><p>Remove all objects from the pick list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.clear_queued_events" title="alias_api.clear_queued_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_queued_events</span></code></a>()</p></td>
+<td><p>Clear the currently queued events.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.convert_face_node_to_trimmed_surface_node" title="alias_api.convert_face_node_to_trimmed_surface_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_face_node_to_trimmed_surface_node</span></code></a>(node)</p></td>
+<td><p>Convert a AlFaceNode to AlSurfaceNode (a trimmed surface).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.convert_to_trimmed_surface_node" title="alias_api.convert_to_trimmed_surface_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to_trimmed_surface_node</span></code></a>(node)</p></td>
+<td><p>This function works on a AlSurfaceNode only, and only on a surface that is a closed/periodic and untrimmed surface (e.g.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.copy_object" title="alias_api.copy_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy_object</span></code></a>(node[, run_cleanup])</p></td>
+<td><p>This function performs the copy of the dag node based on the copy options that have been set with the setCopyOptionFlags() routine.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.copy_object_cleanup" title="alias_api.copy_object_cleanup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy_object_cleanup</span></code></a>()</p></td>
+<td><p>Call this method after performing a number of dag node copy object operations to clean up the scene.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_alternative" title="alias_api.create_alternative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_alternative</span></code></a>(name[, force])</p></td>
+<td><p>Create an AlReferenceFileSet in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_construction_plane" title="alias_api.create_construction_plane"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_construction_plane</span></code></a>(tm)</p></td>
+<td><p>Create a dag node that is a construction plane at the position denoted by 'tm'.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_group_for_layer" title="alias_api.create_group_for_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_group_for_layer</span></code></a>(layer_name, group_name)</p></td>
+<td><p>Create a group node for the specified layer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_layer" title="alias_api.create_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_layer</span></code></a>(layer_name)</p></td>
+<td><p>Create a new AlLayer in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_layer_folder" title="alias_api.create_layer_folder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_layer_folder</span></code></a>(folder_name)</p></td>
+<td><p>Create a new AlLayer folder in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_layered_shader" title="alias_api.create_layered_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_layered_shader</span></code></a>()</p></td>
+<td><p>Create a new AlLayeredShader in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_orthographic_camera" title="alias_api.create_orthographic_camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_orthographic_camera</span></code></a>(view_type)</p></td>
+<td><p>Create and return an AlOrthographicCamera object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_perspective_camera" title="alias_api.create_perspective_camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_perspective_camera</span></code></a>()</p></td>
+<td><p>Create and return a AlPerspectiveCamera object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_reference" title="alias_api.create_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_reference</span></code></a>(arg0)</p></td>
+<td><p>Create an AlReferenceFile with the given path, in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_reference_alternative" title="alias_api.create_reference_alternative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_reference_alternative</span></code></a>(name)</p></td>
+<td><p>Create an AlReferenceFileSet with the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_shader" title="alias_api.create_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_shader</span></code></a>()</p></td>
+<td><p>Create a new AlShader in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_stage" title="alias_api.create_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_stage</span></code></a>(arg0)</p></td>
+<td><p>Create a new stage in Alias.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.create_switch_shader" title="alias_api.create_switch_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_switch_shader</span></code></a>()</p></td>
+<td><p>Create a new AlSwitchShader in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.create_texture_node" title="alias_api.create_texture_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_texture_node</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.current_window" title="alias_api.current_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_window</span></code></a>()</p></td>
+<td><p>Returns the currently active window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_all" title="alias_api.delete_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_all</span></code></a>(objs)</p></td>
+<td><p>Delete all the Alias Objects in the list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_all_construction_entities" title="alias_api.delete_all_construction_entities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_all_construction_entities</span></code></a>()</p></td>
+<td><p>Delete all AlConstructionPlane objects found in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_all_construction_history" title="alias_api.delete_all_construction_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_all_construction_history</span></code></a>(cos)</p></td>
+<td><p>Delete the construction histor for all the given curve on surface objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_all_locators" title="alias_api.delete_all_locators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_all_locators</span></code></a>()</p></td>
+<td><p>Delete all locators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_construction_history" title="alias_api.delete_construction_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_construction_history</span></code></a>(cos)</p></td>
+<td><p>Delete the construction histor for the curve on surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_dag_nodes_by_name" title="alias_api.delete_dag_nodes_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_dag_nodes_by_name</span></code></a>(node_names)</p></td>
+<td><p>Delete the dag nodes with the given names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_history" title="alias_api.delete_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_history</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_layers_by_name" title="alias_api.delete_layers_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_layers_by_name</span></code></a>(layer_names)</p></td>
+<td><p>Delete the layers with the given names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_null_nodes" title="alias_api.delete_null_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_null_nodes</span></code></a>()</p></td>
+<td><p>Delete all null nodes in the Alias scene.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.delete_sets_by_name" title="alias_api.delete_sets_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_sets_by_name</span></code></a>(names)</p></td>
+<td><p>Delete sets by name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.do_updates" title="alias_api.do_updates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">do_updates</span></code></a>([new_state])</p></td>
+<td><p>The do_updates flag is used to notify the system that you are finished performing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.expand_instances" title="alias_api.expand_instances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expand_instances</span></code></a>(node)</p></td>
+<td><p>Convert all instsances below the given node (top node of tree) to uninstanced geometry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.export_by_layer" title="alias_api.export_by_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_by_layer</span></code></a>(target_dirname, ...[, overwrite])</p></td>
+<td><p>Export each layer to a new file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.export_by_layer_sequentially" title="alias_api.export_by_layer_sequentially"><code class="xref py py-obj docutils literal notranslate"><span class="pre">export_by_layer_sequentially</span></code></a>(target_dirname, ...)</p></td>
+<td><p>Export each layer to a new file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.find_dag_node_by_name" title="alias_api.find_dag_node_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_dag_node_by_name</span></code></a>(name)</p></td>
+<td><p>Find and return the DagNode that matches the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.find_top_level_dag_node_by_name" title="alias_api.find_top_level_dag_node_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_top_level_dag_node_by_name</span></code></a>(name)</p></td>
+<td><p>Find and return the DagNode that matches the given name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.first_construction_entity" title="alias_api.first_construction_entity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_construction_entity</span></code></a>()</p></td>
+<td><p>Return the first AlConstructionPlane object found in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.first_dag_node" title="alias_api.first_dag_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_dag_node</span></code></a>()</p></td>
+<td><p>Return the first AlDagNode in the list of Alias AlDagNode objects (the DAG).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.first_environment" title="alias_api.first_environment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_environment</span></code></a>()</p></td>
+<td><p>Returns the first Environment in the list of Alias Environment objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.first_layer" title="alias_api.first_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_layer</span></code></a>()</p></td>
+<td><p>Return the first layer which refers to the default layer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.first_layered_shader" title="alias_api.first_layered_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_layered_shader</span></code></a>()</p></td>
+<td><p>Return the first AlLayeredShader in the list of Alias AlLayeredShader objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.first_locator" title="alias_api.first_locator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_locator</span></code></a>()</p></td>
+<td><p>Return the first AlLocator in the list of Alias AlLocator objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.first_pick_item" title="alias_api.first_pick_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_pick_item</span></code></a>()</p></td>
+<td><p>Set the pick list to reference the first object in the list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.first_set" title="alias_api.first_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_set</span></code></a>()</p></td>
+<td><p>Return the first set in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.first_shader" title="alias_api.first_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_shader</span></code></a>()</p></td>
+<td><p>Return the first AlShader in the list of Alias AlShader objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.first_switch_shader" title="alias_api.first_switch_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_switch_shader</span></code></a>()</p></td>
+<td><p>Return the first AlSwitchShader in the list of Alias AlSwitchShader objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.flatten_group_nodes" title="alias_api.flatten_group_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten_group_nodes</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_alternative_by_name" title="alias_api.get_alternative_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_alternative_by_name</span></code></a>(name)</p></td>
+<td><p>Return the AlReferenceFileSet matching the given name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_alternatives" title="alias_api.get_alternatives"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_alternatives</span></code></a>()</p></td>
+<td><p>Return a list of all the alternatives for the current AlReferenceFileSet.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_annotation_locator_strings" title="alias_api.get_annotation_locator_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_annotation_locator_strings</span></code></a>()</p></td>
+<td><p>Return the string value for all annotation locators in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_annotation_locators" title="alias_api.get_annotation_locators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_annotation_locators</span></code></a>()</p></td>
+<td><p>Return all annotation locators in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_bounding_box_from_hanger" title="alias_api.get_bounding_box_from_hanger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_bounding_box_from_hanger</span></code></a>(node)</p></td>
+<td><p>Return the bounding box computed from the bounding box hanger for the dag node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_children" title="alias_api.get_children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_children</span></code></a>(arg0)</p></td>
+<td><p>Return a list of all the children in the group node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_construction_plane_by_name" title="alias_api.get_construction_plane_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_construction_plane_by_name</span></code></a>(name)</p></td>
+<td><p>Return the AlConstructionPlane matching the given unique name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_current_path" title="alias_api.get_current_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_path</span></code></a>()</p></td>
+<td><p>Return the current file path.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_current_pick_item" title="alias_api.get_current_pick_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_pick_item</span></code></a>()</p></td>
+<td><p>Return the object that the pick list is currently referencing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_current_stage" title="alias_api.get_current_stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_stage</span></code></a>()</p></td>
+<td><p>Return the current stage.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_dag_nodes_by_name" title="alias_api.get_dag_nodes_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dag_nodes_by_name</span></code></a>(names)</p></td>
+<td><p>Returns a list of the dag nodes matching the given names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_empty_layers" title="alias_api.get_empty_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_empty_layers</span></code></a>([include_folders, skip_layers])</p></td>
+<td><p>Return all empty layers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_empty_sets" title="alias_api.get_empty_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_empty_sets</span></code></a>()</p></td>
+<td><p>Return a list of all empty sets in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layer_by_name" title="alias_api.get_layer_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layer_by_name</span></code></a>(layer_name)</p></td>
+<td><p>Return a layer given its name in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layer_by_number" title="alias_api.get_layer_by_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layer_by_number</span></code></a>(layer_number)</p></td>
+<td><p>Return a layer given its number in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layered_shader_by_name" title="alias_api.get_layered_shader_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layered_shader_by_name</span></code></a>(shader_name)</p></td>
+<td><p>Return the AlLayeredShader found by the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layered_shader_by_node" title="alias_api.get_layered_shader_by_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layered_shader_by_node</span></code></a>(node_name)</p></td>
+<td><p>Return the AlLayeredShader assigned to the node corresponding to the given name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layered_shaders" title="alias_api.get_layered_shaders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layered_shaders</span></code></a>()</p></td>
+<td><p>Return a list of all the AlLayeredShader objects in the Alias universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layers" title="alias_api.get_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layers</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layers_by_name" title="alias_api.get_layers_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layers_by_name</span></code></a>(layer_names)</p></td>
+<td><p>Return the AlLayer objects found from the given list of names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_layers_using_multiple_shaders" title="alias_api.get_layers_using_multiple_shaders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layers_using_multiple_shaders</span></code></a>()</p></td>
+<td><p>Return layers whose geometry do not all use the one same shader.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_locator_by_name" title="alias_api.get_locator_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_locator_by_name</span></code></a>(name)</p></td>
+<td><p>Return the AlLocator object with the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_locators" title="alias_api.get_locators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_locators</span></code></a>()</p></td>
+<td><p>Return a list of all AlLocator objects in the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_locators_by_name" title="alias_api.get_locators_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_locators_by_name</span></code></a>(names)</p></td>
+<td><p>Return a list of AlLocator objects with the given names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_main_window_id" title="alias_api.get_main_window_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_main_window_id</span></code></a>()</p></td>
+<td><p>Return the window handle to the Alias main window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_nesting_groups" title="alias_api.get_nesting_groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nesting_groups</span></code></a>()</p></td>
+<td><p>Return the list of top-level group nodes that contain at least one group.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_perspective_camera_by_name" title="alias_api.get_perspective_camera_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_perspective_camera_by_name</span></code></a>(name)</p></td>
+<td><p>Find and return the AlPerspectiveCamera that matches the unique identifier name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_perspective_cameras" title="alias_api.get_perspective_cameras"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_perspective_cameras</span></code></a>()</p></td>
+<td><p>Find and return all AlPerspectiveCameras in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_pick_item_dag_nodes" title="alias_api.get_pick_item_dag_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pick_item_dag_nodes</span></code></a>()</p></td>
+<td><p>Return a list of all dag nodes that are in the pick list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_pick_items" title="alias_api.get_pick_items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pick_items</span></code></a>()</p></td>
+<td><p>Return a list of all objects that are in the pick list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_product_information" title="alias_api.get_product_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_product_information</span></code></a>()</p></td>
+<td><p>Return the Alias product information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_reference_by_name" title="alias_api.get_reference_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_reference_by_name</span></code></a>(name)</p></td>
+<td><p>Return the AlReferenceFile matching the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_reference_by_path" title="alias_api.get_reference_by_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_reference_by_path</span></code></a>(path)</p></td>
+<td><p>Return the AlReferenceFile matching the given file path.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_reference_by_uuid" title="alias_api.get_reference_by_uuid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_reference_by_uuid</span></code></a>(uuid)</p></td>
+<td><p>Return the AlReferenceFile matching the given uuid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_references" title="alias_api.get_references"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_references</span></code></a>()</p></td>
+<td><p>Return all the AlReferenceFiles imported into the current file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_references_by_name" title="alias_api.get_references_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_references_by_name</span></code></a>(names)</p></td>
+<td><p>Return the AlReferenceFile objects matching the given list of names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_sets_by_name" title="alias_api.get_sets_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sets_by_name</span></code></a>(names)</p></td>
+<td><p>Get sets by name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_shader_by_name" title="alias_api.get_shader_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_shader_by_name</span></code></a>(shader_name)</p></td>
+<td><p>Return the Shader found by the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_shaders" title="alias_api.get_shaders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_shaders</span></code></a>()</p></td>
+<td><p>Return a list of all the shaders in the Alias universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_shaders_by_name" title="alias_api.get_shaders_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_shaders_by_name</span></code></a>(shader_names)</p></td>
+<td><p>Return the Shader objects found by the given list of names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_shaders_by_node" title="alias_api.get_shaders_by_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_shaders_by_node</span></code></a>(node_name)</p></td>
+<td><p>Return a list of all the shaders assigned to the node corresponding to the given name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_stages" title="alias_api.get_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stages</span></code></a>()</p></td>
+<td><p>Return all the existing stages of the current Alias session.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_switch_shader_by_name" title="alias_api.get_switch_shader_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_switch_shader_by_name</span></code></a>(shader_name)</p></td>
+<td><p>Return the SwitchShader found by the given name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_switch_shader_by_node" title="alias_api.get_switch_shader_by_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_switch_shader_by_node</span></code></a>(node_name)</p></td>
+<td><p>Return the switch shader assigned to the node corresponding to the given name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_switch_shaders" title="alias_api.get_switch_shaders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_switch_shaders</span></code></a>()</p></td>
+<td><p>Return a list of all the switch shaders in the Alias universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.get_top_dag_nodes" title="alias_api.get_top_dag_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_top_dag_nodes</span></code></a>()</p></td>
+<td><p>Returns a list of the top level dag nodes in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.get_variants" title="alias_api.get_variants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_variants</span></code></a>()</p></td>
+<td><p>Return all the variants of the current file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.has_annotation_locator" title="alias_api.has_annotation_locator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_annotation_locator</span></code></a>()</p></td>
+<td><p>Return True if there are any annotation locators in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.has_construction_history" title="alias_api.has_construction_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_construction_history</span></code></a>(cos)</p></td>
+<td><p>Return 1 if the curve on surface has construction history, 0 if no construction history, and -1 if the curve on surface is invalid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.has_history" title="alias_api.has_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_history</span></code></a>(node)</p></td>
+<td><p>Return True if the dag node has history, else False.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.has_queued_events" title="alias_api.has_queued_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_queued_events</span></code></a>()</p></td>
+<td><p>Check if there are Alias event callbacks queued and waiting to execute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.has_reference" title="alias_api.has_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_reference</span></code></a>()</p></td>
+<td><p>Return True if any AlReferenceFiles found in the current Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.has_variants" title="alias_api.has_variants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_variants</span></code></a>()</p></td>
+<td><p>Check if the current file contains variants.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.import_file" title="alias_api.import_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_file</span></code></a>(arg0)</p></td>
+<td><p>Import a file into the current file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.import_reference" title="alias_api.import_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_reference</span></code></a>(filename)</p></td>
+<td><p>Import the file and create an AlReferenceFile object from it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.import_subdiv" title="alias_api.import_subdiv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_subdiv</span></code></a>(filepath)</p></td>
+<td><p>Imports a subdiv data from OBJ, TSM, F3D or SF3D file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.import_subdivision" title="alias_api.import_subdivision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_subdivision</span></code></a>(filepath)</p></td>
+<td><p>Deprecated - use 'import_subdiv' instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.initialize_universe" title="alias_api.initialize_universe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize_universe</span></code></a>(up, init_project_env)</p></td>
+<td><p>Initialize the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.is_construction_layer" title="alias_api.is_construction_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_construction_layer</span></code></a>(layer_number)</p></td>
+<td><p>Determine if the layer is a construction layer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.is_copy_of_vred_shader" title="alias_api.is_copy_of_vred_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_copy_of_vred_shader</span></code></a>(shader)</p></td>
+<td><p>Returns True if the shader was created from a VRED shader.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.is_empty_file" title="alias_api.is_empty_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty_file</span></code></a>()</p></td>
+<td><p>Deprecated - use 'is_stage_empty' instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.is_queuing_events" title="alias_api.is_queuing_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_queuing_events</span></code></a>()</p></td>
+<td><p>Check if the Alias event callbacks are currently being queued.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.is_stage_empty" title="alias_api.is_stage_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_stage_empty</span></code></a>()</p></td>
+<td><p>Check if the current file is empty or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.linear_scale" title="alias_api.linear_scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_scale</span></code></a>(type)</p></td>
+<td><p>Return the linear scale factor for the current units.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.linear_units" title="alias_api.linear_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_units</span></code></a>(type)</p></td>
+<td><p>Return the linear units for the current units.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.log_message" title="alias_api.log_message"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_message</span></code></a>(outputType, msg)</p></td>
+<td><p>A function which logs a message to the given output.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.log_to_errlog" title="alias_api.log_to_errlog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_to_errlog</span></code></a>(msg)</p></td>
+<td><p>A function which logs a message to the Alias error log.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.log_to_prompt" title="alias_api.log_to_prompt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_to_prompt</span></code></a>(msg)</p></td>
+<td><p>A function which logs a message to the Alias prompt.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.log_to_prompt_no_history" title="alias_api.log_to_prompt_no_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_to_prompt_no_history</span></code></a>(msg)</p></td>
+<td><p>A function which logs a message to the Alias prompt without history.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.log_to_stderr" title="alias_api.log_to_stderr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_to_stderr</span></code></a>(msg)</p></td>
+<td><p>A function which logs a message to the standard error stream.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.log_to_stdout" title="alias_api.log_to_stdout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_to_stdout</span></code></a>(msg)</p></td>
+<td><p>A function which logs a message to the standard output stream.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.next_construction_entity" title="alias_api.next_construction_entity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_construction_entity</span></code></a>(entity)</p></td>
+<td><p>Return the next AlConstructionPlane object found, after the given entity, in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.next_layer" title="alias_api.next_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_layer</span></code></a>(cur_layer)</p></td>
+<td><p>Return the leaf layer following <cite>cur_layer</cite> in the graph of Alias AlLayer objects in a pre-order traversal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.next_locator" title="alias_api.next_locator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_locator</span></code></a>(cur_locator)</p></td>
+<td><p>Return the AlLocator following cur_locator in the list of Alias AlLocator objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.next_pick_item" title="alias_api.next_pick_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_pick_item</span></code></a>()</p></td>
+<td><p>Set the pick list to reference the next object in the list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.next_shader" title="alias_api.next_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_shader</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.next_switch_shader" title="alias_api.next_switch_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_switch_shader</span></code></a>(cur_shader)</p></td>
+<td><p>Return the AlSwitchShader following <cite>cur_shader</cite> in the list of Alias AlSwitchShader objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.node_first_shader" title="alias_api.node_first_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_first_shader</span></code></a>(node)</p></td>
+<td><p>Return the first shader used by the given dag node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.node_switch_shader" title="alias_api.node_switch_shader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_switch_shader</span></code></a>(node)</p></td>
+<td><p>Return the switch shader used by the given dag node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.open_file" title="alias_api.open_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_file</span></code></a>(path[, new_stage, delete_current])</p></td>
+<td><p>Open a file in Alias.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.pick" title="alias_api.pick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick</span></code></a>(pickables)</p></td>
+<td><p>Pick all of the given pickable objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_all_layers" title="alias_api.pick_all_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_all_layers</span></code></a>()</p></td>
+<td><p>Pick all layers in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_all_locators" title="alias_api.pick_all_locators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_all_locators</span></code></a>()</p></td>
+<td><p>Pick all locators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_by_name" title="alias_api.pick_by_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_by_name</span></code></a>(name)</p></td>
+<td><p>Add all objects that match the given string pattern to the pick list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_layers" title="alias_api.pick_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_layers</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_locators" title="alias_api.pick_locators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_locators</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_nodes" title="alias_api.pick_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_nodes</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_nodes_assigned_to_layers" title="alias_api.pick_nodes_assigned_to_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_nodes_assigned_to_layers</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.pick_nodes_assigned_to_shaders" title="alias_api.pick_nodes_assigned_to_shaders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_nodes_assigned_to_shaders</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.pop_pick_list" title="alias_api.pop_pick_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop_pick_list</span></code></a>()</p></td>
+<td><p>Pops the pushed pick list.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.prev_pick_item" title="alias_api.prev_pick_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prev_pick_item</span></code></a>()</p></td>
+<td><p>Set the pick list to reference the previous object in the list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.push_pick_list" title="alias_api.push_pick_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_pick_list</span></code></a>(copy)</p></td>
+<td><p>Push a new pick list onto the stack.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.queue_events" title="alias_api.queue_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">queue_events</span></code></a>(queue)</p></td>
+<td><p>Manage queuing Python callbcacks triggered by Alias message events.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.redraw_screen" title="alias_api.redraw_screen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">redraw_screen</span></code></a>([redraw_flag])</p></td>
+<td><p>Redraw the Alias screen.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.remove_message_handler" title="alias_api.remove_message_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_message_handler</span></code></a>(message_type, callback_id)</p></td>
+<td><p>Remove the specific message handler for the message type and callback.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.remove_message_handlers" title="alias_api.remove_message_handlers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_message_handlers</span></code></a>(message_type)</p></td>
+<td><p>Remove all message handlers for the message type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.remove_reference" title="alias_api.remove_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_reference</span></code></a>(reference_file)</p></td>
+<td><p>Remove the AlReferenceFile from the Alias Universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.remove_references" title="alias_api.remove_references"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_references</span></code></a>(reference_files)</p></td>
+<td><p>Remove all the AlReferenceFile from the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.reset" title="alias_api.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code></a>()</p></td>
+<td><p>Deprecated - use 'reset_stages' instaed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.reset_pivots" title="alias_api.reset_pivots"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_pivots</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.reset_stages" title="alias_api.reset_stages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_stages</span></code></a>()</p></td>
+<td><p>Reset the current session by deleting all the stages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.retrieve" title="alias_api.retrieve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrieve</span></code></a>(file_name)</p></td>
+<td><p>Retrieves an Alias Wire file and adds the objects stored in the file to the list of Alias AlDagNode objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.retrieve_options" title="alias_api.retrieve_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">retrieve_options</span></code></a>()</p></td>
+<td><p>Get the options used by retrieve().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.save_file" title="alias_api.save_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_file</span></code></a>()</p></td>
+<td><p>Save the current file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.save_file_as" title="alias_api.save_file_as"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_file_as</span></code></a>(path)</p></td>
+<td><p>Save the current file to the given path.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.save_layers" title="alias_api.save_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_layers</span></code></a>(file_path, target_dirname, ...)</p></td>
+<td><p>Retrieve the file and export each of its layers to a new file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.search_dag" title="alias_api.search_dag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_dag</span></code></a>(input_data)</p></td>
+<td><p>Search the entire DAG validating each node with the provided input data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_has_history" title="alias_api.search_node_has_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_has_history</span></code></a>(input_data)</p></td>
+<td><p>Search the entire DAG for nodes with construction history.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_has_non_origin_pivot" title="alias_api.search_node_has_non_origin_pivot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_has_non_origin_pivot</span></code></a>(input_data)</p></td>
+<td><p>Search the entire DAG for nodes with scale or rotate pivots not positioned at the origin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_has_non_zero_transform" title="alias_api.search_node_has_non_zero_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_has_non_zero_transform</span></code></a>(input_data)</p></td>
+<td><p>Search the entire DAG for nodes that do not have a zero transform.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_is_instance" title="alias_api.search_node_is_instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_is_instance</span></code></a>(input_data[, expand])</p></td>
+<td><p>Search the entire DAG for nodes that are instances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_is_template" title="alias_api.search_node_is_template"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_is_template</span></code></a>(input_data)</p></td>
+<td><p>Search the entire DAG for nodes that are templates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_layer_does_not_match_parent_layer" title="alias_api.search_node_layer_does_not_match_parent_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_layer_does_not_match_parent_layer</span></code></a>(...)</p></td>
+<td><p>Search the entire DAG for nodes that do not have the same layer assigned as their parent node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_unused_curves_on_surface" title="alias_api.search_node_unused_curves_on_surface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_unused_curves_on_surface</span></code></a>(input_data)</p></td>
+<td><p>Search the DAG for nodes that have unused curves on surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.search_node_unused_curves_on_surface_with_history" title="alias_api.search_node_unused_curves_on_surface_with_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search_node_unused_curves_on_surface_with_history</span></code></a>(...)</p></td>
+<td><p>Search the DAG for nodes that have unused curves on surface.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.set_layer_symmetry" title="alias_api.set_layer_symmetry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_layer_symmetry</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.set_parent_window" title="alias_api.set_parent_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_parent_window</span></code></a>(hwnd)</p></td>
+<td><p>Set the parent window of the specified child window to the main Alias window.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.set_retrieve_options" title="alias_api.set_retrieve_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_retrieve_options</span></code></a>(options)</p></td>
+<td><p>Set the options used by retrieve().</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.set_store_options" title="alias_api.set_store_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_store_options</span></code></a>(options)</p></td>
+<td><p>Set the options used by store().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.store" title="alias_api.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">store</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.store_active" title="alias_api.store_active"><code class="xref py py-obj docutils literal notranslate"><span class="pre">store_active</span></code></a>(file_name, file_type)</p></td>
+<td><p>This method allows the user to store only those objects which are on the pick list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.store_current_window" title="alias_api.store_current_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">store_current_window</span></code></a>(filename[, width, ...])</p></td>
+<td><p>Save the current Alias window to a file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.store_options" title="alias_api.store_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">store_options</span></code></a>()</p></td>
+<td><p>Get the options used by store().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_adaptive" title="alias_api.tessellate_adaptive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_adaptive</span></code></a>(node, type, min, max, ...)</p></td>
+<td><p>This method causes geometry below the AlDagNode to be subdivided into polygons depending on the curvature of the surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_chord_height_deviation" title="alias_api.tessellate_chord_height_deviation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_chord_height_deviation</span></code></a>(node, ...)</p></td>
+<td><p>This method tessellates a dag using a chord height deviation tolerance. The chord height deviation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_chord_height_deviation_accurate" title="alias_api.tessellate_chord_height_deviation_accurate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_chord_height_deviation_accurate</span></code></a>(...)</p></td>
+<td><p>This method tessellates a dag node using a chord height deviation tolerance and the accurate tessellator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_chord_height_deviation_fast" title="alias_api.tessellate_chord_height_deviation_fast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_chord_height_deviation_fast</span></code></a>(node, ...)</p></td>
+<td><p>This method tessellates a dag using a chord height deviation tolerance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_number" title="alias_api.tessellate_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_number</span></code></a>(node, type, total, ...)</p></td>
+<td><p>This method repeatedly tessellates the surfaces with different adaptive subdivision parameters until settings are found that produce a total polygon count close to the requested number.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_render_settings" title="alias_api.tessellate_render_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_render_settings</span></code></a>(node, type)</p></td>
+<td><p>This method causes the geometry below the AlDagNode to be subdivided into polygons in according to</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.tessellate_uniform" title="alias_api.tessellate_uniform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tessellate_uniform</span></code></a>(node, type, alongU, alongV)</p></td>
+<td><p>This method causes the geometry below the AlDagNode to be subdivided into polygons in a uniform manner.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.traverse_dag" title="alias_api.traverse_dag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">traverse_dag</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.ungroup" title="alias_api.ungroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ungroup</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.unpick" title="alias_api.unpick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unpick</span></code></a>(pickables)</p></td>
+<td><p>Unpick all of the given pickable objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.unpick_all_layers" title="alias_api.unpick_all_layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unpick_all_layers</span></code></a>()</p></td>
+<td><p>Unpick all layers in the Alias Universe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.unpick_all_locators" title="alias_api.unpick_all_locators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unpick_all_locators</span></code></a>()</p></td>
+<td><p>Unpick all locators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.update_reference" title="alias_api.update_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_reference</span></code></a>(old_path, new_path)</p></td>
+<td><p>Update an AlReferenceFile path with the new path provided.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.zero_transform" title="alias_api.zero_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_transform</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Overloaded function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.zero_transform_top_level" title="alias_api.zero_transform_top_level"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_transform_top_level</span></code></a>()</p></td>
+<td><p>Apply zero transform to all top-level dag nodes in the universe.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlAction" title="alias_api.AlAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlAction</span></code></a></p></td>
+<td><p>Basic interface to Alias actions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlActionExtrapType" title="alias_api.AlActionExtrapType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlActionExtrapType</span></code></a></p></td>
+<td><p>Pre- and Post- extrapolation (infinite) types for actions</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlAngleLocator" title="alias_api.AlAngleLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlAngleLocator</span></code></a></p></td>
+<td><p>Displays the included angle between three locators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlAnimatable" title="alias_api.AlAnimatable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlAnimatable</span></code></a></p></td>
+<td><p>Basic Interface to Alias objects which support animation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlAnnotationLocator" title="alias_api.AlAnnotationLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlAnnotationLocator</span></code></a></p></td>
+<td><p>Displays a text string for existing locators</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlArcAttributes" title="alias_api.AlArcAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlArcAttributes</span></code></a></p></td>
+<td><p>Interface to Alias arc curve attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlAttributes" title="alias_api.AlAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlAttributes</span></code></a></p></td>
+<td><p>Interface to Alias curve and surface attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCamera" title="alias_api.AlCamera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCamera</span></code></a></p></td>
+<td><p>A base class that encapsulates behavior of perspective and orthographic cameras.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCameraNode" title="alias_api.AlCameraNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCameraNode</span></code></a></p></td>
+<td><p>Dag node class for cameras.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlChannel" title="alias_api.AlChannel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlChannel</span></code></a></p></td>
+<td><p>Basic interface to Alias channels</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlChannelDataType" title="alias_api.AlChannelDataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlChannelDataType</span></code></a></p></td>
+<td><p>The type of channel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCloud" title="alias_api.AlCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCloud</span></code></a></p></td>
+<td><p>Interface to Alias clouds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCluster" title="alias_api.AlCluster"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCluster</span></code></a></p></td>
+<td><p>Encapsulates creation, deletion and manipulation of clusters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlClusterMember" title="alias_api.AlClusterMember"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlClusterMember</span></code></a></p></td>
+<td><p>Basic Interface to the object representing the relationship between an item and a cluster that it belongs to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlClusterNode" title="alias_api.AlClusterNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlClusterNode</span></code></a></p></td>
+<td><p>The dag node class for clusters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlClusterable" title="alias_api.AlClusterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlClusterable</span></code></a></p></td>
+<td><p>Encapsulates methods common to Alias objects which can belong to clusters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlConicAttributes" title="alias_api.AlConicAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlConicAttributes</span></code></a></p></td>
+<td><p>Interface to Alias conic curve attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlConicType" title="alias_api.AlConicType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlConicType</span></code></a></p></td>
+<td><p>The type of conic curve.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlConstructionEntity" title="alias_api.AlConstructionEntity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlConstructionEntity</span></code></a></p></td>
+<td><p>Base class for Alias construction entities.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlConstructionPlane" title="alias_api.AlConstructionPlane"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlConstructionPlane</span></code></a></p></td>
+<td><p>Interface to Alias construction planes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCoordinateSystem" title="alias_api.AlCoordinateSystem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCoordinateSystem</span></code></a></p></td>
+<td><p>The coordinate system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCopyOptions" title="alias_api.AlCopyOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCopyOptions</span></code></a></p></td>
+<td><p>Copy options for AlDagNode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurve" title="alias_api.AlCurve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurve</span></code></a></p></td>
+<td><p>Interface to Alias nurbs curves geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveAttributes" title="alias_api.AlCurveAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveAttributes</span></code></a></p></td>
+<td><p>Interface to Alias curve attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveCV" title="alias_api.AlCurveCV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveCV</span></code></a></p></td>
+<td><p>Encapsulates methods common to curve CVs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveFormType" title="alias_api.AlCurveFormType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveFormType</span></code></a></p></td>
+<td><p>Curve form types.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveNode" title="alias_api.AlCurveNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveNode</span></code></a></p></td>
+<td><p>A dag node that refers to a nurbs curve's geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveNodeJoinErrors" title="alias_api.AlCurveNodeJoinErrors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveNodeJoinErrors</span></code></a></p></td>
+<td><p>Curve node join errors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveOnSurface" title="alias_api.AlCurveOnSurface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveOnSurface</span></code></a></p></td>
+<td><p>Interface to curves on surfaces geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurveOnSurfacePoint" title="alias_api.AlCurveOnSurfacePoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurveOnSurfacePoint</span></code></a></p></td>
+<td><p>Interface to Alias curve on surface points</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlCurvePoint" title="alias_api.AlCurvePoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlCurvePoint</span></code></a></p></td>
+<td><p>Interface to Alias curve points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlDagNode" title="alias_api.AlDagNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlDagNode</span></code></a></p></td>
+<td><p>// py::class_&lt;AlDagNode, AlObject, AlPickable, std::unique_ptr&lt;AlDagNode&gt;&gt;( m, &quot;AlDagNode&quot;, R&quot;doc(</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlDeviationLocator" title="alias_api.AlDeviationLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlDeviationLocator</span></code></a></p></td>
+<td><p>Interface to Alias deviation locator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlDisplayModeType" title="alias_api.AlDisplayModeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlDisplayModeType</span></code></a></p></td>
+<td><p>Display mode types.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlDistanceLocator" title="alias_api.AlDistanceLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlDistanceLocator</span></code></a></p></td>
+<td><p>Displays the distance between two locators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlEnvironment" title="alias_api.AlEnvironment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlEnvironment</span></code></a></p></td>
+<td><p>Base object for representing shader environment data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlFace" title="alias_api.AlFace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlFace</span></code></a></p></td>
+<td><p>Interface to Alias face curves.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlFaceNode" title="alias_api.AlFaceNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlFaceNode</span></code></a></p></td>
+<td><p>Interface to the dag node that gives access to faces.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlFileType" title="alias_api.AlFileType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlFileType</span></code></a></p></td>
+<td><p>File types</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlGroupNode" title="alias_api.AlGroupNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlGroupNode</span></code></a></p></td>
+<td><p>A dag node which can contain a list of dag nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlHashable" title="alias_api.AlHashable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlHashable</span></code></a></p></td>
+<td><p>Base class for objects which can be inserted into an AlDictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlIKHandle" title="alias_api.AlIKHandle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlIKHandle</span></code></a></p></td>
+<td><p>Interface to Inverse Kinematics Handles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlIKHandleNode" title="alias_api.AlIKHandleNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlIKHandleNode</span></code></a></p></td>
+<td><p>Interface to dag nodes of IK handles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlIterator" title="alias_api.AlIterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlIterator</span></code></a></p></td>
+<td><p>A base class used to derive iterators for performing tasks on elements of a list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlKeyframe" title="alias_api.AlKeyframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlKeyframe</span></code></a></p></td>
+<td><p>Basic interface to Alias keyframes on parameter curve actions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLayer" title="alias_api.AlLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLayer</span></code></a></p></td>
+<td><p>Interface to Alias layer objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLayeredShader" title="alias_api.AlLayeredShader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLayeredShader</span></code></a></p></td>
+<td><p>Base object for representing shader data</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLight" title="alias_api.AlLight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLight</span></code></a></p></td>
+<td><p>Encapsulates methods common to all lights.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLightNode" title="alias_api.AlLightNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLightNode</span></code></a></p></td>
+<td><p>The dag node class for lights.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLineAttributes" title="alias_api.AlLineAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLineAttributes</span></code></a></p></td>
+<td><p>Interface to Alias line attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLinkItem" title="alias_api.AlLinkItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLinkItem</span></code></a></p></td>
+<td><p>Base class for objects contained in an AlList.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlList" title="alias_api.AlList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlList</span></code></a></p></td>
+<td><p>Simple List class for AlLinkItem objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlLocator" title="alias_api.AlLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlLocator</span></code></a></p></td>
+<td><p>Contains functionality common to all the Alias locators</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlMesh" title="alias_api.AlMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlMesh</span></code></a></p></td>
+<td><p>Interface to Alias meshes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlMeshNode" title="alias_api.AlMeshNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlMeshNode</span></code></a></p></td>
+<td><p>A dag node that refers to a mesh's geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlMessageType" title="alias_api.AlMessageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlMessageType</span></code></a></p></td>
+<td><p>The type of message</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlMinmaxLocator" title="alias_api.AlMinmaxLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlMinmaxLocator</span></code></a></p></td>
+<td><p>Interface to Alias Min Max locators.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlObject" title="alias_api.AlObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlObject</span></code></a></p></td>
+<td><p>Base class for all Alias Data types.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlObjectType" title="alias_api.AlObjectType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlObjectType</span></code></a></p></td>
+<td><p>Alias object types.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlOrthographicCamera" title="alias_api.AlOrthographicCamera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlOrthographicCamera</span></code></a></p></td>
+<td><p>Orthographic modeling cameras.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlParamAction" title="alias_api.AlParamAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlParamAction</span></code></a></p></td>
+<td><p>Basic interface to derived class of actions for parameter curve actions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlPerspectiveCamera" title="alias_api.AlPerspectiveCamera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlPerspectiveCamera</span></code></a></p></td>
+<td><p>Encapsulates creation, deletion and manipulation of perspective cameras</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlPickable" title="alias_api.AlPickable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlPickable</span></code></a></p></td>
+<td><p>Basic Interface to Alias objects which can be picked.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlPlaneAttributes" title="alias_api.AlPlaneAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlPlaneAttributes</span></code></a></p></td>
+<td><p>Interface to Alias plane surface attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlPoint" title="alias_api.AlPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlPoint</span></code></a></p></td>
+<td><p>Contains functionality common to all Alias construction entity points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlPointType" title="alias_api.AlPointType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlPointType</span></code></a></p></td>
+<td><p>The type of point.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlRadialLocator" title="alias_api.AlRadialLocator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlRadialLocator</span></code></a></p></td>
+<td><p>Interface to Alias Radial locators</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlReferenceFile" title="alias_api.AlReferenceFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlReferenceFile</span></code></a></p></td>
+<td><p>A base class that encapsulates access to Reference File.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlReferenceFileSet" title="alias_api.AlReferenceFileSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlReferenceFileSet</span></code></a></p></td>
+<td><p>A base class that encapsulates access to Reference File Sets.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlReferenceLayer" title="alias_api.AlReferenceLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlReferenceLayer</span></code></a></p></td>
+<td><p>A base class that encapsulates access to Reference Layers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlRetrieveOptions" title="alias_api.AlRetrieveOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlRetrieveOptions</span></code></a></p></td>
+<td><p>A structure used to transfer options that control the retrieve() method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlRevSurfAttributes" title="alias_api.AlRevSurfAttributes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlRevSurfAttributes</span></code></a></p></td>
+<td><p>Interface to Alias revolved  surface attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSet" title="alias_api.AlSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSet</span></code></a></p></td>
+<td><p>Basic Interface to Alias set structures.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSetMember" title="alias_api.AlSetMember"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSetMember</span></code></a></p></td>
+<td><p>Basic Interface to the members of Alias set structures.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSettable" title="alias_api.AlSettable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSettable</span></code></a></p></td>
+<td><p>Encapsulates methods common to Alias objects which can belong to sets.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlShader" title="alias_api.AlShader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlShader</span></code></a></p></td>
+<td><p>Base object for representing shader data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlShadingFields" title="alias_api.AlShadingFields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlShadingFields</span></code></a></p></td>
+<td><p>Types for shader methods.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlShell" title="alias_api.AlShell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlShell</span></code></a></p></td>
+<td><p>Interface to Alias nurbs surface geometry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlShellNode" title="alias_api.AlShellNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlShellNode</span></code></a></p></td>
+<td><p>Dag node class for shells.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSpacePoint" title="alias_api.AlSpacePoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSpacePoint</span></code></a></p></td>
+<td><p>Interface to Alias space points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlStatusCode" title="alias_api.AlStatusCode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlStatusCode</span></code></a></p></td>
+<td><p>Resulting operation status codes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlStoreOptions" title="alias_api.AlStoreOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlStoreOptions</span></code></a></p></td>
+<td><p>A structure used to transfer options that control the store() method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSurface" title="alias_api.AlSurface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSurface</span></code></a></p></td>
+<td><p>Interface to Alias nurbs surface geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSurfaceNode" title="alias_api.AlSurfaceNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSurfaceNode</span></code></a></p></td>
+<td><p>Dag node class for nurbs surfaces.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSurfacePoint" title="alias_api.AlSurfacePoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSurfacePoint</span></code></a></p></td>
+<td><p>Interface to Alias Surface points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlSwitchShader" title="alias_api.AlSwitchShader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlSwitchShader</span></code></a></p></td>
+<td><p>Base object for representing shader data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlTM" title="alias_api.AlTM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlTM</span></code></a></p></td>
+<td><p>Basic Interface to Alias transformation matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlTangentType" title="alias_api.AlTangentType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlTangentType</span></code></a></p></td>
+<td><p>The type of tangent.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlTessellateTypes" title="alias_api.AlTessellateTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlTessellateTypes</span></code></a></p></td>
+<td><p>The tessellation types.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlTexture" title="alias_api.AlTexture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlTexture</span></code></a></p></td>
+<td><p>Base object for representing texture data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlTextureNode" title="alias_api.AlTextureNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlTextureNode</span></code></a></p></td>
+<td><p>Dag node class for solid textures.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AlTripleComponent" title="alias_api.AlTripleComponent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlTripleComponent</span></code></a></p></td>
+<td><p>The component of an action that should be extracted when evaluating a channel.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AlWindow" title="alias_api.AlWindow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlWindow</span></code></a></p></td>
+<td><p>Interface to the Alias modeling windows.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.LinearUnit" title="alias_api.LinearUnit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearUnit</span></code></a></p></td>
+<td><p>Linear measurement units.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.Menu" title="alias_api.Menu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Menu</span></code></a></p></td>
+<td><p>Add menus to the Alias menu bar using this object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.MenuItem" title="alias_api.MenuItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MenuItem</span></code></a></p></td>
+<td><p>Menu items for the Menu object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.MessageResult" title="alias_api.MessageResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MessageResult</span></code></a></p></td>
+<td><p>The result returned by a message event.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.ReferenceFileStatus" title="alias_api.ReferenceFileStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReferenceFileStatus</span></code></a></p></td>
+<td><p>The reference file status.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.Stage" title="alias_api.Stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stage</span></code></a></p></td>
+<td><p>Class object to represetn a stage in Alias.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.SymmetryState" title="alias_api.SymmetryState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SymmetryState</span></code></a></p></td>
+<td><p>The symmetry state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.TraverseDagInputData" title="alias_api.TraverseDagInputData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraverseDagInputData</span></code></a></p></td>
+<td><p>Input data for traversing the dag.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.TraverseDagOutputData" title="alias_api.TraverseDagOutputData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TraverseDagOutputData</span></code></a></p></td>
+<td><p>Output data from traversing the dag.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.Type" title="alias_api.Type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Type</span></code></a></p></td>
+<td><p>The type of measurment unit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.UngroupOption" title="alias_api.UngroupOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UngroupOption</span></code></a></p></td>
+<td><p>Options for ungrouping</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.Variant" title="alias_api.Variant"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Variant</span></code></a></p></td>
+<td><p>Class object to represent a variant in Alias.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.Vec3" title="alias_api.Vec3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vec3</span></code></a></p></td>
+<td><p>Class object to represent a 3D vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.VectorAlTangentType" title="alias_api.VectorAlTangentType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VectorAlTangentType</span></code></a></p></td>
+<td><p>A list containing object of type AlTangentType</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Exceptions</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AliasCompatibilityException" title="alias_api.AliasCompatibilityException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AliasCompatibilityException</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference.html#alias_api.AliasOpenModelException" title="alias_api.AliasOpenModelException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AliasOpenModelException</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference.html#alias_api.AliasPythonException" title="alias_api.AliasPythonException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AliasPythonException</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../module_summary.html" class="btn btn-neutral float-left" title="Module Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reference.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Autodesk, Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

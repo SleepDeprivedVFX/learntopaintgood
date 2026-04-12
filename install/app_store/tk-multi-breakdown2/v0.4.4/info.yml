@@ -1,0 +1,148 @@
+# Copyright (c) 2021 Autodesk, Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk, Inc.
+
+configuration:
+
+    display_name:
+        type: str
+        default_value: Scene Breakdown
+        description: Specify a name for the app, its' menu item and the ui.
+
+    panel_mode:
+        type: bool
+        default_value: True
+        description: Specify if the app window should launch as panel or dialog.
+
+    interactive_update:
+        type: bool
+        default_value: False
+        description: Specify if user interaction is required when updating a
+                     reference. This is helpful if a DCC requires user
+                     interaction to specify any update options.
+
+    hook_scene_operations:
+        type: hook
+        default_value: "{self}/{engine_name}_scene_operations.py"
+        description: Specify an engine specific hook that, if desired, handles detecting the scene references.
+
+    hook_get_published_files:
+        type: hook
+        default_value: "{self}/get_published_files.py"
+        description: Specificy a hook that, if desired, defines how Pubilshed File entites are retrieved
+                     from the Flow Production Tracking API.
+
+    hook_ui_config:
+        type: hook
+        default_value: "{self}/ui_config.py"
+        description: Specify a hook that, if desired, configures the UI.
+
+    hook_ui_config_advanced:
+        type: hook
+        default_value: "{self}/ui_config_advanced.py"
+        description: Specify an advanced hook that, if desired, configures the UI.
+
+    actions_hook:
+        type: hook
+        default_value: "{self}/actions.py"
+        description: Hook which contains all methods for action management. This hook can
+                     point to a Loader App actions_hook. This hook name must be 'actions_hook'
+                     in order to pass the Breakdown2 App to the Loader App api.
+
+    version_history:
+        type: int
+        default_value: 5
+        description: Number of versions to display in the file history information window.
+
+    published_file_fields:
+        type: list
+        values: {type: str}
+        allows_empty: True
+        description: List of Published File fields returned when querying Flow Production Tracking for published
+                     file history. These fields will also be used when scanning the scene to get the current scene
+                     elements.
+
+    published_file_filters:
+        type: list
+        description: List of filters that will be applied when querying Flow Production Tracking for Published
+                     Files based on the items found in the scene. To show Published Files without a Task, remove
+                     the default filter to exclude Published Files that do not have a Task, and similarly for Link
+                     entity.
+        values:
+            type: shotgun_filter
+        allows_empty: True
+        default_value:
+          - [task, is_not, null]
+          - [entity, is_not, null]
+
+    history_published_file_filters:
+        type: list
+        description: List of filters that will be applied when querying ShotGrid for the history Published
+                     Files based on the items found in the scene.
+        values:
+            type: shotgun_filter
+        allows_empty: True
+        default_value: []
+
+    group_by:
+        type: str
+        default_value: project
+        description: Define the field which the published files are grouped by in the main view.
+
+    group_by_fields:
+        type: list
+        values: {type: str}
+        default_value: [project, entity, task, published_file_type, created_by.HumanUser.name]
+        allows_empty: True
+        description: List of Published File fields that the file items can be grouped by using the "Group By"
+                     drop down menu. Leave empty to show all available Published File fields or specify a
+                     specific set of fields to show.
+
+    auto_refresh:
+        type: bool
+        default_value: True
+        description: Set to True to let the app automatically refresh based on DCC scene events and polling
+                     for published file updates. Set to False to not perform automatic refreshes.
+
+    file_status_check_interval:
+        type: int
+        default_value: 30000
+        description: The timeout interval (in milliseconds) to poll the statuses of the file items. A
+                     background task will be executed to query the file item statuses at each interval
+                     timeout. The default interval length is 30 seconds. Set a negative valeu to not
+                     perform the background file item status checks.
+
+    action_mappings:
+        type: dict
+        description: Associates published file types with actions. The actions are all defined
+                     inside the actions hook. Use special key 'All' to define actions for all
+                     published file types. These actions can be passed to the Loader App api to
+                     create and execute actions.
+        default_value: {}
+
+# The Flow Production Tracking fields that this app needs in order to operate correctly
+requires_shotgun_fields:
+# linked_projects.Asset is required for references in multiple Flow Production Tracking projects
+
+# More verbose description of this item
+display_name: "Scene Breakdown"
+description: "Tools to manage referenced PublishedFiles in your scene."
+
+# Required minimum versions for this item to run
+requires_shotgun_version: "v8.20.0"
+requires_core_version: "v0.20.6"
+requires_engine_version:
+
+# Supported Engines
+supported_engines:
+
+# the frameworks required to run this app
+frameworks:
+    - {"name": "tk-framework-shotgunutils", "version": "v5.x.x", "minimum_version": "v5.8.2"}
+    - {"name": "tk-framework-qtwidgets", "version": "v2.x.x", "minimum_version": "v2.12.0"}
