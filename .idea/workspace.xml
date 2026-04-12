@@ -1,17 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Creating new SG Implementation  Part 2">
-      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox.yml" afterDir="false" />
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Starting to modify the files">
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/3dsmax.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/3dsmax/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/alias.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/alias/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/caches/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/elements/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/houdini.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/houdini/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/mari/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/maya.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/maya/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/mobu.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/mobu/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/nuke.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/nuke/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/photoshop.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/photoshop/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/vred.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/publish/vred/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/reference/artwork/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/reference/footage/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/review/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/3dsmax.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/3dsmax/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/alias.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/alias/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/houdini.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/houdini/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/images/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/maya.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/maya/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/maya/workspace.mel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/mobu.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/mobu/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/nuke.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/nuke/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/photoshop.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/photoshop/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/vred.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/assets/asset_type/asset/step/work/vred/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/editorial/publish/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/editorial/work/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/reference/artwork/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/reference/footage/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/editorial/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/3dsmax.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/3dsmax/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/elements/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/houdini.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/houdini/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/maya.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/maya/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/mobu.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/mobu/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/nuke.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/nuke/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/photoshop.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/publish/photoshop/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/reference/artwork/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/reference/footage/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/review/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/3dsmax.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/3dsmax/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/houdini.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/houdini/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/images/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/maya.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/maya/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/maya/workspace.mel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/mobu.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/mobu/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/nuke.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/nuke/snapshots/placeholder" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/photoshop.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox/sequences/sequence/shot/step/work/photoshop/snapshots/placeholder" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/pipeline_configuration.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/pipeline_configuration.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/roots.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/roots.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/asset_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset_step.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/project.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/sequence.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/schema/dropbox.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/schema/dropbox.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/templates.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +124,12 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/sleep/OneDrive/Pipeline/learntopaintgood/config/core/schema/project"
+    "last_opened_file_path": "C:/Users/sleep/OneDrive/Pipeline/learntopaintgood/config/core/schema"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema" />
       <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema\project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -92,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775955146473</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Starting to modify the files">
+      <option name="closed" value="true" />
+      <created>1775957209926</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775957209926</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +184,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating new SG Implementation" />
     <MESSAGE value="Creating new SG Implementation  Part 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating new SG Implementation  Part 2" />
+    <MESSAGE value="Starting to modify the files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting to modify the files" />
   </component>
 </project>

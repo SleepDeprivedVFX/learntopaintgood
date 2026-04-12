@@ -9,8 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 # the type of dynamic content
-type: "project"
-name: "dropbox_exchange"
+type: "static"
 
-# name of project root as defined in roots.yml
-root_name: "dropbox"
+# defer creation and only create this folder when Houdini starts
+defer_creation: "tk-houdini"

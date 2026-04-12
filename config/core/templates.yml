@@ -182,60 +182,60 @@ paths:
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
     shot_root: sequences/{Sequence}/{Shot}/{Step}
-    asset_root: assets/{sg_asset_type}/{Asset}/{Step}
+    asset_root: Assets/{sg_asset_type}/{Asset}/{Step}
     sequence_root: sequences/{Sequence}
 
 
     ##########################################################################################
     # Project level paths
     #
-
-    #
-    # Hiero
-    #
-
-    # The location of WIP files
-    hiero_project_work:
-        definition: 'editorial/work/{name}_v{version}.hrox'
-    hiero_project_work_area:
-        definition: 'editorial/work'
-    # The location of backups of WIP files
-    hiero_project_snapshot:
-        definition: 'editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
-    # The location of published hiero files
-    hiero_project_publish:
-        definition: 'editorial/publish/{name}_v{version}.hrox'
-    hiero_project_publish_area:
-        definition: 'editorial/publish'
-
-
-    ##########################################################################################
-    # Sequence level paths
-    #
-
-
-    ##########################################################################################
-    # Shot level paths
-    #
-
-    #
-    # Flame
-    #
-
-    flame_segment_clip:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/sources/{segment_name}.clip'
-    flame_shot_clip:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/{Shot}.clip'
-    flame_shot_batch:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/batch/{Shot}.v{version}.batch'
-    flame_shot_render_dpx:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.dpx'
-    flame_shot_render_exr:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.exr'
-    flame_shot_comp_dpx:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.dpx'
-    flame_shot_comp_exr:
-        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.exr'
+#
+#    #
+#    # Hiero
+#    #
+#
+#    # The location of WIP files
+#    hiero_project_work:
+#        definition: 'editorial/work/{name}_v{version}.hrox'
+#    hiero_project_work_area:
+#        definition: 'editorial/work'
+#    # The location of backups of WIP files
+#    hiero_project_snapshot:
+#        definition: 'editorial/work/snapshots/{name}_v{version}_{timestamp}.hrox'
+#    # The location of published hiero files
+#    hiero_project_publish:
+#        definition: 'editorial/publish/{name}_v{version}.hrox'
+#    hiero_project_publish_area:
+#        definition: 'editorial/publish'
+#
+#
+#    ##########################################################################################
+#    # Sequence level paths
+#    #
+#
+#
+#    ##########################################################################################
+#    # Shot level paths
+#    #
+#
+#    #
+#    # Flame
+#    #
+#
+#    flame_segment_clip:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/sources/{segment_name}.clip'
+#    flame_shot_clip:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/clip/{Shot}.clip'
+#    flame_shot_batch:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/batch/{Shot}.v{version}.batch'
+#    flame_shot_render_dpx:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.dpx'
+#    flame_shot_render_exr:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/renders/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.exr'
+#    flame_shot_comp_dpx:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.dpx'
+#    flame_shot_comp_exr:
+#        definition: 'sequences/{Sequence}/{Shot}/finishing/comp/{segment_name}_v{version}/{Shot}_{segment_name}_v{version}.{flame.frame}.exr'
 
     #
     # Photoshop
@@ -244,21 +244,28 @@ paths:
     # The location of WIP files
     photoshop_shot_work:
         definition: '@shot_root/work/photoshop/{name}.v{version}.psd'
+        root_name: dropbox
     shot_work_area_photoshop:
         definition: '@shot_root/work/photoshop'
+        root_name: dropbox
     # The location of backups of WIP files
     photoshop_shot_snapshot:
         definition: '@shot_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        root_name: dropbox
     # The location of published files
     shot_publish_area_photoshop:
         definition: '@shot_root/publish/photoshop'
+        root_name: dropbox
     photoshop_shot_publish:
         definition: '@shot_root/publish/photoshop/{name}.v{version}.psd'
+        root_name: dropbox
     # The location of the published images
     photoshop_shot_png_publish:
         definition: '@shot_root/publish/photoshop/{name}.v{version}.png'
+        root_name: dropbox
     photoshop_shot_jpg_publish:
         definition: '@shot_root/publish/photoshop/{name}.v{version}.jpg'
+        root_name: dropbox
 
     #
     # After Effects
@@ -450,21 +457,28 @@ paths:
     # The location of WIP files
     photoshop_asset_work:
         definition: '@asset_root/work/photoshop/{name}.v{version}.psd'
+        root_name: dropbox
     asset_work_area_photoshop:
         definition: '@asset_root/work/photoshop'
+        root_name: dropbox
     # The location of backups of WIP files
     photoshop_asset_snapshot:
         definition: '@asset_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        root_name: dropbox
     # The location of published files
     asset_publish_area_photoshop:
         definition: '@asset_root/publish/photoshop'
+        root_name: dropbox
     photoshop_asset_publish:
         definition: '@asset_root/publish/photoshop/{name}.v{version}.psd'
+        root_name: dropbox
     # The location of the published images
     photoshop_asset_png_publish:
         definition: '@asset_root/publish/photoshop/{name}.v{version}.png'
+        root_name: dropbox
     photoshop_asset_jpg_publish:
         definition: '@asset_root/publish/photoshop/{name}.v{version}.jpg'
+        root_name: dropbox
     #
     # after effects
     #

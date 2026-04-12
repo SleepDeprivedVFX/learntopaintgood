@@ -9,8 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 # the type of dynamic content
-type: "project"
-name: "dropbox_exchange"
+type: "shotgun_step"
 
-# name of project root as defined in roots.yml
-root_name: "dropbox"
+# the shotgun field to use for the folder name
+name: "short_name"
