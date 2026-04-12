@@ -36,7 +36,6 @@ settings.tk-multi-launchapp.nuke:
   windows_path: "@path.windows.nuke"
   mac_path: "@path.mac.nuke"
   linux_path: "@path.linux.nuke"
-  args: "--indie"
   icon: "{config}/icons/nuke.png"
   location: "@apps.tk-nuke.location"
 

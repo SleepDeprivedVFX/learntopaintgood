@@ -148,4 +148,9 @@ apps.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.16.0
+apps.tk-harmony.location:
+  type: git_branch
+  name: tk-harmony
+
 frameworks: '@frameworks'
+

@@ -91,7 +91,6 @@ settings.tk-nuke.asset:
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
-  args: "--indie"
 
 # asset_step
 settings.tk-nuke.asset_step:
@@ -119,7 +118,6 @@ settings.tk-nuke.asset_step:
   - {app_instance: tk-multi-publish2, name: Publish...}
   - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   location: "@engines.tk-nuke.location"
-  args: "--indie"
 
 # project
 settings.tk-nuke.project:
@@ -134,7 +132,6 @@ settings.tk-nuke.project:
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
-  args: "--indie"
 
 # sequence
 settings.tk-nuke.sequence:
@@ -149,7 +146,6 @@ settings.tk-nuke.sequence:
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
-  args: "--indie"
 
 # shot
 settings.tk-nuke.shot:
@@ -164,7 +160,6 @@ settings.tk-nuke.shot:
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   location: "@engines.tk-nuke.location"
-  args: "--indie"
 
 # shot_step
 settings.tk-nuke.shot_step:
@@ -194,7 +189,6 @@ settings.tk-nuke.shot_step:
   - {app_instance: tk-multi-publish2, name: Publish...}
   - {app_instance: tk-multi-breakdown2, name: Scene Breakdown...}
   location: "@engines.tk-nuke.location"
-  args: "--indie"
 
 ################################################################################
 # NukeStudio

@@ -57,7 +57,6 @@ engines.tk-nuke.location:
   type: app_store
   name: tk-nuke
   version: v0.16.0
-  args: "--indie"
 engines.tk-photoshopcc.location:
   type: app_store
   name: tk-photoshopcc
@@ -74,3 +73,7 @@ engines.tk-shotgun.location:
 #  type: app_store
 #  name: tk-vred
 #  version: v3.5.4
+engines.tk-harmony.location:
+  type: git_branch
+  path: https://github.com/SleepDeprivedVFX/tk-harmony.git
+  branch: main
