@@ -1,0 +1,18 @@
+# Copyright (c) 2023 Autodesk Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the ShotGrid Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the ShotGrid Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Autodesk Inc.
+
+certifi==2025.1.31
+cryptography==42.0.0
+eventlet==0.38.0
+idna==3.10
+python-engineio==4.8.2
+python-socketio==5.11.0
+requests==2.31.0
+websocket-client==1.6.1
