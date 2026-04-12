@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Trying to add in Harmony while also getting the Episodes to work">
+      <change afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-harmony.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/env/sequence_step.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/asset_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset_step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/templates.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-breakdown.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-breakdown.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-shotgunpanel.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-shotgunpanel.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-workfiles2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-workfiles2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/project.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/sequence.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776023889622</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Trying to add in Harmony while also getting the Episodes to work">
+      <option name="closed" value="true" />
+      <created>1776024632987</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776024632987</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -29,6 +29,7 @@ includes:
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-harmony.yml
 
 ################################################################################
 # configuration for all engines to load in a sequence context
@@ -41,6 +42,7 @@ engines:
   tk-nuke: "@settings.tk-nuke.sequence"
   tk-shell: "@settings.tk-shell.sequence"
   tk-shotgun: "@settings.tk-shotgun.sequence"
+  tk-harmony: "@settings.tk-harmony.sequence"
 
 ################################################################################
 # reference all of the common frameworks

@@ -342,6 +342,92 @@ paths:
     nuke_shot_render_movie:
         definition: '@shot_root/review/{Shot}_{name}_{nuke.output}_v{version}.mov'
 
+    # asset
+    # define the location of a work area
+    asset_work_area_harmony:
+        definition: '@asset_root/work/harmony'
+        root_name: 'primary'
+
+    # define the location of a publish area
+    asset_publish_area_harmony:
+        definition: '@asset_root/publish/harmony'
+        root_name: 'primary'
+
+    # The location of WIP files
+    harmony_asset_work:
+        definition: '@asset_work_area_harmony/scenes/{Asset}.v{version}.xstage'
+        root_name: 'primary'
+
+    # The location of backups of WIP files
+    # Note that snapshots folder is  not inside the wip folder
+    # otherwise we could confuse the publishing process when files
+    # need to be copied from work to publish.
+    harmony_asset_snapshot:
+        definition: '@asset_work_area_harmony/snapshots/{Asset}.v{version}.{timestamp}.xstage'
+        root_name: 'primary'
+
+    harmony_asset_publish:
+        definition: '@asset_publish_area_harmony/scenes/{Asset}.v{version}/{Asset}.v{version}.xstage'
+        root_name: 'primary'
+
+    # shot
+    # define the location of a work area
+    shot_work_area_harmony:
+        definition: '@shot_root/work/harmony'
+        root_name: 'primary'
+
+    # define the location of a publish area
+    shot_publish_area_harmony:
+        definition: '@shot_root/publish/harmony'
+        root_name: 'primary'
+
+    # The location of WIP files
+    harmony_shot_work:
+        definition: '@shot_work_area_harmony/scenes/{Shot}.v{version}.xstage'
+        root_name: 'primary'
+
+    # The location of backups of WIP files
+    # Note that snapshots folder is  not inside the wip folder
+    # otherwise we could confuse the publishing process when files
+    # need to be copied from work to publish.
+    harmony_shot_snapshot:
+        definition: '@shot_work_area_harmony/snapshots/{Shot}.v{version}.{timestamp}.xstage'
+        root_name: 'primary'
+
+    # The location of published harmony files
+    harmony_shot_publish:
+        definition: '@shot_publish_area_harmony/scenes/{Shot}.v{version}/{Shot}.v{version}.xstage'
+        root_name: 'primary'
+
+    # sequence
+    # define the location of a work area
+    sequence_work_area_harmony:
+        definition: '@sequence_root/work/harmony'
+        root_name: 'primary'
+
+    # define the location of a publish area
+    sequence_publish_area_harmony:
+        definition: '@sequence_root/publish/harmony'
+        root_name: 'primary'
+
+    # The location of WIP files
+    harmony_sequence_work:
+        definition: '@sequence_work_area_harmony/scenes/{Sequence}.v{version}.xstage'
+        root_name: 'primary'
+
+    # The location of backups of WIP files
+    # Note that snapshots folder is  not inside the wip folder
+    # otherwise we could confuse the publishing process when files
+    # need to be copied from work to publish.
+    harmony_sequence_snapshot:
+        definition: '@sequence_work_area_harmony/snapshots/{Sequence}.v{version}.{timestamp}.xstage'
+        root_name: 'primary'
+
+    # The location of published harmony files
+    harmony_sequence_publish:
+        definition: '@sequence_publish_area_harmony/scenes/{Sequence}.v{version}/{Sequence}.v{version}.xstage'
+        root_name: 'primary'
+
 
 #    ##########################################################################################
     # Asset pipeline
