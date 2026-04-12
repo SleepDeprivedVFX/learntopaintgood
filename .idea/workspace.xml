@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Creating new SG Implementation">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Creating new SG Implementation  Part 2">
+      <change afterPath="$PROJECT_DIR$/config/core/schema/dropbox.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/pipeline_configuration.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/pipeline_configuration.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/core/roots.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/roots.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/asset.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/asset_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset_step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/project.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/sequence.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/sequence.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/shot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +43,24 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sleep/OneDrive/Pipeline/learntopaintgood&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/sleep/OneDrive/Pipeline/learntopaintgood/config/core/schema/project"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema\project" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sleep\OneDrive\Pipeline\learntopaintgood\config\core\schema" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,7 +84,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775954758779</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Creating new SG Implementation  Part 2">
+      <option name="closed" value="true" />
+      <created>1775955146473</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775955146473</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -76,6 +100,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating new SG Implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating new SG Implementation" />
+    <MESSAGE value="Creating new SG Implementation  Part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating new SG Implementation  Part 2" />
   </component>
 </project>

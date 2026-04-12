@@ -34,10 +34,10 @@ includes:
 # configuration for all engines to load in a sequence context
 
 engines:
-  tk-3dsmax: "@settings.tk-3dsmax.sequence"
+#  tk-3dsmax: "@settings.tk-3dsmax.sequence"
   tk-houdini: "@settings.tk-houdini.sequence"
   tk-maya: "@settings.tk-maya.sequence"
-  tk-motionbuilder: "@settings.tk-motionbuilder.sequence"
+#  tk-motionbuilder: "@settings.tk-motionbuilder.sequence"
   tk-nuke: "@settings.tk-nuke.sequence"
   tk-shell: "@settings.tk-shell.sequence"
   tk-shotgun: "@settings.tk-shotgun.sequence"

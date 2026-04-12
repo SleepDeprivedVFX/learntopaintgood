@@ -9,4 +9,11 @@ primary:
   shotgun_storage_id: 4
   windows_path: F:\Projects
 
+dropbox:
+  default: false
+  linux_path: null
+  mac_path: null
+  shotgun_storage_id: 3
+  windows_path: C:\Users\sleep\Dropbox\SameBrain\UmbrellaProjects
+
 # End of file.

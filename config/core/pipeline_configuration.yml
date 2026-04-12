@@ -4,3 +4,10 @@ project_id: 91
 project_name: learntopaintgood
 published_file_entity_type: PublishedFile
 use_shotgun_path_cache: true
+
+pc_id: 70
+pc_name: Dropbox
+project_id: 91
+project_name: learntopaintgood
+published_file_entity_type: PublishedFile
+use_shotgun_path_cache: true

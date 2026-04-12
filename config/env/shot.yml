@@ -37,11 +37,11 @@ includes:
 # configuration for all engines to load in a shot context
 
 engines:
-  tk-3dsmax: "@settings.tk-3dsmax.shot"
-  tk-flame: "@settings.tk-flame.shot"
+#  tk-3dsmax: "@settings.tk-3dsmax.shot"
+#  tk-flame: "@settings.tk-flame.shot"
   tk-houdini: "@settings.tk-houdini.shot"
   tk-maya: "@settings.tk-maya.shot"
-  tk-motionbuilder: "@settings.tk-motionbuilder.shot"
+#  tk-motionbuilder: "@settings.tk-motionbuilder.shot"
   tk-nuke: "@settings.tk-nuke.shot"
   tk-photoshopcc: "@settings.tk-photoshopcc.shot"
   tk-aftereffects: "@settings.tk-aftereffects.shot"
