@@ -1,7 +1,0 @@
-v4.1.6
-=====================
-
-Release highlights
-------------------
-
-* Remove Python 2 support

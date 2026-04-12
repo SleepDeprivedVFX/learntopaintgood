@@ -1,6 +1,0 @@
-﻿alias\_api.search\_node\_layer\_does\_not\_match\_parent\_layer
-===============================================================
-
-.. currentmodule:: alias_api
-
-.. autofunction:: search_node_layer_does_not_match_parent_layer

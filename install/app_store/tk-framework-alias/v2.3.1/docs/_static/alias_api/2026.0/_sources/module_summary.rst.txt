@@ -1,8 +1,0 @@
-Module Overview
-###############
-
-.. autosummary::
-    :toctree: _autosummary
-    :recursive:
-
-    alias_api

@@ -1,5 +1,0 @@
-Reference
-####################
-
-.. automodule:: alias_api
-    :members:
