@@ -25,6 +25,7 @@ includes:
 - ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-harmony.yml
 
 ################################################################################
 # configuration for all engines to load in a shot step context
@@ -42,6 +43,7 @@ engines:
   tk-aftereffects: "@settings.tk-aftereffects.shot_step"
   tk-shell: "@settings.tk-shell.shot_step"
   tk-shotgun: "@settings.tk-shotgun.shot_step"
+  tk-harmony: "@settings.tk-harmony.asset_step"
 
 ################################################################################
 # reference all of the common frameworks

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Close to getting episodes to work, but no banana">
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Trying to add in Harmony while also getting the Episodes to work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/app_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/app_locations.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/engine_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/engine_locations.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-launchapp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-multi-launchapp.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/includes/settings/tk-nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/includes/settings/tk-nuke.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/asset_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/asset_step.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/shot_step.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/env/shot_step.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775980212235</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Trying to add in Harmony while also getting the Episodes to work">
+      <option name="closed" value="true" />
+      <created>1776023889622</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776023889622</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +154,7 @@
     <MESSAGE value="The basic - basic Dropbox multi-pipeline is working!" />
     <MESSAGE value="Ugh... ok.  Nuke is loading now, but it ain't pretty." />
     <MESSAGE value="Close to getting episodes to work, but no banana" />
-    <option name="LAST_COMMIT_MESSAGE" value="Close to getting episodes to work, but no banana" />
+    <MESSAGE value="Trying to add in Harmony while also getting the Episodes to work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to add in Harmony while also getting the Episodes to work" />
   </component>
 </project>
