@@ -13,4 +13,4 @@ type: "project"
 name: "dropbox"
 
 # name of project root as defined in roots.yml
-root_name: "Fart"
+root_name: "dropbox"
