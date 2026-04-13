@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Testing git cache">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-snapshot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-snapshot.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-workfiles2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-workfiles2.yml" afterDir="false" />
+    <list default="true" id="82c9e1d3-84fb-402d-8139-a6e6e3aac6f8" name="Changes" comment="Patching Harmony">
+      <change beforePath="$PROJECT_DIR$/env/includes/engine_locations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/engine_locations.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776029068082</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Patching Harmony">
+      <option name="closed" value="true" />
+      <created>1776067277245</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1776067277246</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +218,7 @@
     <MESSAGE value="Trying to add in Harmony while also getting the Episodes to work" />
     <MESSAGE value="Further Harmony integration work." />
     <MESSAGE value="Testing git cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing git cache" />
+    <MESSAGE value="Patching Harmony" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patching Harmony" />
   </component>
 </project>
