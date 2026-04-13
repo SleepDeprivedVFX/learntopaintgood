@@ -76,4 +76,4 @@ engines.tk-shotgun.location:
 engines.tk-harmony.location:
   type: git
   path: https://github.com/diegogarciahuerta/tk-harmony
-  version: v1.0.0
+  version: v1.0.2
