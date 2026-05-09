@@ -23,4 +23,4 @@ entity_type: "Episode"
 # (this is std shotgun API syntax)
 # any values starting with $ are resolved into path objects
 filters:
-  - { "path": "project", "relation": "is", "values": [ "$project" ] }
+  - { "path": "project", "relation": "is", "values": [ "$dropbox" ] }
