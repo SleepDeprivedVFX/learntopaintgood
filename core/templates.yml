@@ -133,12 +133,12 @@ keys:
         shotgun_entity_type: Task
         shotgun_field_name: content
 
-    # Project/show short code, auto-resolved from the ShotGrid Project entity.
-    # Uses the Project "Code" field (code), e.g. "LPG" -- not the Tank Name.
+    # Project/show short code. Plain string so SGTK can reverse-resolve file
+    # paths without a Project entity API call (which caused context loss on save).
+    # Default must match the ShotGrid Project.code field value for this project.
     show_code:
         type: str
-        shotgun_entity_type: Project
-        shotgun_field_name: code
+        default: LPG
 
     # Maya supports two extension types.
     maya_extension:
