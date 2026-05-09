@@ -4,15 +4,15 @@
 # 
 primary:
   default: true
-  linux_path: null
-  mac_path: null
+  linux_path: null  # PENDING: not in use
+  mac_path: null    # PENDING: Mac mount path not yet defined (e.g. /Volumes/Projects)
   shotgun_storage_id: 4
   windows_path: F:\Projects
 
 dropbox:
   default: false
-  linux_path: null
-  mac_path: null
+  linux_path: null  # PENDING: not in use
+  mac_path: null    # PENDING: Mac Dropbox path not yet defined (e.g. /Users/<user>/Dropbox/SameBrain/UmbrellaProjects)
   shotgun_storage_id: 3
   windows_path: C:\Users\sleep\Dropbox\SameBrain\UmbrellaProjects
 

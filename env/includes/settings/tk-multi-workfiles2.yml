@@ -212,6 +212,7 @@ settings.tk-multi-workfiles2.houdini.launch_at_startup:
 
 # asset_step
 settings.tk-multi-workfiles2.houdini.asset_step:
+  launch_at_startup: true
   template_publish: houdini_asset_publish
   template_publish_area: asset_publish_area_houdini
   template_work: houdini_asset_work
@@ -240,6 +241,7 @@ settings.tk-multi-workfiles2.houdini.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.houdini.shot_step:
+  launch_at_startup: true
   template_publish: houdini_shot_publish
   template_publish_area: shot_publish_area_houdini
   template_work: houdini_shot_work
@@ -272,6 +274,7 @@ settings.tk-multi-workfiles2.houdini.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.maya.asset_step:
+  launch_at_startup: true
   template_publish: maya_asset_publish
   template_publish_area: asset_publish_area_maya
   template_work: maya_asset_work
@@ -299,6 +302,7 @@ settings.tk-multi-workfiles2.maya.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.maya.shot_step:
+  launch_at_startup: true
   template_publish: maya_shot_publish
   template_publish_area: shot_publish_area_maya
   template_work: maya_shot_work
@@ -330,6 +334,7 @@ settings.tk-multi-workfiles2.maya.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.nuke.asset_step:
+  launch_at_startup: true
   template_publish: nuke_asset_publish
   template_publish_area: asset_publish_area_nuke
   template_work: nuke_asset_work
@@ -357,6 +362,7 @@ settings.tk-multi-workfiles2.nuke.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.nuke.shot_step:
+  launch_at_startup: true
   template_publish: nuke_shot_publish
   template_publish_area: shot_publish_area_nuke
   template_work: nuke_shot_work
@@ -388,6 +394,7 @@ settings.tk-multi-workfiles2.nuke.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.photoshop.asset_step:
+  launch_at_startup: true
   template_publish: photoshop_asset_publish
   template_publish_area: asset_publish_area_photoshop
   template_work: photoshop_asset_work
@@ -415,6 +422,7 @@ settings.tk-multi-workfiles2.photoshop.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.photoshop.shot_step:
+  launch_at_startup: true
   template_publish: photoshop_shot_publish
   template_publish_area: shot_publish_area_photoshop
   template_work: photoshop_shot_work
@@ -470,6 +478,7 @@ settings.tk-multi-workfiles2.aftereffects:
 
 # asset_step
 settings.tk-multi-workfiles2.aftereffects.asset_step:
+  launch_at_startup: true
   template_publish: aftereffects_asset_publish
   template_publish_area: asset_publish_area_aftereffects
   template_work: aftereffects_asset_work
@@ -498,6 +507,7 @@ settings.tk-multi-workfiles2.aftereffects.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.aftereffects.shot_step:
+  launch_at_startup: true
   template_publish: aftereffects_shot_publish
   template_publish_area: shot_publish_area_aftereffects
   template_work: aftereffects_shot_work
@@ -723,6 +733,7 @@ settings.tk-multi-workfiles2.harmony.project:
 
 # asset_step
 settings.tk-multi-workfiles2.harmony.asset_step:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Task
@@ -753,6 +764,7 @@ settings.tk-multi-workfiles2.harmony.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.harmony.shot_step:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Task
@@ -783,6 +795,7 @@ settings.tk-multi-workfiles2.harmony.shot_step:
 
 # sequence_step
 settings.tk-multi-workfiles2.harmony.sequence_step:
+  launch_at_startup: true
   entities:
   - caption: Assets
     entity_type: Task

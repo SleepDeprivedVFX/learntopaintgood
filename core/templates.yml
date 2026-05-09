@@ -133,6 +133,13 @@ keys:
         shotgun_entity_type: Task
         shotgun_field_name: content
 
+    # Project/show short code, auto-resolved from the ShotGrid Project entity.
+    # Uses the Project "Code" field (sg_code), e.g. "LPG" -- not the Tank Name.
+    show_code:
+        type: str
+        shotgun_entity_type: Project
+        shotgun_field_name: sg_code
+
     # Maya supports two extension types.
     maya_extension:
         type: str
@@ -199,28 +206,28 @@ paths:
 
     # The location of WIP files
     photoshop_shot_work:
-        definition: '@shot_root/work/photoshop/{name}.v{version}.psd'
+        definition: '@shot_root/work/photoshop/{show_code}_{Shot}_{Step}_v{version}.psd'
         root_name: dropbox
     shot_work_area_photoshop:
         definition: '@shot_root/work/photoshop'
         root_name: dropbox
     # The location of backups of WIP files
     photoshop_shot_snapshot:
-        definition: '@shot_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        definition: '@shot_root/work/photoshop/snapshots/{show_code}_{Shot}_{Step}_v{version}.{timestamp}.psd'
         root_name: dropbox
     # The location of published files
     shot_publish_area_photoshop:
         definition: '@shot_root/publish/photoshop'
         root_name: dropbox
     photoshop_shot_publish:
-        definition: '@shot_root/publish/photoshop/{name}.v{version}.psd'
+        definition: '@shot_root/publish/photoshop/{show_code}_{Shot}_{Step}_v{version}.psd'
         root_name: dropbox
     # The location of the published images
     photoshop_shot_png_publish:
-        definition: '@shot_root/publish/photoshop/{name}.v{version}.png'
+        definition: '@shot_root/publish/photoshop/{show_code}_{Shot}_{Step}_v{version}.png'
         root_name: dropbox
     photoshop_shot_jpg_publish:
-        definition: '@shot_root/publish/photoshop/{name}.v{version}.jpg'
+        definition: '@shot_root/publish/photoshop/{show_code}_{Shot}_{Step}_v{version}.jpg'
         root_name: dropbox
 
     #
@@ -229,17 +236,17 @@ paths:
 
     # The location of WIP files
     aftereffects_shot_work:
-        definition: '@shot_root/work/afx/{name}.v{version}.aep'
+        definition: '@shot_root/work/afx/{show_code}_{Shot}_{Step}_v{version}.aep'
     shot_work_area_aftereffects:
         definition: '@shot_root/work/afx'
     # The location of backups of WIP files
     aftereffects_shot_snapshot:
-        definition: '@shot_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
+        definition: '@shot_root/work/afx/snapshots/{show_code}_{Shot}_{Step}_v{version}.{timestamp}.aep'
     # The location of published files
     shot_publish_area_aftereffects:
         definition: '@shot_root/publish/afx'
     aftereffects_shot_publish:
-        definition: '@shot_root/publish/afx/{name}.v{version}.aep'
+        definition: '@shot_root/publish/afx/{show_code}_{Shot}_{Step}_v{version}.aep'
     aftereffects_shot_render_pub_mono:
         definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
@@ -261,13 +268,13 @@ paths:
         definition: '@shot_root/publish/maya'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@shot_root/work/maya/{show_code}_{Shot}_{Step}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_shot_snapshot:
-        definition: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@shot_root/work/maya/snapshots/{show_code}_{Shot}_{Step}_v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_shot_publish:
-        definition: '@shot_root/publish/maya/{name}.v{version}.{maya_extension}'
+        definition: '@shot_root/publish/maya/{show_code}_{Shot}_{Step}_v{version}.{maya_extension}'
 
 
     #
@@ -282,13 +289,13 @@ paths:
         definition: '@shot_root/publish/houdini'
     # The location of WIP files
     houdini_shot_work:
-        definition: '@shot_root/work/houdini/{name}.v{version}.hip'
+        definition: '@shot_root/work/houdini/{show_code}_{Shot}_{Step}_v{version}.hip'
     # The location of backups of WIP files
     houdini_shot_snapshot:
-        definition: '@shot_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+        definition: '@shot_root/work/houdini/snapshots/{show_code}_{Shot}_{Step}_v{version}.{timestamp}.hip'
     # The location of published houdini files
     houdini_shot_publish:
-        definition: '@shot_root/publish/houdini/{name}.v{version}.hip'
+        definition: '@shot_root/publish/houdini/{show_code}_{Shot}_{Step}_v{version}.hip'
     # Alembic caches
     houdini_shot_work_alembic_cache:
         definition: '@shot_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
@@ -320,13 +327,13 @@ paths:
         definition: '@shot_root/publish/nuke'
     # The location of WIP script files
     nuke_shot_work:
-        definition: '@shot_root/work/nuke/{name}.v{version}.nk'
+        definition: '@shot_root/work/nuke/{show_code}_{Shot}_{Step}_v{version}.nk'
     # The location of backups of WIP files
     nuke_shot_snapshot:
-        definition: '@shot_root/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk'
+        definition: '@shot_root/work/nuke/snapshots/{show_code}_{Shot}_{Step}_v{version}.{timestamp}.nk'
     # The location of published nuke script files
     nuke_shot_publish:
-        definition: '@shot_root/publish/nuke/{name}.v{version}.nk'
+        definition: '@shot_root/publish/nuke/{show_code}_{Shot}_{Step}_v{version}.nk'
     # write node outputs
     nuke_shot_render_mono_dpx:
         definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
@@ -346,87 +353,87 @@ paths:
     # define the location of a work area
     asset_work_area_harmony:
         definition: '@asset_root/work/harmony'
-        root_name: 'primary'
+        root_name: dropbox
 
     # define the location of a publish area
     asset_publish_area_harmony:
         definition: '@asset_root/publish/harmony'
-        root_name: 'primary'
+        root_name: dropbox
 
     # The location of WIP files
     harmony_asset_work:
-        definition: '@asset_work_area_harmony/scenes/{Asset}.v{version}.xstage'
-        root_name: 'primary'
+        definition: '@asset_work_area_harmony/scenes/{show_code}_{Asset}_{Step}_v{version}.xstage'
+        root_name: dropbox
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_asset_snapshot:
-        definition: '@asset_work_area_harmony/snapshots/{Asset}.v{version}.{timestamp}.xstage'
-        root_name: 'primary'
+        definition: '@asset_work_area_harmony/snapshots/{show_code}_{Asset}_{Step}_v{version}.{timestamp}.xstage'
+        root_name: dropbox
 
     harmony_asset_publish:
-        definition: '@asset_publish_area_harmony/scenes/{Asset}.v{version}/{Asset}.v{version}.xstage'
-        root_name: 'primary'
+        definition: '@asset_publish_area_harmony/scenes/{show_code}_{Asset}_{Step}_v{version}/{show_code}_{Asset}_{Step}_v{version}.xstage'
+        root_name: dropbox
 
     # shot
     # define the location of a work area
     shot_work_area_harmony:
         definition: '@shot_root/work/harmony'
-        root_name: 'primary'
+        root_name: dropbox
 
     # define the location of a publish area
     shot_publish_area_harmony:
         definition: '@shot_root/publish/harmony'
-        root_name: 'primary'
+        root_name: dropbox
 
     # The location of WIP files
     harmony_shot_work:
-        definition: '@shot_work_area_harmony/scenes/{Shot}.v{version}.xstage'
-        root_name: 'primary'
+        definition: '@shot_work_area_harmony/scenes/{show_code}_{Shot}_{Step}_v{version}.xstage'
+        root_name: dropbox
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_shot_snapshot:
-        definition: '@shot_work_area_harmony/snapshots/{Shot}.v{version}.{timestamp}.xstage'
-        root_name: 'primary'
+        definition: '@shot_work_area_harmony/snapshots/{show_code}_{Shot}_{Step}_v{version}.{timestamp}.xstage'
+        root_name: dropbox
 
     # The location of published harmony files
     harmony_shot_publish:
-        definition: '@shot_publish_area_harmony/scenes/{Shot}.v{version}/{Shot}.v{version}.xstage'
-        root_name: 'primary'
+        definition: '@shot_publish_area_harmony/scenes/{show_code}_{Shot}_{Step}_v{version}/{show_code}_{Shot}_{Step}_v{version}.xstage'
+        root_name: dropbox
 
     # sequence
     # define the location of a work area
     sequence_work_area_harmony:
         definition: '@sequence_root/work/harmony'
-        root_name: 'primary'
+        root_name: dropbox
 
     # define the location of a publish area
     sequence_publish_area_harmony:
         definition: '@sequence_root/publish/harmony'
-        root_name: 'primary'
+        root_name: dropbox
 
     # The location of WIP files
     harmony_sequence_work:
-        definition: '@sequence_work_area_harmony/scenes/{Sequence}.v{version}.xstage'
-        root_name: 'primary'
+        definition: '@sequence_work_area_harmony/scenes/{show_code}_{Sequence}_{Step}_v{version}.xstage'
+        root_name: dropbox
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_sequence_snapshot:
-        definition: '@sequence_work_area_harmony/snapshots/{Sequence}.v{version}.{timestamp}.xstage'
-        root_name: 'primary'
+        definition: '@sequence_work_area_harmony/snapshots/{show_code}_{Sequence}_{Step}_v{version}.{timestamp}.xstage'
+        root_name: dropbox
 
     # The location of published harmony files
     harmony_sequence_publish:
-        definition: '@sequence_publish_area_harmony/scenes/{Sequence}.v{version}/{Sequence}.v{version}.xstage'
-        root_name: 'primary'
+        definition: '@sequence_publish_area_harmony/scenes/{show_code}_{Sequence}_{Step}_v{version}/{show_code}_{Sequence}_{Step}_v{version}.xstage'
+        root_name: dropbox
 
 
 #    ##########################################################################################
@@ -447,28 +454,28 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work:
-        definition: '@asset_root/work/photoshop/{name}.v{version}.psd'
+        definition: '@asset_root/work/photoshop/{show_code}_{Asset}_{Step}_v{version}.psd'
         root_name: dropbox
     asset_work_area_photoshop:
         definition: '@asset_root/work/photoshop'
         root_name: dropbox
     # The location of backups of WIP files
     photoshop_asset_snapshot:
-        definition: '@asset_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        definition: '@asset_root/work/photoshop/snapshots/{show_code}_{Asset}_{Step}_v{version}.{timestamp}.psd'
         root_name: dropbox
     # The location of published files
     asset_publish_area_photoshop:
         definition: '@asset_root/publish/photoshop'
         root_name: dropbox
     photoshop_asset_publish:
-        definition: '@asset_root/publish/photoshop/{name}.v{version}.psd'
+        definition: '@asset_root/publish/photoshop/{show_code}_{Asset}_{Step}_v{version}.psd'
         root_name: dropbox
     # The location of the published images
     photoshop_asset_png_publish:
-        definition: '@asset_root/publish/photoshop/{name}.v{version}.png'
+        definition: '@asset_root/publish/photoshop/{show_code}_{Asset}_{Step}_v{version}.png'
         root_name: dropbox
     photoshop_asset_jpg_publish:
-        definition: '@asset_root/publish/photoshop/{name}.v{version}.jpg'
+        definition: '@asset_root/publish/photoshop/{show_code}_{Asset}_{Step}_v{version}.jpg'
         root_name: dropbox
     #
     # after effects
@@ -476,17 +483,17 @@ paths:
 
     # The location of WIP files
     aftereffects_asset_work:
-        definition: '@asset_root/work/afx/{name}.v{version}.aep'
+        definition: '@asset_root/work/afx/{show_code}_{Asset}_{Step}_v{version}.aep'
     asset_work_area_aftereffects:
         definition: '@asset_root/work/afx'
     # The location of backups of WIP files
     aftereffects_asset_snapshot:
-        definition: '@asset_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
+        definition: '@asset_root/work/afx/snapshots/{show_code}_{Asset}_{Step}_v{version}.{timestamp}.aep'
     # The location of published files
     asset_publish_area_aftereffects:
         definition: '@asset_root/publish/afx'
     aftereffects_asset_publish:
-        definition: '@asset_root/publish/afx/{name}.v{version}.aep'
+        definition: '@asset_root/publish/afx/{show_code}_{Asset}_{Step}_v{version}.aep'
     aftereffects_asset_render_pub_mono:
         definition: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
@@ -507,13 +514,13 @@ paths:
         definition: '@asset_root/publish/maya'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@asset_root/work/maya/{show_code}_{Asset}_{Step}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@asset_root/work/maya/snapshots/{show_code}_{Asset}_{Step}_v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
-        definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
+        definition: '@asset_root/publish/maya/{show_code}_{Asset}_{Step}_v{version}.{maya_extension}'
 
 
     #
@@ -528,13 +535,13 @@ paths:
         definition: '@asset_root/publish/houdini'
     # The location of WIP files
     houdini_asset_work:
-        definition: '@asset_root/work/houdini/{name}.v{version}.hip'
+        definition: '@asset_root/work/houdini/{show_code}_{Asset}_{Step}_v{version}.hip'
     # The location of backups of WIP files
     houdini_asset_snapshot:
-        definition: '@asset_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+        definition: '@asset_root/work/houdini/snapshots/{show_code}_{Asset}_{Step}_v{version}.{timestamp}.hip'
     # The location of published houdini files
     houdini_asset_publish:
-        definition: '@asset_root/publish/houdini/{name}.v{version}.hip'
+        definition: '@asset_root/publish/houdini/{show_code}_{Asset}_{Step}_v{version}.hip'
     # Alembic caches
     houdini_asset_work_alembic_cache:
         definition: '@asset_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
@@ -576,13 +583,70 @@ paths:
         definition: '@asset_root/review/quickdaily/{Asset}_{name}_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/work/nuke/{name}.v{version}.nk'
+        definition: '@asset_root/work/nuke/{show_code}_{Asset}_{Step}_v{version}.nk'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk'
+        definition: '@asset_root/work/nuke/snapshots/{show_code}_{Asset}_{Step}_v{version}.{timestamp}.nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
+        definition: '@asset_root/publish/nuke/{show_code}_{Asset}_{Step}_v{version}.nk'
+
+
+    # -------------------------------------------------------------------------
+    # FUTURE: Clip Studio Paint (tk-clipstudio engine not yet available)
+    # Root: dropbox — cross-platform 2D work
+    # Uncomment and wire up when a Shotgun engine or custom launcher is ready.
+    # -------------------------------------------------------------------------
+    # shot_work_area_clipstudio:
+    #     definition: '@shot_root/work/clipstudio'
+    #     root_name: dropbox
+    # clipstudio_shot_work:
+    #     definition: '@shot_root/work/clipstudio/{name}.v{version}.clip'
+    #     root_name: dropbox
+    # clipstudio_shot_snapshot:
+    #     definition: '@shot_root/work/clipstudio/snapshots/{name}.v{version}.{timestamp}.clip'
+    #     root_name: dropbox
+    # shot_publish_area_clipstudio:
+    #     definition: '@shot_root/publish/clipstudio'
+    #     root_name: dropbox
+    # clipstudio_shot_publish:
+    #     definition: '@shot_root/publish/clipstudio/{name}.v{version}.clip'
+    #     root_name: dropbox
+    # asset_work_area_clipstudio:
+    #     definition: '@asset_root/work/clipstudio'
+    #     root_name: dropbox
+    # clipstudio_asset_work:
+    #     definition: '@asset_root/work/clipstudio/{name}.v{version}.clip'
+    #     root_name: dropbox
+    # clipstudio_asset_snapshot:
+    #     definition: '@asset_root/work/clipstudio/snapshots/{name}.v{version}.{timestamp}.clip'
+    #     root_name: dropbox
+    # asset_publish_area_clipstudio:
+    #     definition: '@asset_root/publish/clipstudio'
+    #     root_name: dropbox
+    # clipstudio_asset_publish:
+    #     definition: '@asset_root/publish/clipstudio/{name}.v{version}.clip'
+    #     root_name: dropbox
+
+
+    # -------------------------------------------------------------------------
+    # FUTURE: Final Draft (no Shotgun engine — likely file-manager/shell only)
+    # Root: dropbox — shooting scripts are cross-platform documents
+    # Final Draft uses .fdx (XML); Fountain (.fountain) is the plain-text alt.
+    # Uncomment when a launch/open workflow is defined.
+    # -------------------------------------------------------------------------
+    # project_work_area_finaldraft:
+    #     definition: 'scripts'
+    #     root_name: dropbox
+    # finaldraft_script_work:
+    #     definition: 'scripts/{name}.v{version}.fdx'
+    #     root_name: dropbox
+    # finaldraft_script_snapshot:
+    #     definition: 'scripts/snapshots/{name}.v{version}.{timestamp}.fdx'
+    #     root_name: dropbox
+    # finaldraft_script_publish:
+    #     definition: 'scripts/publish/{name}.v{version}.fdx'
+    #     root_name: dropbox
 
 
 #
