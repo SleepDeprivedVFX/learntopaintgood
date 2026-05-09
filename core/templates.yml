@@ -134,11 +134,11 @@ keys:
         shotgun_field_name: content
 
     # Project/show short code, auto-resolved from the ShotGrid Project entity.
-    # Uses the Project "Code" field (sg_code), e.g. "LPG" -- not the Tank Name.
+    # Uses the Project "Code" field (code), e.g. "LPG" -- not the Tank Name.
     show_code:
         type: str
         shotgun_entity_type: Project
-        shotgun_field_name: sg_code
+        shotgun_field_name: code
 
     # Maya supports two extension types.
     maya_extension:
