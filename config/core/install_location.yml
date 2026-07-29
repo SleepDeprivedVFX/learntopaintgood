@@ -3,7 +3,7 @@
 # This file reflects the paths in the primary pipeline
 # configuration defined for this project.
 
-Windows: 'C:\Users\sleep\OneDrive\Pipeline\learntopaintgood'
+Windows: 'S:\Pipeline\learntopaintgood'
 Darwin: ''
 Linux: ''
 
