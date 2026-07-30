@@ -121,6 +121,31 @@ settings.tk-multi-snapshot.aftereffects.shot_step:
 
 ################################################################################
 
+# ---- Harmony
+
+# asset step
+settings.tk-multi-snapshot.harmony.asset_step:
+  template_snapshot: harmony_asset_snapshot
+  template_work: harmony_asset_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# sequence step
+settings.tk-multi-snapshot.harmony.sequence_step:
+  template_snapshot: harmony_sequence_snapshot
+  template_work: harmony_sequence_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.harmony.shot_step:
+  template_snapshot: harmony_shot_snapshot
+  template_work: harmony_shot_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
 # ---- Motion Builder
 
 ## asset step

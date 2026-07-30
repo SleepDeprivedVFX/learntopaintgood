@@ -76,4 +76,5 @@ engines.tk-shotgun.location:
 engines.tk-harmony.location:
   type: git_branch
   path: https://github.com/SleepDeprivedVFX/tk-harmony.git
-  branch: main
+  branch: master
+  version: fe56ee1d4fe1b5a155bdf1c99db26cfd02588407
