@@ -124,6 +124,14 @@ keys:
     mari.project_name:
         type: str
         alias: name
+    # The 3-letter show code, pulled from the Project entity's code field.
+    # Used to prefix asset filenames so a file's origin project is
+    # identifiable from the filename alone, outside of its folder path.
+    code:
+        type: str
+        shotgun_entity_type: Project
+        shotgun_field_name: code
+
     asset_name:
         type: str
         shotgun_entity_type: Asset
@@ -199,22 +207,22 @@ paths:
 
     # The location of WIP files
     photoshop_shot_work:
-        definition: '@shot_root/work/photoshop/{name}.v{version}.psd'
+        definition: '@shot_root/work/photoshop/{Shot}_{Step}_v{version}.psd'
     shot_work_area_photoshop:
         definition: '@shot_root/work/photoshop'
     # The location of backups of WIP files
     photoshop_shot_snapshot:
-        definition: '@shot_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        definition: '@shot_root/work/photoshop/snapshots/{Shot}_{Step}_v{version}.{timestamp}.psd'
     # The location of published files
     shot_publish_area_photoshop:
         definition: '@shot_root/publish/photoshop'
     photoshop_shot_publish:
-        definition: '@shot_root/publish/photoshop/{name}.v{version}.psd'
+        definition: '@shot_root/publish/photoshop/{Shot}_{Step}_v{version}.psd'
     # The location of the published images
     photoshop_shot_png_publish:
-        definition: '@shot_root/publish/photoshop/{name}.v{version}.png'
+        definition: '@shot_root/publish/photoshop/{Shot}_{Step}_v{version}.png'
     photoshop_shot_jpg_publish:
-        definition: '@shot_root/publish/photoshop/{name}.v{version}.jpg'
+        definition: '@shot_root/publish/photoshop/{Shot}_{Step}_v{version}.jpg'
 
     #
     # After Effects
@@ -222,17 +230,17 @@ paths:
 
     # The location of WIP files
     aftereffects_shot_work:
-        definition: '@shot_root/work/afx/{name}.v{version}.aep'
+        definition: '@shot_root/work/afx/{Shot}_{Step}_v{version}.aep'
     shot_work_area_aftereffects:
         definition: '@shot_root/work/afx'
     # The location of backups of WIP files
     aftereffects_shot_snapshot:
-        definition: '@shot_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
+        definition: '@shot_root/work/afx/snapshots/{Shot}_{Step}_v{version}.{timestamp}.aep'
     # The location of published files
     shot_publish_area_aftereffects:
         definition: '@shot_root/publish/afx'
     aftereffects_shot_publish:
-        definition: '@shot_root/publish/afx/{name}.v{version}.aep'
+        definition: '@shot_root/publish/afx/{Shot}_{Step}_v{version}.aep'
     aftereffects_shot_render_pub_mono:
         definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
@@ -254,13 +262,13 @@ paths:
         definition: '@shot_root/publish/maya'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@shot_root/work/maya/{Shot}_{Step}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_shot_snapshot:
-        definition: '@shot_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@shot_root/work/maya/snapshots/{Shot}_{Step}_v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_shot_publish:
-        definition: '@shot_root/publish/maya/{name}.v{version}.{maya_extension}'
+        definition: '@shot_root/publish/maya/{Shot}_{Step}_v{version}.{maya_extension}'
 
 
     #
@@ -275,13 +283,13 @@ paths:
         definition: '@shot_root/publish/houdini'
     # The location of WIP files
     houdini_shot_work:
-        definition: '@shot_root/work/houdini/{name}.v{version}.hip'
+        definition: '@shot_root/work/houdini/{Shot}_{Step}_v{version}.hip'
     # The location of backups of WIP files
     houdini_shot_snapshot:
-        definition: '@shot_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+        definition: '@shot_root/work/houdini/snapshots/{Shot}_{Step}_v{version}.{timestamp}.hip'
     # The location of published houdini files
     houdini_shot_publish:
-        definition: '@shot_root/publish/houdini/{name}.v{version}.hip'
+        definition: '@shot_root/publish/houdini/{Shot}_{Step}_v{version}.hip'
     # Alembic caches
     houdini_shot_work_alembic_cache:
         definition: '@shot_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
@@ -313,13 +321,13 @@ paths:
         definition: '@shot_root/publish/nuke'
     # The location of WIP script files
     nuke_shot_work:
-        definition: '@shot_root/work/nuke/{name}.v{version}.nk'
+        definition: '@shot_root/work/nuke/{Shot}_{Step}_v{version}.nk'
     # The location of backups of WIP files
     nuke_shot_snapshot:
-        definition: '@shot_root/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk'
+        definition: '@shot_root/work/nuke/snapshots/{Shot}_{Step}_v{version}.{timestamp}.nk'
     # The location of published nuke script files
     nuke_shot_publish:
-        definition: '@shot_root/publish/nuke/{name}.v{version}.nk'
+        definition: '@shot_root/publish/nuke/{Shot}_{Step}_v{version}.nk'
     # write node outputs
     nuke_shot_render_mono_dpx:
         definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
@@ -349,17 +357,17 @@ paths:
     # palette-library/, etc.), named to match the established production
     # convention: {Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage
     harmony_asset_work:
-        definition: '@asset_work_area_harmony/{Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage'
+        definition: '@asset_work_area_harmony/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.xstage'
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_asset_snapshot:
-        definition: '@asset_work_area_harmony/snapshots/{Asset}_{Step}_v{version}.{timestamp}.xstage'
+        definition: '@asset_work_area_harmony/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.xstage'
 
     harmony_asset_publish:
-        definition: '@asset_publish_area_harmony/{Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage'
+        definition: '@asset_publish_area_harmony/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.xstage'
 
     # Harmony render output - the Write node's image sequence and the
     # FFmpeg-transcoded movie both live in the same per-version folder
@@ -452,39 +460,39 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work:
-        definition: '@asset_root/work/photoshop/{name}.v{version}.psd'
+        definition: '@asset_root/work/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.psd'
     asset_work_area_photoshop:
         definition: '@asset_root/work/photoshop'
     # The location of backups of WIP files
     photoshop_asset_snapshot:
-        definition: '@asset_root/work/photoshop/snapshots/{name}.v{version}.{timestamp}.psd'
+        definition: '@asset_root/work/photoshop/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.psd'
     # The location of published files
     asset_publish_area_photoshop:
         definition: '@asset_root/publish/photoshop'
     photoshop_asset_publish:
-        definition: '@asset_root/publish/photoshop/{name}.v{version}.psd'
+        definition: '@asset_root/publish/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.psd'
     # The location of the published images
     photoshop_asset_png_publish:
-        definition: '@asset_root/publish/photoshop/{name}.v{version}.png'
+        definition: '@asset_root/publish/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.png'
     photoshop_asset_jpg_publish:
-        definition: '@asset_root/publish/photoshop/{name}.v{version}.jpg'
+        definition: '@asset_root/publish/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.jpg'
     #
     # after effects
     #
 
     # The location of WIP files
     aftereffects_asset_work:
-        definition: '@asset_root/work/afx/{name}.v{version}.aep'
+        definition: '@asset_root/work/afx/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.aep'
     asset_work_area_aftereffects:
         definition: '@asset_root/work/afx'
     # The location of backups of WIP files
     aftereffects_asset_snapshot:
-        definition: '@asset_root/work/afx/snapshots/{name}.v{version}.{timestamp}.aep'
+        definition: '@asset_root/work/afx/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.aep'
     # The location of published files
     asset_publish_area_aftereffects:
         definition: '@asset_root/publish/afx'
     aftereffects_asset_publish:
-        definition: '@asset_root/publish/afx/{name}.v{version}.aep'
+        definition: '@asset_root/publish/afx/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.aep'
     aftereffects_asset_render_pub_mono:
         definition: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
@@ -505,13 +513,13 @@ paths:
         definition: '@asset_root/publish/maya'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
+        definition: '@asset_root/work/maya/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
+        definition: '@asset_root/work/maya/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
-        definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
+        definition: '@asset_root/publish/maya/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{maya_extension}'
 
 
     #
@@ -526,13 +534,13 @@ paths:
         definition: '@asset_root/publish/houdini'
     # The location of WIP files
     houdini_asset_work:
-        definition: '@asset_root/work/houdini/{name}.v{version}.hip'
+        definition: '@asset_root/work/houdini/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.hip'
     # The location of backups of WIP files
     houdini_asset_snapshot:
-        definition: '@asset_root/work/houdini/snapshots/{name}.v{version}.{timestamp}.hip'
+        definition: '@asset_root/work/houdini/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.hip'
     # The location of published houdini files
     houdini_asset_publish:
-        definition: '@asset_root/publish/houdini/{name}.v{version}.hip'
+        definition: '@asset_root/publish/houdini/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.hip'
     # Alembic caches
     houdini_asset_work_alembic_cache:
         definition: '@asset_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
@@ -574,13 +582,13 @@ paths:
         definition: '@asset_root/review/quickdaily/{Asset}_{name}_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/work/nuke/{name}.v{version}.nk'
+        definition: '@asset_root/work/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nk'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/work/nuke/snapshots/{name}.v{version}.{timestamp}.nk'
+        definition: '@asset_root/work/nuke/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.nk'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
+        definition: '@asset_root/publish/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nk'
 
 
 #
