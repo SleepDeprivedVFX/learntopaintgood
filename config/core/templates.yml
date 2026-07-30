@@ -361,6 +361,16 @@ paths:
     harmony_asset_publish:
         definition: '@asset_publish_area_harmony/{Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage'
 
+    # Harmony render output - the Write node's image sequence and the
+    # FFmpeg-transcoded movie both live in the same per-version folder
+    # under publish/, not off in a separate top-level "renders" area.
+    harmony_asset_render_area:
+        definition: '@asset_publish_area_harmony/renders/{Asset}_{name}.v{version}'
+    harmony_asset_render_sequence:
+        definition: '@harmony_asset_render_area/{Asset}_{name}.v{version}.{SEQ}.png'
+    harmony_asset_render_movie:
+        definition: '@harmony_asset_render_area/{Asset}_{name}.v{version}.mov'
+
     # shot
     # define the location of a work area
     shot_work_area_harmony:
@@ -387,6 +397,14 @@ paths:
     # The location of published harmony files
     harmony_shot_publish:
         definition: '@shot_publish_area_harmony/{Shot}_{Step}_v{version}/{Shot}_{Step}_v{version}.xstage'
+
+    # Harmony render output - see comment on harmony_asset_render_area above.
+    harmony_shot_render_area:
+        definition: '@shot_publish_area_harmony/renders/{Shot}_{name}.v{version}'
+    harmony_shot_render_sequence:
+        definition: '@harmony_shot_render_area/{Shot}_{name}.v{version}.{SEQ}.png'
+    harmony_shot_render_movie:
+        definition: '@harmony_shot_render_area/{Shot}_{name}.v{version}.mov'
 
     # sequence
     # define the location of a work area

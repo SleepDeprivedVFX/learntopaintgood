@@ -610,6 +610,13 @@ settings.tk-multi-publish2.harmony.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: harmony_asset_publish
+  - name: Publish Harmony Render to ShotGrid
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_render.py"
+    settings:
+        Render Sequence Template: harmony_asset_render_sequence
+        Render Movie Template: harmony_asset_render_movie
+        FFmpeg Path: ffmpeg
+        Image Format: PNG
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -656,5 +663,12 @@ settings.tk-multi-publish2.harmony.shot_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: harmony_shot_publish
+  - name: Publish Harmony Render to ShotGrid
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_render.py"
+    settings:
+        Render Sequence Template: harmony_shot_render_sequence
+        Render Movie Template: harmony_shot_render_movie
+        FFmpeg Path: ffmpeg
+        Image Format: PNG
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
