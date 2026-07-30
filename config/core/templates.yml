@@ -345,18 +345,21 @@ paths:
         definition: '@asset_root/publish/harmony'
 
     # The location of WIP files
+    # A Harmony scene is a whole folder (.xstage + .aux + elements/, frames/,
+    # palette-library/, etc.), named to match the established production
+    # convention: {Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage
     harmony_asset_work:
-        definition: '@asset_work_area_harmony/{Asset}.v{version}.xstage'
+        definition: '@asset_work_area_harmony/{Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage'
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_asset_snapshot:
-        definition: '@asset_work_area_harmony/snapshots/{Asset}.v{version}.{timestamp}.xstage'
+        definition: '@asset_work_area_harmony/snapshots/{Asset}_{Step}_v{version}.{timestamp}.xstage'
 
     harmony_asset_publish:
-        definition: '@asset_publish_area_harmony/{Asset}.v{version}/{Asset}.v{version}.xstage'
+        definition: '@asset_publish_area_harmony/{Asset}_{Step}_v{version}/{Asset}_{Step}_v{version}.xstage'
 
     # shot
     # define the location of a work area
@@ -368,19 +371,22 @@ paths:
         definition: '@shot_root/publish/harmony'
 
     # The location of WIP files
+    # A Harmony scene is a whole folder (.xstage + .aux + elements/, frames/,
+    # palette-library/, etc.), named to match the established production
+    # convention: {Shot}_{Step}_v{version}/{Shot}_{Step}_v{version}.xstage
     harmony_shot_work:
-        definition: '@shot_work_area_harmony/{Shot}.v{version}.xstage'
+        definition: '@shot_work_area_harmony/{Shot}_{Step}_v{version}/{Shot}_{Step}_v{version}.xstage'
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_shot_snapshot:
-        definition: '@shot_work_area_harmony/snapshots/{Shot}.v{version}.{timestamp}.xstage'
+        definition: '@shot_work_area_harmony/snapshots/{Shot}_{Step}_v{version}.{timestamp}.xstage'
 
     # The location of published harmony files
     harmony_shot_publish:
-        definition: '@shot_publish_area_harmony/{Shot}.v{version}/{Shot}.v{version}.xstage'
+        definition: '@shot_publish_area_harmony/{Shot}_{Step}_v{version}/{Shot}_{Step}_v{version}.xstage'
 
     # sequence
     # define the location of a work area
@@ -392,19 +398,22 @@ paths:
         definition: '@sequence_root/publish/harmony'
 
     # The location of WIP files
+    # Mirrors the asset/shot convention below (no on-disk sequence-level
+    # Harmony scenes exist yet to verify against, so this is by symmetry
+    # rather than confirmed production evidence).
     harmony_sequence_work:
-        definition: '@sequence_work_area_harmony/{Sequence}.v{version}.xstage'
+        definition: '@sequence_work_area_harmony/{Sequence}_{Step}_v{version}/{Sequence}_{Step}_v{version}.xstage'
 
     # The location of backups of WIP files
     # Note that snapshots folder is  not inside the wip folder
     # otherwise we could confuse the publishing process when files
     # need to be copied from work to publish.
     harmony_sequence_snapshot:
-        definition: '@sequence_work_area_harmony/snapshots/{Sequence}.v{version}.{timestamp}.xstage'
+        definition: '@sequence_work_area_harmony/snapshots/{Sequence}_{Step}_v{version}.{timestamp}.xstage'
 
     # The location of published harmony files
     harmony_sequence_publish:
-        definition: '@sequence_publish_area_harmony/{Sequence}.v{version}/{Sequence}.v{version}.xstage'
+        definition: '@sequence_publish_area_harmony/{Sequence}_{Step}_v{version}/{Sequence}_{Step}_v{version}.xstage'
 
 
 #    ##########################################################################################
