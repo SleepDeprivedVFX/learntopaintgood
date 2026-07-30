@@ -348,7 +348,7 @@ paths:
 
     # The location of WIP files
     harmony_asset_work:
-        definition: '@asset_work_area_harmony/scenes/{Asset}.v{version}.xstage'
+        definition: '@asset_work_area_harmony/{Asset}.v{version}.xstage'
         root_name: 'primary'
 
     # The location of backups of WIP files
@@ -360,7 +360,7 @@ paths:
         root_name: 'primary'
 
     harmony_asset_publish:
-        definition: '@asset_publish_area_harmony/scenes/{Asset}.v{version}/{Asset}.v{version}.xstage'
+        definition: '@asset_publish_area_harmony/{Asset}.v{version}/{Asset}.v{version}.xstage'
         root_name: 'primary'
 
     # shot
@@ -376,7 +376,7 @@ paths:
 
     # The location of WIP files
     harmony_shot_work:
-        definition: '@shot_work_area_harmony/scenes/{Shot}.v{version}.xstage'
+        definition: '@shot_work_area_harmony/{Shot}.v{version}.xstage'
         root_name: 'primary'
 
     # The location of backups of WIP files
@@ -389,7 +389,7 @@ paths:
 
     # The location of published harmony files
     harmony_shot_publish:
-        definition: '@shot_publish_area_harmony/scenes/{Shot}.v{version}/{Shot}.v{version}.xstage'
+        definition: '@shot_publish_area_harmony/{Shot}.v{version}/{Shot}.v{version}.xstage'
         root_name: 'primary'
 
     # sequence
@@ -405,7 +405,7 @@ paths:
 
     # The location of WIP files
     harmony_sequence_work:
-        definition: '@sequence_work_area_harmony/scenes/{Sequence}.v{version}.xstage'
+        definition: '@sequence_work_area_harmony/{Sequence}.v{version}.xstage'
         root_name: 'primary'
 
     # The location of backups of WIP files
@@ -418,7 +418,7 @@ paths:
 
     # The location of published harmony files
     harmony_sequence_publish:
-        definition: '@sequence_publish_area_harmony/scenes/{Sequence}.v{version}/{Sequence}.v{version}.xstage'
+        definition: '@sequence_publish_area_harmony/{Sequence}.v{version}/{Sequence}.v{version}.xstage'
         root_name: 'primary'
 
 
