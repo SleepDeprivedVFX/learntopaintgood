@@ -5,7 +5,7 @@
 primary:
   default: true
   linux_path: null
-  mac_path: null
+  mac_path: Volumes/SameBrain
   shotgun_storage_id: 4
   windows_path: S:\Projects
 

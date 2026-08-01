@@ -321,13 +321,13 @@ paths:
         definition: '@shot_root/publish/nuke'
     # The location of WIP script files
     nuke_shot_work:
-        definition: '@shot_root/work/nuke/{Shot}_{Step}_v{version}.nk'
+        definition: '@shot_root/work/nuke/{Shot}_{Step}_v{version}.nkind'
     # The location of backups of WIP files
     nuke_shot_snapshot:
-        definition: '@shot_root/work/nuke/snapshots/{Shot}_{Step}_v{version}.{timestamp}.nk'
+        definition: '@shot_root/work/nuke/snapshots/{Shot}_{Step}_v{version}.{timestamp}.nkind'
     # The location of published nuke script files
     nuke_shot_publish:
-        definition: '@shot_root/publish/nuke/{Shot}_{Step}_v{version}.nk'
+        definition: '@shot_root/publish/nuke/{Shot}_{Step}_v{version}.nkind'
     # write node outputs
     nuke_shot_render_mono_dpx:
         definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
@@ -582,13 +582,13 @@ paths:
         definition: '@asset_root/review/quickdaily/{Asset}_{name}_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/work/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nk'
+        definition: '@asset_root/work/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/work/nuke/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.nk'
+        definition: '@asset_root/work/nuke/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.nkind'
     # The location of published nuke script files
     nuke_asset_publish:
-        definition: '@asset_root/publish/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nk'
+        definition: '@asset_root/publish/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
 
 
 #
