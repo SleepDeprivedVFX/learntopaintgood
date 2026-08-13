@@ -77,4 +77,4 @@ engines.tk-harmony.location:
   type: git_branch
   path: https://github.com/SleepDeprivedVFX/tk-harmony.git
   branch: master
-  version: fc5e788e4f5440779c578ccef8ad201c24cbe677
+  version: 4f2a7e630740f7296b68ef7658afaf64b07428a1
