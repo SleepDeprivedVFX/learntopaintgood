@@ -122,11 +122,18 @@ immediately with "Permission Denied," on a newly-migrated render server) are
 still unconfirmed/pending a clean re-test — not yet tied to this or any other
 root cause.
 
-**Status:** No config changes made or needed. Recommendations:
-- **Technical (Tom):** don't keep editing the affected file on 2025.1 now
-  that it's been touched by 2025.3 — recover by opening and re-saving it in
-  2025.3 (the version that most recently wrote it cleanly), not 2025.1.
-- **Policy (Vikki):** standardize the team on one exact Maya point-release
-  for this project; if a mixed environment is unavoidable, only ever
-  open/save "up-version," never open a newer-saved file in an older install.
-  Adam is upgrading his own Maya install to resolve this for now.
+**Status: Resolved (2026-08-21).** No config changes made or needed — this
+was never a tk-config issue. Adam upgraded both machines so all Maya
+installs on this project are now on a consistent version, closing the
+version-pinning gap that caused the cross-version corruption. Recommendations
+for the record:
+- **Technical (Tom):** the specific file that got touched by the version
+  mismatch (`LPG102_002_080_LGT_v001.ma`) may still carry the flag/cycle
+  data-loss damage logged above from the 2025.1 force-parse — worth a scene
+  health check (re-open, check Script Editor for residual errors, verify the
+  rig connections that threw the Cycle warnings) next time it's opened, rather
+  than assuming the version fix alone repaired already-written data.
+- **Policy (Vikki):** worth keeping as a standing rule going forward — as new
+  machines/artists join, confirm Maya point-release matches the rest of the
+  team before they start opening scenes, rather than discovering a mismatch
+  after the fact.
