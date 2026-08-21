@@ -451,7 +451,7 @@ paths:
     #
 
     asset_alembic_cache:
-        definition: '@asset_root/publish/caches/{name}.v{version}.abc'
+        definition: '@asset_root/publish/caches/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.abc'
 
 
     #
