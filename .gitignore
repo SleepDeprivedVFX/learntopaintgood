@@ -3,3 +3,5 @@ team
 .claude
 notes.txt
 __pycache__/
+Thumbs.db
+install/gitbranch/
