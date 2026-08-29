@@ -14,6 +14,11 @@
             <!-- Premiere Pro - CC 2014+ -->
             <Host Name="PPRO" Version="11.0"/>
             <!-- Supporting more engines than Photoshop and After Effects can be done in this line -->
+            <!-- Studio-added internal patch (2026-08-17): enable tk-illustrator engine support.
+                 Internal use only, per Flow PT Toolkit license terms - not a redistributed copy
+                 of this framework. Patched directly into this shared local install by the studio. -->
+            <!-- Illustrator - CC 2014+ -->
+            <Host Name="ILST" Version="18.0"/>
         </HostList>
         <LocaleList>
             <Locale Code="All"/>
