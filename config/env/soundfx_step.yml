@@ -1,0 +1,22 @@
+description: Apps and engines loaded when a SoundFX (CustomEntity02) with a
+  task/step context is loaded (SoundSketch, Foley, SFXMix, SFXMaster). No
+  DCC integration - show-in-filesystem only. Create Folders for the {Step}
+  subfolder is triggered from the SoundFX entity itself (env/soundfx.yml)
+  via its task template, not from this step-scoped context.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a soundfx_step context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.soundfx_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

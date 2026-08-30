@@ -1,0 +1,20 @@
+description: Apps and engines loaded when a Song (CustomEntity04) is loaded.
+  No DCC integration - provides Create Folders (builds Audio/music/{song})
+  and show-in-filesystem only, by way of Toolkit's browser integration.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a song context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.song"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

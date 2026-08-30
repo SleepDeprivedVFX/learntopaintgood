@@ -1,0 +1,21 @@
+description: Apps and engines loaded when a Score (CustomEntity01) with a
+  task/step context is loaded. Only exists for older, pre-Score/Song-split
+  Score records that still carry a task/step - current Score usage has no
+  Step-driven folders. No DCC integration.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a score_step context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.score_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

@@ -1,0 +1,23 @@
+description: Apps and engines loaded when a Score (CustomEntity01) is loaded.
+  No DCC integration - Score has no Step-driven folders of its own, so this
+  environment only exists to stop Toolkit's browser integration from failing
+  to resolve an environment (which otherwise drops the connection). Actual
+  folder creation for Audio/Score/{episode} happens from the Episode entity;
+  see env/episode.yml.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a score context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.score"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

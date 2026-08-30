@@ -1,0 +1,21 @@
+description: Apps and engines loaded when a SoundFX (CustomEntity02) is
+  loaded. No DCC integration - provides Create Folders (builds
+  Audio/SoundFX/{soundfx}) and show-in-filesystem only, by way of Toolkit's
+  browser integration.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a soundfx context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.soundfx"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

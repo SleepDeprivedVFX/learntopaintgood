@@ -45,6 +45,17 @@ class PickEnvironment(Hook):
                 return "asset"
             if context.entity["type"] == "Sequence":
                 return "sequence"
+            if context.entity["type"] == "Episode":
+                return "episode"
+            if context.entity["type"] == "CustomEntity01":
+                # Score
+                return "score"
+            if context.entity["type"] == "CustomEntity04":
+                # Song
+                return "song"
+            if context.entity["type"] == "CustomEntity02":
+                # SoundFX
+                return "soundfx"
 
         if context.entity and context.step:
             # We have a step and an entity.
@@ -52,5 +63,17 @@ class PickEnvironment(Hook):
                 return "shot_step"
             if context.entity["type"] == "Asset":
                 return "asset_step"
+            if context.entity["type"] == "CustomEntity01":
+                # Score - no Step-driven folders, but older Score records
+                # from before the Score/Song split may still carry a task/
+                # step context, so route those somewhere valid too rather
+                # than falling through to None.
+                return "score_step"
+            if context.entity["type"] == "CustomEntity04":
+                # Song
+                return "song_step"
+            if context.entity["type"] == "CustomEntity02":
+                # SoundFX
+                return "soundfx_step"
 
         return None

@@ -1,0 +1,23 @@
+description: Apps and engines loaded when an Episode is loaded.
+  By default, the only engine defined here is tk-shotgun. This configuration
+  provides the apps that are necessary to display menu actions in the
+  Flow Production Tracking web application by way of Toolkit's browser
+  integration - including Create Folders, which is what actually builds
+  the Audio/Score/{episode} folder (Score itself has no folder of its own).
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in an episode context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.episode"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

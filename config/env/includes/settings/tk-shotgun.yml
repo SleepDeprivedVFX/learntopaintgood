@@ -105,6 +105,69 @@ settings.tk-shotgun.shot_step:
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
+# episode
+settings.tk-shotgun.episode:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-shotgun-folders: "@settings.tk-shotgun-folders"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# score (Audio/Score - Score has no schema-tracked folder of its own any
+# more; Episode is what drives Audio/Score/{episode} creation. An empty
+# apps list here caused the browser-integration connection to drop
+# outright (untested/unsupported by this engine - every other context in
+# this file always has at least one app), so tk-shotgun-launchfolder stays
+# even though it has nothing to resolve to for a Score entity and will be
+# a no-op when clicked - inert beats broken.)
+settings.tk-shotgun.score:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# score_step (older pre-split Score records that still carry a task/step -
+# same reasoning as settings.tk-shotgun.score above.)
+settings.tk-shotgun.score_step:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# song (Audio/music - no dedicated DCC engine, but Pro Tools is registered
+# as a plain Software-entity launcher (use_software_entity: true picks it
+# up automatically, same as it already does for Episode) - no in-app
+# Toolkit integration, just opens the app.)
+settings.tk-shotgun.song:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-shotgun-folders: "@settings.tk-shotgun-folders"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# song_step
+settings.tk-shotgun.song_step:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# soundfx (Audio/SoundFX - no dedicated DCC engine, but Software-entity
+# launchers like Pro Tools are picked up automatically, same as song above.)
+settings.tk-shotgun.soundfx:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp"
+    tk-shotgun-folders: "@settings.tk-shotgun-folders"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# soundfx_step
+settings.tk-shotgun.soundfx_step:
+  apps:
+    tk-multi-launchapp: "@settings.tk-multi-launchapp.shotgun"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
 # version
 settings.tk-shotgun.version:
   apps:

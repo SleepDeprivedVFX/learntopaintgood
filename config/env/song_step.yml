@@ -1,0 +1,22 @@
+description: Apps and engines loaded when a Song (CustomEntity04) with a
+  task/step context is loaded (e.g. Scratch, Record, Vocals, Mix, Polish,
+  Master, Released). No DCC integration - show-in-filesystem only. Create
+  Folders for the {Step} subfolder is triggered from the Song entity itself
+  (env/song.yml) via its task template, not from this step-scoped context.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a song_step context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.song_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"
