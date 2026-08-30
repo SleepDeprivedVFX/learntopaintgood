@@ -192,9 +192,60 @@ paths:
     #
     # These don't require the standard formatting (with definition and root_name) because they
     # will be set within each template that uses the alias.
-    shot_root: Ep/{episode}/{Sequence}/{Shot}/{Step}
-    asset_root: Assets/{sg_asset_type}/{Asset}/{Step}
+    #
+    # Two roots per entity: an "entity root" with no Step, and a "step root"
+    # that adds Step back on top of it, wrapped in a "tasks" folder ("tasks"
+    # rather than "work" - still sorts after publish/review alphabetically,
+    # same reasoning as before). No separate "work" folder inside each Step
+    # either: everything under tasks/{Step}/ is implicitly WIP by virtue of
+    # being under tasks/, so {Step}'s first-level subfolder is the software
+    # name directly (tasks/{Step}/maya/..., tasks/{Step}/nuke/...), not
+    # tasks/{Step}/work/maya/.... ALL publishes - both shared derived
+    # content (renders, textures, caches, geo, elements) and
+    # software-specific scene-file publishes (a .ma, .hip, .nk, .psd,
+    # .xstage) - route through the single entity-level publish/ folder
+    # instead, with {Step} as a subfolder inside each software/content-type
+    # pool. See docs/pipeline-issues-and-fixes.md for the duplication
+    # problem this replaces.
+    shot_entity_root: Ep/{episode}/{Sequence}/{Shot}
+    shot_step_root: '@shot_entity_root/tasks/{Step}'
+    asset_entity_root: Assets/{sg_asset_type}/{Asset}
+    asset_step_root: '@asset_entity_root/tasks/{Step}'
     sequence_root: Ep/{episode}/{Sequence}
+
+    #
+    # Shared publish pools. One publish/ folder per Asset/Shot, holding
+    # every published thing - renders/textures/caches/geo/elements content
+    # pools AND every software's scene-file publish - each as its own
+    # subfolder with {Step} disambiguating inside it. Nothing publish-side
+    # lives under tasks/{Step}/ any more; only work-in-progress does.
+    asset_publish_area: '@asset_entity_root/publish'
+    asset_render_area: '@asset_publish_area/renders'
+    asset_texture_publish_area: '@asset_publish_area/textures'
+    asset_cache_publish_area: '@asset_publish_area/caches'
+    asset_geo_publish_area: '@asset_publish_area/geo'
+    asset_element_publish_area: '@asset_publish_area/elements'
+    asset_review_area: '@asset_entity_root/review'
+    asset_publish_area_photoshop: '@asset_publish_area/photoshop/{Step}'
+    asset_publish_area_aftereffects: '@asset_publish_area/afx/{Step}'
+    asset_publish_area_maya: '@asset_publish_area/maya/{Step}'
+    asset_publish_area_houdini: '@asset_publish_area/houdini/{Step}'
+    asset_publish_area_nuke: '@asset_publish_area/nuke/{Step}'
+    asset_publish_area_harmony: '@asset_publish_area/harmony/{Step}'
+
+    shot_publish_area: '@shot_entity_root/publish'
+    shot_render_area: '@shot_publish_area/renders'
+    shot_texture_publish_area: '@shot_publish_area/textures'
+    shot_cache_publish_area: '@shot_publish_area/caches'
+    shot_geo_publish_area: '@shot_publish_area/geo'
+    shot_element_publish_area: '@shot_publish_area/elements'
+    shot_review_area: '@shot_entity_root/review'
+    shot_publish_area_photoshop: '@shot_publish_area/photoshop/{Step}'
+    shot_publish_area_aftereffects: '@shot_publish_area/afx/{Step}'
+    shot_publish_area_maya: '@shot_publish_area/maya/{Step}'
+    shot_publish_area_houdini: '@shot_publish_area/houdini/{Step}'
+    shot_publish_area_nuke: '@shot_publish_area/nuke/{Step}'
+    shot_publish_area_harmony: '@shot_publish_area/harmony/{Step}'
 
 
     ##########################################################################################
@@ -207,22 +258,21 @@ paths:
 
     # The location of WIP files
     photoshop_shot_work:
-        definition: '@shot_root/work/photoshop/{Shot}_{Step}_v{version}.psd'
+        definition: '@shot_step_root/photoshop/{Shot}_{Step}_v{version}.psd'
     shot_work_area_photoshop:
-        definition: '@shot_root/work/photoshop'
+        definition: '@shot_step_root/photoshop'
     # The location of backups of WIP files
     photoshop_shot_snapshot:
-        definition: '@shot_root/work/photoshop/snapshots/{Shot}_{Step}_v{version}.{timestamp}.psd'
-    # The location of published files
-    shot_publish_area_photoshop:
-        definition: '@shot_root/publish/photoshop'
+        definition: '@shot_step_root/photoshop/snapshots/{Shot}_{Step}_v{version}.{timestamp}.psd'
+    # The location of published files - shared publish pool, see
+    # shot_publish_area_photoshop above.
     photoshop_shot_publish:
-        definition: '@shot_root/publish/photoshop/{Shot}_{Step}_v{version}.psd'
+        definition: '@shot_publish_area_photoshop/{Shot}_{Step}_v{version}.psd'
     # The location of the published images
     photoshop_shot_png_publish:
-        definition: '@shot_root/publish/photoshop/{Shot}_{Step}_v{version}.png'
+        definition: '@shot_publish_area_photoshop/{Shot}_{Step}_v{version}.png'
     photoshop_shot_jpg_publish:
-        definition: '@shot_root/publish/photoshop/{Shot}_{Step}_v{version}.jpg'
+        definition: '@shot_publish_area_photoshop/{Shot}_{Step}_v{version}.jpg'
 
     #
     # After Effects
@@ -230,24 +280,24 @@ paths:
 
     # The location of WIP files
     aftereffects_shot_work:
-        definition: '@shot_root/work/afx/{Shot}_{Step}_v{version}.aep'
+        definition: '@shot_step_root/afx/{Shot}_{Step}_v{version}.aep'
     shot_work_area_aftereffects:
-        definition: '@shot_root/work/afx'
+        definition: '@shot_step_root/afx'
     # The location of backups of WIP files
     aftereffects_shot_snapshot:
-        definition: '@shot_root/work/afx/snapshots/{Shot}_{Step}_v{version}.{timestamp}.aep'
-    # The location of published files
-    shot_publish_area_aftereffects:
-        definition: '@shot_root/publish/afx'
+        definition: '@shot_step_root/afx/snapshots/{Shot}_{Step}_v{version}.{timestamp}.aep'
+    # The location of published files - shared publish pool.
     aftereffects_shot_publish:
-        definition: '@shot_root/publish/afx/{Shot}_{Step}_v{version}.aep'
+        definition: '@shot_publish_area_aftereffects/{Shot}_{Step}_v{version}.aep'
+    # Shared elements pool - see shot_element_publish_area above.
     aftereffects_shot_render_pub_mono:
-        definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
+        definition: '@shot_element_publish_area/{Step}/{name}/v{version}/{width}x{height}/{Shot}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
     # in the beta to support different extensions on mac and windows, while using the same
     # output module (Lossless with Alpha)
+    # Shared review pool - see shot_review_area above.
     aftereffects_shot_render_movie:
-        definition: '@shot_root/review/{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
+        definition: '@shot_review_area/{Step}/{Shot}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
 
 
     #
@@ -256,19 +306,17 @@ paths:
 
     # define the location of a work area
     shot_work_area_maya:
-        definition: '@shot_root/work/maya'
-    # define the location of a publish area
-    shot_publish_area_maya:
-        definition: '@shot_root/publish/maya'
+        definition: '@shot_step_root/maya'
     # The location of WIP files
     maya_shot_work:
-        definition: '@shot_root/work/maya/{Shot}_{Step}_v{version}.{maya_extension}'
+        definition: '@shot_step_root/maya/{Shot}_{Step}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_shot_snapshot:
-        definition: '@shot_root/work/maya/snapshots/{Shot}_{Step}_v{version}.{timestamp}.{maya_extension}'
-    # The location of published maya files
+        definition: '@shot_step_root/maya/snapshots/{Shot}_{Step}_v{version}.{timestamp}.{maya_extension}'
+    # The location of published maya files - shared publish pool, see
+    # shot_publish_area_maya above.
     maya_shot_publish:
-        definition: '@shot_root/publish/maya/{Shot}_{Step}_v{version}.{maya_extension}'
+        definition: '@shot_publish_area_maya/{Shot}_{Step}_v{version}.{maya_extension}'
 
 
     #
@@ -277,36 +325,35 @@ paths:
 
     # define the location of a work area
     shot_work_area_houdini:
-        definition: '@shot_root/work/houdini'
-    # define the location of a publish area
-    shot_publish_area_houdini:
-        definition: '@shot_root/publish/houdini'
+        definition: '@shot_step_root/houdini'
     # The location of WIP files
     houdini_shot_work:
-        definition: '@shot_root/work/houdini/{Shot}_{Step}_v{version}.hip'
+        definition: '@shot_step_root/houdini/{Shot}_{Step}_v{version}.hip'
     # The location of backups of WIP files
     houdini_shot_snapshot:
-        definition: '@shot_root/work/houdini/snapshots/{Shot}_{Step}_v{version}.{timestamp}.hip'
-    # The location of published houdini files
+        definition: '@shot_step_root/houdini/snapshots/{Shot}_{Step}_v{version}.{timestamp}.hip'
+    # The location of published houdini files - shared publish pool.
     houdini_shot_publish:
-        definition: '@shot_root/publish/houdini/{Shot}_{Step}_v{version}.hip'
-    # Alembic caches
+        definition: '@shot_publish_area_houdini/{Shot}_{Step}_v{version}.hip'
+    # Alembic caches - work-in-progress, not a registered publish, so this
+    # stays task/software-scoped rather than joining the shared caches pool.
     houdini_shot_work_alembic_cache:
-        definition: '@shot_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
+        definition: '@shot_step_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Shot}_{name}_v{version}.abc'
 
-    # Rendered images
+    # Rendered images - work-in-progress renders, stays task-scoped (only
+    # registered/published renders join the shared renders pool).
     houdini_shot_render:
-        definition: '@shot_root/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+        definition: '@shot_step_root/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
 
     # Additional mantra outputs
     houdini_shot_ifd:
-        definition: '@shot_root/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.ifd'
+        definition: '@shot_step_root/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.ifd'
 
     houdini_shot_dcm:
-        definition: '@shot_root/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.dcm'
+        definition: '@shot_step_root/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.dcm'
 
     houdini_shot_extra_plane:
-        definition: '@shot_root/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
+        definition: '@shot_step_root/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Shot}_{name}_v{version}.{SEQ}.exr'
 
 
     #
@@ -315,42 +362,36 @@ paths:
 
     # define the location of a work area
     shot_work_area_nuke:
-        definition: '@shot_root/work/nuke'
-    # define the location of a publish area
-    shot_publish_area_nuke:
-        definition: '@shot_root/publish/nuke'
+        definition: '@shot_step_root/nuke'
     # The location of WIP script files
     nuke_shot_work:
-        definition: '@shot_root/work/nuke/{Shot}_{Step}_v{version}.nkind'
+        definition: '@shot_step_root/nuke/{Shot}_{Step}_v{version}.nkind'
     # The location of backups of WIP files
     nuke_shot_snapshot:
-        definition: '@shot_root/work/nuke/snapshots/{Shot}_{Step}_v{version}.{timestamp}.nkind'
-    # The location of published nuke script files
+        definition: '@shot_step_root/nuke/snapshots/{Shot}_{Step}_v{version}.{timestamp}.nkind'
+    # The location of published nuke script files - shared publish pool.
     nuke_shot_publish:
-        definition: '@shot_root/publish/nuke/{Shot}_{Step}_v{version}.nkind'
-    # write node outputs
+        definition: '@shot_publish_area_nuke/{Shot}_{Step}_v{version}.nkind'
+    # write node outputs - work-in-progress, stays task-scoped
     nuke_shot_render_mono_dpx:
-        definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
+        definition: '@shot_step_root/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
+    # Published write node outputs join the shared elements pool.
     nuke_shot_render_pub_mono_dpx:
-        definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
+        definition: '@shot_element_publish_area/{Step}/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_v{version}.{SEQ}.dpx'
     nuke_shot_render_stereo:
-        definition: '@shot_root/work/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_{eye}_v{version}.{SEQ}.exr'
+        definition: '@shot_step_root/images/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_{eye}_v{version}.{SEQ}.exr'
     nuke_shot_render_pub_stereo:
-        definition: '@shot_root/publish/elements/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_{eye}_v{version}.{SEQ}.exr'
-    # review output
+        definition: '@shot_element_publish_area/{Step}/{name}/v{version}/{width}x{height}/{Shot}_{name}_{nuke.output}_{eye}_v{version}.{SEQ}.exr'
+    # review output - shared review pool, see shot_review_area above.
     shot_quicktime_quick:
-        definition: '@shot_root/review/quickdaily/{Shot}_{name}_{iteration}.mov'
+        definition: '@shot_review_area/{Step}/quickdaily/{Shot}_{name}_{iteration}.mov'
     nuke_shot_render_movie:
-        definition: '@shot_root/review/{Shot}_{name}_{nuke.output}_v{version}.mov'
+        definition: '@shot_review_area/{Step}/{Shot}_{name}_{nuke.output}_v{version}.mov'
 
     # asset
     # define the location of a work area
     asset_work_area_harmony:
-        definition: '@asset_root/work/harmony'
-
-    # define the location of a publish area
-    asset_publish_area_harmony:
-        definition: '@asset_root/publish/harmony'
+        definition: '@asset_step_root/harmony'
 
     # The location of WIP files
     # A Harmony scene is a whole folder (.xstage + .aux + elements/, frames/,
@@ -366,14 +407,16 @@ paths:
     harmony_asset_snapshot:
         definition: '@asset_work_area_harmony/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.xstage'
 
+    # Shared publish pool - see asset_publish_area_harmony above.
     harmony_asset_publish:
         definition: '@asset_publish_area_harmony/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.xstage'
 
-    # Harmony render output - the Write node's image sequence and the
-    # FFmpeg-transcoded movie both live in the same per-version folder
-    # under publish/, not off in a separate top-level "renders" area.
+    # Harmony render output now joins the shared renders pool instead of a
+    # harmony-only renders folder - a Harmony render and (say) a Toon
+    # Boom/other-software render for the same Step now land in the same
+    # place. See asset_render_area above.
     harmony_asset_render_area:
-        definition: '@asset_publish_area_harmony/renders/{Asset}_{name}.v{version}'
+        definition: '@asset_render_area/{Step}/{Asset}_{name}.v{version}'
     harmony_asset_render_sequence:
         definition: '@harmony_asset_render_area/{Asset}_{name}.v{version}.{SEQ}.png'
     harmony_asset_render_movie:
@@ -382,11 +425,7 @@ paths:
     # shot
     # define the location of a work area
     shot_work_area_harmony:
-        definition: '@shot_root/work/harmony'
-
-    # define the location of a publish area
-    shot_publish_area_harmony:
-        definition: '@shot_root/publish/harmony'
+        definition: '@shot_step_root/harmony'
 
     # The location of WIP files
     # A Harmony scene is a whole folder (.xstage + .aux + elements/, frames/,
@@ -402,13 +441,13 @@ paths:
     harmony_shot_snapshot:
         definition: '@shot_work_area_harmony/snapshots/{Shot}_{Step}_v{version}.{timestamp}.xstage'
 
-    # The location of published harmony files
+    # The location of published harmony files - shared publish pool.
     harmony_shot_publish:
         definition: '@shot_publish_area_harmony/{Shot}_{Step}_v{version}/{Shot}_{Step}_v{version}.xstage'
 
     # Harmony render output - see comment on harmony_asset_render_area above.
     harmony_shot_render_area:
-        definition: '@shot_publish_area_harmony/renders/{Shot}_{name}.v{version}'
+        definition: '@shot_render_area/{Step}/{Shot}_{name}.v{version}'
     harmony_shot_render_sequence:
         definition: '@harmony_shot_render_area/{Shot}_{name}.v{version}.{SEQ}.png'
     harmony_shot_render_movie:
@@ -426,7 +465,8 @@ paths:
     # The location of WIP files
     # Mirrors the asset/shot convention below (no on-disk sequence-level
     # Harmony scenes exist yet to verify against, so this is by symmetry
-    # rather than confirmed production evidence).
+    # rather than confirmed production evidence). sequence_root never had
+    # Step in it, so there's nothing to restructure here.
     harmony_sequence_work:
         definition: '@sequence_work_area_harmony/{Sequence}_{Step}_v{version}/{Sequence}_{Step}_v{version}.xstage'
 
@@ -445,13 +485,21 @@ paths:
 #    ##########################################################################################
     # Asset pipeline
 
-
     #
     # Alembic caches
     #
 
     asset_alembic_cache:
-        definition: '@asset_root/publish/caches/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.abc'
+        definition: '@asset_cache_publish_area/{Step}/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.abc'
+
+    # Shot-side geometry cache publish - mirrors asset_alembic_cache above,
+    # using the shot naming convention ({Shot}_{Step}_v{version}, no
+    # code/sg_asset_type prefix, matching maya_shot_publish). Fields here
+    # must stay a subset of what maya_shot_work actually produces in its
+    # filename (Shot, Step, version) - see docs/pipeline-issues-and-fixes.md
+    # and this session's asset_alembic_cache fix for why.
+    shot_alembic_cache:
+        definition: '@shot_cache_publish_area/{Step}/{Shot}_{Step}_v{version}.abc'
 
 
     #
@@ -460,46 +508,42 @@ paths:
 
     # The location of WIP files
     photoshop_asset_work:
-        definition: '@asset_root/work/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.psd'
+        definition: '@asset_step_root/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.psd'
     asset_work_area_photoshop:
-        definition: '@asset_root/work/photoshop'
+        definition: '@asset_step_root/photoshop'
     # The location of backups of WIP files
     photoshop_asset_snapshot:
-        definition: '@asset_root/work/photoshop/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.psd'
-    # The location of published files
-    asset_publish_area_photoshop:
-        definition: '@asset_root/publish/photoshop'
+        definition: '@asset_step_root/photoshop/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.psd'
+    # The location of published files - shared publish pool.
     photoshop_asset_publish:
-        definition: '@asset_root/publish/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.psd'
+        definition: '@asset_publish_area_photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.psd'
     # The location of the published images
     photoshop_asset_png_publish:
-        definition: '@asset_root/publish/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.png'
+        definition: '@asset_publish_area_photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.png'
     photoshop_asset_jpg_publish:
-        definition: '@asset_root/publish/photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.jpg'
+        definition: '@asset_publish_area_photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.jpg'
     #
     # after effects
     #
 
     # The location of WIP files
     aftereffects_asset_work:
-        definition: '@asset_root/work/afx/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.aep'
+        definition: '@asset_step_root/afx/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.aep'
     asset_work_area_aftereffects:
-        definition: '@asset_root/work/afx'
+        definition: '@asset_step_root/afx'
     # The location of backups of WIP files
     aftereffects_asset_snapshot:
-        definition: '@asset_root/work/afx/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.aep'
-    # The location of published files
-    asset_publish_area_aftereffects:
-        definition: '@asset_root/publish/afx'
+        definition: '@asset_step_root/afx/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.aep'
+    # The location of published files - shared publish pool.
     aftereffects_asset_publish:
-        definition: '@asset_root/publish/afx/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.aep'
+        definition: '@asset_publish_area_aftereffects/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.aep'
     aftereffects_asset_render_pub_mono:
-        definition: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
+        definition: '@asset_element_publish_area/{Step}/{name}/v{version}/{width}x{height}/{Asset}_{name}_{afx.comp}_v{version}.{SEQ}.tif'
     # The following template uses {afx.mov.ext} this is a special key, that will be only there
     # in the beta to support different extensions on mac and windows, while using the same
     # output module (Lossless with Alpha)
     aftereffects_asset_render_movie:
-        definition: '@asset_root/review/{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
+        definition: '@asset_review_area/{Step}/{Asset}_{name}_{afx.comp}_v{version}.{afx.mov.ext}'
 
 
     # Maya
@@ -507,19 +551,16 @@ paths:
 
     # define the location of a work area
     asset_work_area_maya:
-        definition: '@asset_root/work/maya'
-    # define the location of a publish area
-    asset_publish_area_maya:
-        definition: '@asset_root/publish/maya'
+        definition: '@asset_step_root/maya'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{maya_extension}'
+        definition: '@asset_step_root/maya/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{maya_extension}'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.{maya_extension}'
-    # The location of published maya files
+        definition: '@asset_step_root/maya/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.{maya_extension}'
+    # The location of published maya files - shared publish pool.
     maya_asset_publish:
-        definition: '@asset_root/publish/maya/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{maya_extension}'
+        definition: '@asset_publish_area_maya/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{maya_extension}'
 
 
     #
@@ -528,36 +569,34 @@ paths:
 
     # define the location of a work area
     asset_work_area_houdini:
-        definition: '@asset_root/work/houdini'
-    # define the location of a publish area
-    asset_publish_area_houdini:
-        definition: '@asset_root/publish/houdini'
+        definition: '@asset_step_root/houdini'
     # The location of WIP files
     houdini_asset_work:
-        definition: '@asset_root/work/houdini/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.hip'
+        definition: '@asset_step_root/houdini/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.hip'
     # The location of backups of WIP files
     houdini_asset_snapshot:
-        definition: '@asset_root/work/houdini/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.hip'
-    # The location of published houdini files
+        definition: '@asset_step_root/houdini/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.hip'
+    # The location of published houdini files - shared publish pool.
     houdini_asset_publish:
-        definition: '@asset_root/publish/houdini/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.hip'
-    # Alembic caches
+        definition: '@asset_publish_area_houdini/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.hip'
+    # Alembic caches - work-in-progress, stays task/software-scoped (see
+    # houdini_shot_work_alembic_cache above for the same reasoning).
     houdini_asset_work_alembic_cache:
-        definition: '@asset_root/work/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
+        definition: '@asset_step_root/houdini/cache/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_v{version}.abc'
 
-    # Rendered images
+    # Rendered images - work-in-progress, stays task-scoped.
     houdini_asset_render:
-        definition: '@asset_root/work/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+        definition: '@asset_step_root/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
 
     # Additional mantra outputs
     houdini_asset_ifd:
-        definition: '@asset_root/work/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.ifd'
+        definition: '@asset_step_root/ifds/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.ifd'
 
     houdini_asset_dcm:
-        definition: '@asset_root/work/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.dcm'
+        definition: '@asset_step_root/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.dcm'
 
     houdini_asset_extra_plane:
-        definition: '@asset_root/work/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
+        definition: '@asset_step_root/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_v{version}.{SEQ}.exr'
 
 
     #
@@ -566,29 +605,28 @@ paths:
 
     # define the location of a work area
     asset_work_area_nuke:
-        definition: '@asset_root/work/nuke'
-    # define the location of a publish area
-    asset_publish_area_nuke:
-        definition: '@asset_root/publish'
-    # outputs from the Shotgun Write Node for assets
+        definition: '@asset_step_root/nuke'
+    # outputs from the Shotgun Write Node for assets - work-in-progress,
+    # stays task-scoped.
     nuke_asset_render:
-        definition: '@asset_root/work/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
+        definition: '@asset_step_root/images/{name}/v{version}/{width}x{height}/{Asset}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
+    # Published write node outputs join the shared elements pool.
     nuke_asset_render_pub:
-        definition: '@asset_root/publish/elements/{name}/v{version}/{width}x{height}/{Asset}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
-    # review output
+        definition: '@asset_element_publish_area/{Step}/{name}/v{version}/{width}x{height}/{Asset}_{name}_{nuke.output}_v{version}.{SEQ}.exr'
+    # review output - shared review pool
     nuke_asset_render_movie:
-        definition: '@asset_root/review/{Asset}_{name}_{nuke.output}_v{version}.mov'
+        definition: '@asset_review_area/{Step}/{Asset}_{name}_{nuke.output}_v{version}.mov'
     asset_quicktime_quick:
-        definition: '@asset_root/review/quickdaily/{Asset}_{name}_{iteration}.mov'
+        definition: '@asset_review_area/{Step}/quickdaily/{Asset}_{name}_{iteration}.mov'
     # The location of WIP script files
     nuke_asset_work:
-        definition: '@asset_root/work/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
+        definition: '@asset_step_root/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
     # The location of backups of WIP files
     nuke_asset_snapshot:
-        definition: '@asset_root/work/nuke/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.nkind'
-    # The location of published nuke script files
+        definition: '@asset_step_root/nuke/snapshots/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.{timestamp}.nkind'
+    # The location of published nuke script files - shared publish pool.
     nuke_asset_publish:
-        definition: '@asset_root/publish/nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
+        definition: '@asset_publish_area_nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
 
 
 #
