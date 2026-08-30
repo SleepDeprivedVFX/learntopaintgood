@@ -83,6 +83,25 @@ keys:
     episode:
         type: str
 
+    # Audio entity folder-name tokens (Song = CustomEntity04, SoundFX =
+    # CustomEntity02). Score has no key of its own - Audio/Score/{episode}
+    # is driven entirely by the episode key above, see the score/score_step
+    # comments in tk-shotgun.yml.
+    Song:
+        type: str
+    SoundFX:
+        type: str
+
+    # Manually-bounced audio file extension (Pro Tools has no Toolkit
+    # scene/publish integration - see env/song.yml, env/soundfx.yml).
+    audio_extension:
+        alias: extension
+        type: str
+        choices:
+            wav: Waveform Audio (.wav)
+            aiff: Audio Interchange File Format (.aiff)
+            mp3: MP3 Audio (.mp3)
+
     # Represents a frame sequence exported from Flame
     flame.frame:
         type: sequence
@@ -212,6 +231,19 @@ paths:
     asset_entity_root: Assets/{sg_asset_type}/{Asset}
     asset_step_root: '@asset_entity_root/tasks/{Step}'
     sequence_root: Ep/{episode}/{Sequence}
+
+    #
+    # Audio entities. No DCC/publish2 integration (Pro Tools is a plain
+    # Software-entity launcher - see env/song.yml, env/soundfx.yml) - these
+    # exist so manually-bounced files have one agreed-on home and filename,
+    # not so an app can auto-resolve them. Score has no root of its own,
+    # see the Score key comment in the keys section above.
+    song_entity_root: Audio/music/{Song}
+    song_step_root: '@song_entity_root/tasks/{Step}'
+    song_publish_area: '@song_entity_root/publish/{Step}'
+    soundfx_entity_root: Audio/SoundFX/{SoundFX}
+    soundfx_step_root: '@soundfx_entity_root/tasks/{Step}'
+    soundfx_publish_area: '@soundfx_entity_root/publish/{Step}'
 
     #
     # Shared publish pools. One publish/ folder per Asset/Shot, holding
@@ -627,6 +659,28 @@ paths:
     # The location of published nuke script files - shared publish pool.
     nuke_asset_publish:
         definition: '@asset_publish_area_nuke/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.nkind'
+
+
+    #
+    # Audio pipeline (Song / SoundFX)
+    #
+    # No tk-multi-publish2 config exists for these entities - Pro Tools has
+    # no Toolkit scene integration, so nothing resolves these templates
+    # automatically today. They exist purely to give manually-bounced files
+    # an agreed-on home/filename, and as the destination the Phase B
+    # file-migration script relinks existing PublishedFiles to. See
+    # DEVELOPMENT_NOTES.md (Phase B - Audio templates) for the decision
+    # trail.
+    #
+
+    song_audio_work:
+        definition: '@song_step_root/{Song}_{Step}_v{version}.{audio_extension}'
+    song_audio_publish:
+        definition: '@song_publish_area/{Song}_{Step}_v{version}.{audio_extension}'
+    soundfx_audio_work:
+        definition: '@soundfx_step_root/{SoundFX}_{Step}_v{version}.{audio_extension}'
+    soundfx_audio_publish:
+        definition: '@soundfx_publish_area/{SoundFX}_{Step}_v{version}.{audio_extension}'
 
 
 #
