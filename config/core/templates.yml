@@ -258,6 +258,12 @@ paths:
     asset_geo_publish_area: '@asset_publish_area/geo'
     asset_element_publish_area: '@asset_publish_area/elements'
     asset_review_area: '@asset_entity_root/review'
+    # Reference material pool - mirrors asset_review_area. Added
+    # 2026-08-31 for the Phase B legacy-cleanup pass, which found old
+    # {Step}/reference/ content with nowhere to go in the new schema -
+    # not tied to any publish2 flow (nothing auto-resolves this), same
+    # as the review area, just a place for reference material to live.
+    asset_reference_area: '@asset_entity_root/reference'
     asset_publish_area_photoshop: '@asset_publish_area/photoshop/{Step}'
     asset_publish_area_aftereffects: '@asset_publish_area/afx/{Step}'
     asset_publish_area_maya: '@asset_publish_area/maya/{Step}'
@@ -272,6 +278,8 @@ paths:
     shot_geo_publish_area: '@shot_publish_area/geo'
     shot_element_publish_area: '@shot_publish_area/elements'
     shot_review_area: '@shot_entity_root/review'
+    # Reference material pool - see asset_reference_area above.
+    shot_reference_area: '@shot_entity_root/reference'
     shot_publish_area_photoshop: '@shot_publish_area/photoshop/{Step}'
     shot_publish_area_aftereffects: '@shot_publish_area/afx/{Step}'
     shot_publish_area_maya: '@shot_publish_area/maya/{Step}'
