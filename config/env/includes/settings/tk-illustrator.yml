@@ -1,0 +1,99 @@
+# Illustrator launcher wiring (2026-09-02).
+#
+# Deliberately minimal: tk-illustrator's document I/O (save/save_as) is
+# implemented and has real live-install fixes in its commit history, but
+# its publish2/loader2 integration is not - three hook files publish2
+# would need don't exist yet in the engine repo, and no "Illustrator File"
+# PublishedFileType exists in ShotGrid yet either. Adam wants this usable
+# as a launcher (open/save/version-up via workfiles2) now, with
+# publish2/loader2/snapshot/reviewsubmission layered in later once the
+# engine side is finished - see tk-illustrator's own
+# docs/pipeline_integration_plan.md for that follow-up wiring, already
+# drafted and ready to paste in when the time comes.
+#
+# Structurally mirrors tk-photoshopcc.yml (same shape: asset/asset_step/
+# project/shot/shot_step), narrowed to the apps above.
+
+################################################################################
+
+includes:
+- ../app_locations.yml
+- ../engine_locations.yml
+- ./tk-multi-screeningroom.yml
+- ./tk-multi-shotgunpanel.yml
+- ./tk-multi-workfiles2.yml
+
+################################################################################
+
+# asset
+settings.tk-illustrator.asset:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: '@engines.tk-illustrator.location'
+
+# asset_step
+settings.tk-illustrator.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.illustrator.asset_step"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  location: '@engines.tk-illustrator.location'
+
+# project
+settings.tk-illustrator.project:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  location: '@engines.tk-illustrator.location'
+
+# shot
+settings.tk-illustrator.shot:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  location: '@engines.tk-illustrator.location'
+
+# shot_step
+settings.tk-illustrator.shot_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-pythonconsole:
+      location: "@apps.tk-multi-pythonconsole.location"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.illustrator.shot_step"
+  shelf_favorites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  location: '@engines.tk-illustrator.location'

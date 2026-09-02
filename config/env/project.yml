@@ -30,6 +30,7 @@ includes:
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-harmony.yml
+- ./includes/settings/tk-illustrator.yml
 
 ################################################################################
 # configuration for all engines to load in a project context
@@ -52,6 +53,7 @@ engines:
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
   tk-harmony: "@settings.tk-harmony.project"
+  tk-illustrator: "@settings.tk-illustrator.project"
 
 ################################################################################
 # reference all of the common frameworks

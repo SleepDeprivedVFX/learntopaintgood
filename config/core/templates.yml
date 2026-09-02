@@ -270,6 +270,7 @@ paths:
     asset_publish_area_houdini: '@asset_publish_area/houdini/{Step}'
     asset_publish_area_nuke: '@asset_publish_area/nuke/{Step}'
     asset_publish_area_harmony: '@asset_publish_area/harmony/{Step}'
+    asset_publish_area_illustrator: '@asset_publish_area/illustrator/{Step}'
 
     shot_publish_area: '@shot_entity_root/publish'
     shot_render_area: '@shot_publish_area/renders'
@@ -286,6 +287,7 @@ paths:
     shot_publish_area_houdini: '@shot_publish_area/houdini/{Step}'
     shot_publish_area_nuke: '@shot_publish_area/nuke/{Step}'
     shot_publish_area_harmony: '@shot_publish_area/harmony/{Step}'
+    shot_publish_area_illustrator: '@shot_publish_area/illustrator/{Step}'
 
 
     ##########################################################################################
@@ -313,6 +315,23 @@ paths:
         definition: '@shot_publish_area_photoshop/{Shot}_{Step}_v{version}.png'
     photoshop_shot_jpg_publish:
         definition: '@shot_publish_area_photoshop/{Shot}_{Step}_v{version}.jpg'
+
+    #
+    # Illustrator (launcher-only wiring, 2026-09-02 - work/publish paths
+    # only; no snapshot/jpg template yet, since tk-multi-snapshot and
+    # publish2 aren't wired in until the engine's publish integration is
+    # finished - see docs/pipeline_integration_plan.md in the engine repo)
+    #
+
+    # The location of WIP files
+    illustrator_shot_work:
+        definition: '@shot_step_root/illustrator/{Shot}_{Step}_v{version}.ai'
+    shot_work_area_illustrator:
+        definition: '@shot_step_root/illustrator'
+    # The location of published files - shared publish pool, see
+    # shot_publish_area_illustrator above.
+    illustrator_shot_publish:
+        definition: '@shot_publish_area_illustrator/{Shot}_{Step}_v{version}.ai'
 
     #
     # After Effects
@@ -562,6 +581,19 @@ paths:
         definition: '@asset_publish_area_photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.png'
     photoshop_asset_jpg_publish:
         definition: '@asset_publish_area_photoshop/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.jpg'
+    #
+    # Illustrator (launcher-only wiring, 2026-09-02 - see the shot-level
+    # Illustrator block above for the same note)
+    #
+
+    # The location of WIP files
+    illustrator_asset_work:
+        definition: '@asset_step_root/illustrator/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.ai'
+    asset_work_area_illustrator:
+        definition: '@asset_step_root/illustrator'
+    # The location of published files
+    illustrator_asset_publish:
+        definition: '@asset_publish_area_illustrator/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.ai'
     #
     # after effects
     #

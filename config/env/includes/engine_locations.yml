@@ -78,3 +78,8 @@ engines.tk-harmony.location:
   path: https://github.com/SleepDeprivedVFX/tk-harmony.git
   branch: master
   version: f7cdc9ffb531613d277caff9629f8dc772f442cb
+engines.tk-illustrator.location:
+  type: git_branch
+  path: https://github.com/SleepDeprivedVFX/tk-illustrator.git
+  branch: master
+  version: b7e54bae6da3a2740dd07263dad8ddd5df0eb602

@@ -27,6 +27,7 @@ includes:
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-harmony.yml
 - ./includes/settings/tk-harmony.yml
+- ./includes/settings/tk-illustrator.yml
 
 ################################################################################
 # configuration for all engines to load in a shot step context
@@ -46,6 +47,7 @@ engines:
   tk-shotgun: "@settings.tk-shotgun.shot_step"
   tk-harmony: "@settings.tk-harmony.asset_step"
   tk-harmony: "@settings.tk-harmony.shot_step"
+  tk-illustrator: "@settings.tk-illustrator.shot_step"
 
 ################################################################################
 # reference all of the common frameworks

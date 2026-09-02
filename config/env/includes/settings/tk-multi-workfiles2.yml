@@ -444,6 +444,77 @@ settings.tk-multi-workfiles2.photoshop.shot_step:
 
 ################################################################################
 
+# ---- illustrator
+#
+# hook_scene_operation is set explicitly here (unlike photoshop above,
+# which relies on tk-multi-workfiles2's own bundled default hook path
+# {self}/scene_operation_{engine_name}.py) because tk-illustrator's
+# scene_operation hook lives in the ENGINE's own hooks folder
+# (hooks/tk-multi-workfiles2/scene_operation_tk-illustrator.py), not
+# inside tk-multi-workfiles2 itself - there is no bundled
+# scene_operation_tk-illustrator.py in tk-multi-workfiles2 the way there
+# is for Photoshop. Confirmed via the engine repo's own commit history:
+# this exact gap caused every file operation (including plain "File
+# Save...") to fail immediately until the hook was pointed here.
+
+# asset_step
+settings.tk-multi-workfiles2.illustrator.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-illustrator.py"
+  template_publish: illustrator_asset_publish
+  template_publish_area: asset_publish_area_illustrator
+  template_work: illustrator_asset_work
+  template_work_area: asset_work_area_illustrator
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+
+# shot_step
+settings.tk-multi-workfiles2.illustrator.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-illustrator.py"
+  template_publish: illustrator_shot_publish
+  template_publish_area: shot_publish_area_illustrator
+  template_work: illustrator_shot_work
+  template_work_area: shot_work_area_illustrator
+  entities:
+  - caption: Assets
+    entity_type: Asset
+    hierarchy: [sg_asset_type, code]
+    filters:
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  - caption: Shots
+    entity_type: Shot
+    filters:
+    hierarchy: [sg_sequence, code]
+    sub_hierarchy:
+      entity_type: Task
+      filters:
+      link_field: entity
+      hierarchy: [step]
+  location: "@apps.tk-multi-workfiles2.location"
+
+################################################################################
+
 # ---- after effects
 
 # project
