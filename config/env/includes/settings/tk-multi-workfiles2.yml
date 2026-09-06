@@ -332,6 +332,13 @@ settings.tk-multi-workfiles2.maya.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.nuke.asset_step:
+  # Nuke Indie always runs in Foundry's "Studio" app mode, which makes the
+  # stock hook treat File Save/Open as a Hiero Project operation and
+  # demand a single selected Project Bin ("Please select a single
+  # Project!"). This is comp-only work, not Nuke Studio editorial - see
+  # DEVELOPMENT_NOTES.md (2026-09-06) - so override with a hook that
+  # always saves/opens the plain .nkind script instead.
+  hook_scene_operation: "{config}/tk-multi-workfiles2/scene_operation_tk-nuke_comp_only.py"
   template_publish: nuke_asset_publish
   template_publish_area: asset_publish_area_nuke
   template_work: nuke_asset_work
@@ -359,6 +366,9 @@ settings.tk-multi-workfiles2.nuke.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.nuke.shot_step:
+  # See the comment on settings.tk-multi-workfiles2.nuke.asset_step above -
+  # same Nuke Indie / Studio-mode fix.
+  hook_scene_operation: "{config}/tk-multi-workfiles2/scene_operation_tk-nuke_comp_only.py"
   template_publish: nuke_shot_publish
   template_publish_area: shot_publish_area_nuke
   template_work: nuke_shot_work

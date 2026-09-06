@@ -34,8 +34,11 @@ settings.tk-multi-launchapp.shotgun:
 settings.tk-multi-launchapp.nuke:
   engine: tk-nuke
   windows_path: "@path.windows.nuke"
+  windows_args: --indie
   mac_path: "@path.mac.nuke"
+  mac_args: --indie
   linux_path: "@path.linux.nuke"
+  linux_args: --indie
   icon: "{config}/icons/nuke.png"
   location: "@apps.tk-nuke.location"
 

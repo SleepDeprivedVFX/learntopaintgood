@@ -32,10 +32,10 @@ includes:
 
 # ---- Hiero
 
-#settings.tk-multi-snapshot.hiero:
-#  template_snapshot: hiero_project_snapshot
-#  template_work: hiero_project_work
-#  location: "@apps.tk-multi-snapshot.location"
+settings.tk-multi-snapshot.hiero:
+  template_snapshot: hiero_project_snapshot
+  template_work: hiero_project_work
+  location: "@apps.tk-multi-snapshot.location"
 
 ################################################################################
 

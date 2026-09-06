@@ -40,7 +40,7 @@ engines:
   tk-maya: "@settings.tk-maya.shot_step"
 #  tk-motionbuilder: "@settings.tk-motionbuilder.shot_step"
   tk-nuke: "@settings.tk-nuke.shot_step"
-#  tk-nukestudio: "@settings.tk-nuke.nukestudio.shot_step"
+  tk-nukestudio: "@settings.tk-nuke.nukestudio.shot_step"
   tk-photoshopcc: "@settings.tk-photoshopcc.shot_step"
   tk-aftereffects: "@settings.tk-aftereffects.shot_step"
   tk-shell: "@settings.tk-shell.shot_step"

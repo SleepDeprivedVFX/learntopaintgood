@@ -245,6 +245,16 @@ paths:
     soundfx_step_root: '@soundfx_entity_root/tasks/{Step}'
     soundfx_publish_area: '@soundfx_entity_root/publish/{Step}'
 
+    # Nuke Studio / Indie editorial. Project-wide, not per-Shot/Asset - this
+    # is the Studio Timeline (.hrox) document itself, distinct from the
+    # per-Shot/Asset .nkind comp scripts under shot_step_root/asset_step_root
+    # above. Added 2026-09-06 to activate the tk-nukestudio engine instance
+    # for Nuke Indie support (see env/asset_step.yml, env/shot_step.yml) -
+    # comp-only usage doesn't touch this, but tk-multi-workfiles2/snapshot/
+    # publish2's "nukestudio"/"hiero" settings blocks require these
+    # templates to exist to bootstrap at all, even if unused day-to-day.
+    editorial_root: Editorial/NukeStudio
+
     #
     # Shared publish pools. One publish/ folder per Asset/Shot, holding
     # every published thing - renders/textures/caches/geo/elements content
@@ -446,6 +456,20 @@ paths:
         definition: '@shot_review_area/{Step}/quickdaily/{Shot}_{name}_{iteration}.mov'
     nuke_shot_render_movie:
         definition: '@shot_review_area/{Step}/{Shot}_{name}_{nuke.output}_v{version}.mov'
+
+    #
+    # Nuke Studio (project-level timeline, .hrox) - see editorial_root above.
+    #
+    hiero_project_work_area:
+        definition: '@editorial_root/work'
+    hiero_project_work:
+        definition: '@editorial_root/work/{name}_v{version}.hrox'
+    hiero_project_snapshot:
+        definition: '@editorial_root/work/snapshots/{name}_v{version}.{timestamp}.hrox'
+    hiero_project_publish_area:
+        definition: '@editorial_root/publish'
+    hiero_project_publish:
+        definition: '@editorial_root/publish/{name}_v{version}.hrox'
 
     # asset
     # define the location of a work area

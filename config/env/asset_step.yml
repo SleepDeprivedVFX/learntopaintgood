@@ -42,7 +42,7 @@ engines:
   tk-maya: "@settings.tk-maya.asset_step"
 #  tk-motionbuilder: "@settings.tk-motionbuilder.asset_step"
   tk-nuke: "@settings.tk-nuke.asset_step"
-#  tk-nukestudio: "@settings.tk-nuke.nukestudio.asset_step"
+  tk-nukestudio: "@settings.tk-nuke.nukestudio.asset_step"
   tk-photoshopcc: "@settings.tk-photoshopcc.asset_step"
   tk-aftereffects: "@settings.tk-aftereffects.asset_step"
 #  tk-alias: "@settings.tk-alias.asset_step"

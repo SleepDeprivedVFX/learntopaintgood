@@ -193,47 +193,60 @@ settings.tk-nuke.shot_step:
 ################################################################################
 # NukeStudio
 
-## asset_step
-#settings.tk-nuke.nukestudio.asset_step:
-#  apps:
-#    tk-multi-about:
-#      location: "@apps.tk-multi-about.location"
-#    tk-multi-setframerange:
-#      location: "@apps.tk-multi-setframerange.location"
-#    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
-#    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio"
-#    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
-#    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
-#    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-#    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
-#    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
-#    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
-#    tk-nuke-quickreview:
-#      location: "@apps.tk-nuke-quickreview.location"
-#    tk-nuke-writenode: "@settings.tk-nuke-writenode.asset"
-#  bin_context_menu:
-#  - app_instance: tk-multi-workfiles2
-#    keep_in_menu: false
-#    name: "File Save..."
-#    requires_selection: true
-#  - app_instance: tk-multi-snapshot
-#    keep_in_menu: false
-#    name: "Snapshot..."
-#    requires_selection: true
-#  - app_instance: tk-multi-snapshot
-#    keep_in_menu: false
-#    name: "Snapshot History..."
-#    requires_selection: true
-#  - app_instance: tk-multi-publish2
-#    keep_in_menu: false
-#    name: "Publish..."
-#    requires_selection: true
-#  menu_favourites:
-#  - app_instance: tk-multi-workfiles2
-#    name: "File Open..."
-#  location: '@engines.tk-nuke.location'
+# asset_step
+# NOTE: comp-only Nuke Indie support (2026-09-06) - this instance exists so
+# Toolkit has a second engine to bind the concurrent Nuke Studio Timeline
+# session to when Nuke Indie launches (it always opens Timeline + NukeX
+# Composite together; File Open/Save on the plain tk-nuke instance was
+# failing because Toolkit only knew about one of the two sessions). Full
+# EDL-driven editorial (the "project" block below) is deliberately still
+# deferred - see DEVELOPMENT_NOTES.md / ask Adam before activating it, it
+# still needs tk-hiero-export's own templates (hiero_plate_path,
+# hiero_render_path) audited first.
+settings.tk-nuke.nukestudio.asset_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-setframerange:
+      location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.asset"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-nuke-quickreview:
+      location: "@apps.tk-nuke-quickreview.location"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode.asset"
+  bin_context_menu:
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: "File Open..."
+  location: '@engines.tk-nuke.location'
 #
-## project
+## project - DEFERRED (2026-09-06): full EDL-driven editorial via Nuke
+## Studio's Project/Timeline is not in current use (editorial lives in
+## DaVinci Resolve) and this block's tk-hiero-export/tk-hiero-openinshotgun
+## dependencies haven't been audited against the current schema. Confirm
+## with Adam before activating - comp-only support above doesn't need it.
 #settings.tk-nuke.nukestudio.project:
 #  apps:
 #    tk-multi-about:
@@ -281,42 +294,42 @@ settings.tk-nuke.shot_step:
 #    name: File Open...
 #  location: '@engines.tk-nuke.location'
 #
-## shot_step
-#settings.tk-nuke.nukestudio.shot_step:
-#  apps:
-#    tk-multi-about:
-#      location: "@apps.tk-multi-about.location"
-#    tk-multi-setframerange:
-#      location: "@apps.tk-multi-setframerange.location"
-#    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
-#    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio"
-#    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
-#    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
-#    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
-#    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
-#    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
-#    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
-#    tk-nuke-quickreview:
-#      location: "@apps.tk-nuke-quickreview.location"
-#    tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
-#  bin_context_menu:
-#  - app_instance: tk-multi-workfiles2
-#    keep_in_menu: false
-#    name: "File Save..."
-#    requires_selection: true
-#  - app_instance: tk-multi-snapshot
-#    keep_in_menu: false
-#    name: "Snapshot..."
-#    requires_selection: true
-#  - app_instance: tk-multi-snapshot
-#    keep_in_menu: false
-#    name: "Snapshot History..."
-#    requires_selection: true
-#  - app_instance: tk-multi-publish2
-#    keep_in_menu: false
-#    name: "Publish..."
-#    requires_selection: true
-#  menu_favourites:
-#  - app_instance: tk-multi-workfiles2
-#    name: "File Open..."
-#  location: '@engines.tk-nuke.location'
+# shot_step (see comp-only note on the asset_step block above)
+settings.tk-nuke.nukestudio.shot_step:
+  apps:
+    tk-multi-about:
+      location: "@apps.tk-multi-about.location"
+    tk-multi-setframerange:
+      location: "@apps.tk-multi-setframerange.location"
+    tk-multi-breakdown: "@settings.tk-multi-breakdown.nukestudio"
+    tk-multi-loader2: "@settings.tk-multi-loader2.nukestudio"
+    tk-multi-publish2: "@settings.tk-multi-publish2.nukestudio"
+    tk-multi-reviewsubmission: "@settings.tk-multi-reviewsubmission.nuke.shot"
+    tk-multi-screeningroom: "@settings.tk-multi-screeningroom.rv"
+    tk-multi-shotgunpanel: "@settings.tk-multi-shotgunpanel.nukestudio"
+    tk-multi-snapshot: "@settings.tk-multi-snapshot.hiero"
+    tk-multi-workfiles2: "@settings.tk-multi-workfiles2.hiero"
+    tk-nuke-quickreview:
+      location: "@apps.tk-nuke-quickreview.location"
+    tk-nuke-writenode: "@settings.tk-nuke-writenode.shot"
+  bin_context_menu:
+  - app_instance: tk-multi-workfiles2
+    keep_in_menu: false
+    name: "File Save..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot..."
+    requires_selection: true
+  - app_instance: tk-multi-snapshot
+    keep_in_menu: false
+    name: "Snapshot History..."
+    requires_selection: true
+  - app_instance: tk-multi-publish2
+    keep_in_menu: false
+    name: "Publish..."
+    requires_selection: true
+  menu_favourites:
+  - app_instance: tk-multi-workfiles2
+    name: "File Open..."
+  location: '@engines.tk-nuke.location'
