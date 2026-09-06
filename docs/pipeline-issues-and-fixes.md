@@ -8,6 +8,74 @@ for [Vikki](../team/vikki.md).
 
 ---
 
+## 2026-09-06 — Nuke Indie integration: File Save/Open failure + Nuke Studio scaffolding
+
+**Reported by:** Adam Benson, comping in Nuke Indie against `LPG101_003_210`, CMP step.
+
+### Issue 1 — File Save fails with "Please select a single Project!"
+
+**Symptom:** Every "File Save" from the Flow Production Tracking panel while
+comping in Nuke Indie failed with a `TankError` popup reading "Failed to save
+file: Please select a single Project!" File Open had the same class of
+problem. No plain-NukeX-only mode exists to fall back to — Nuke Indie always
+opens a Nuke Studio Timeline alongside the NukeX comp session.
+
+**Root cause:** Nuke Indie always runs Foundry's "Studio" application shell —
+`nuke.env['studio']` is `True` for this license tier regardless of whether the
+artist is doing comp-only work. The stock `tk-multi-workfiles2` hook for
+`tk-nuke` (`scene_operation_tk-nuke.py`) branches on the engine's
+`studio_enabled` flag: if true, it treats File Save/Open as a **Hiero Project**
+operation (`project.saveAs()`), not a plain Nuke script save. That path calls
+`_get_current_hiero_project()`, which requires exactly one Project Bin
+selected in the Timeline UI to know *which* project to act on. Comp-only work
+never has a meaningfully "selected" project — only Indie's always-present
+default blank Studio project — so the selection count check
+(`len(selection) != 1`) always failed. This is a structural mismatch between
+the stock hook (built for real Nuke-Studio-driven editorial) and a comp-only
+Indie workflow, not a template/schema bug — confirmed by reading the vendored
+hook source directly (`install/app_store/tk-multi-workfiles2/v0.16.0/hooks/
+scene_operation_tk-nuke.py`).
+
+**Fix applied:** Added `hooks/tk-multi-workfiles2/
+scene_operation_tk-nuke_comp_only.py` — the stock hook's classic-Nuke branch
+(`nuke.scriptSave()` / `scriptOpen()` / `scriptSaveAs()`) with the
+`studio_enabled` → Hiero-project routing removed entirely. Wired in via
+`hook_scene_operation` on the two comp contexts that do real File Save/Open
+(`settings.tk-multi-workfiles2.nuke.asset_step` and `.shot_step`). Save/Open
+now always act on the actual `.nkind` comp script and ignore Indie's default
+Studio project completely.
+
+Also done in the same session, as prerequisite/adjacent work:
+- Added `--indie` to the Nuke launcher's args (single icon — no plain-Nuke
+  mode exists on this license tier to justify a second one).
+- Activated the `tk-nukestudio` engine instance at the `asset_step`/
+  `shot_step` level (it existed fully written but commented out in
+  `tk-nuke.yml`/`env/*.yml` — stock scaffolding nobody had finished), plus the
+  templates it depends on (`hiero_project_work`/`publish`/`_area`/`snapshot`,
+  new `editorial_root: Editorial/NukeStudio`) and `tk-multi-snapshot.hiero`.
+
+**Status: Resolved (2026-09-06).** File Save and File Open both confirmed
+working by Adam against a real shot comp. Committed on
+`feature/publish-schema-restructure` (`2a60243`), pushed.
+
+- **Technical (Tom):** the `tk-nukestudio` engine instance is scaffolded but
+  currently **unreachable** — the single "Nuke" launcher hardcodes
+  `engine: tk-nuke`, so Toolkit never bootstraps as `tk-nukestudio` regardless
+  of Indie/Studio mode. Reaching it later would need a second launcher entry
+  (`engine: tk-nukestudio`), which reopens the single-icon-vs-two-icon
+  tradeoff. The deferred Project-level block in `tk-nuke.yml` (full
+  EDL-driven editorial) also still needs `tk-hiero-export`'s own templates
+  (`hiero_plate_path`, `hiero_render_path`) audited against the current
+  schema before it's safe to activate — not done, not attempted.
+- **Policy (Vikki):** comp-only Nuke Indie is the sanctioned workflow for now.
+  Adam tried real Nuke-Studio-driven editorial (EDL out of DaVinci → shot
+  work/comp in the Studio timeline → renders back to DaVinci) previously and
+  moved off it — EDL-driven naming/conform drift plus a non-working ShotGrid
+  install at the time. Revisit only with a concrete plan for the naming-drift
+  problem, not just because the engine scaffolding now exists.
+
+---
+
 ## 2026-08-20 — Asset-context Maya session: menu loss, publish failure, cross-version scene corruption
 
 **Reported by:** Adam Benson, working the `FrootLoopEyes` asset (PRP), Rig step,
