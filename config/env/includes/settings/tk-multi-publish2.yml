@@ -619,8 +619,8 @@ settings.tk-multi-publish2.harmony.asset_step:
     settings:
         Render Sequence Template: harmony_asset_render_sequence
         Render Movie Template: harmony_asset_render_movie
+        Main Render Pass Name: Comp
         FFmpeg Path: ffmpeg
-        Image Format: PNG
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -672,7 +672,7 @@ settings.tk-multi-publish2.harmony.shot_step:
     settings:
         Render Sequence Template: harmony_shot_render_sequence
         Render Movie Template: harmony_shot_render_movie
+        Main Render Pass Name: Comp
         FFmpeg Path: ffmpeg
-        Image Format: PNG
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
