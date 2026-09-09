@@ -30,6 +30,7 @@ includes:
 # and these 'transit' areas can be project, shot, or sequence level.
 
 settings.tk-multi-workfiles2: &settings_tk-multi-workfiles2
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Assets
     entity_type: Asset
@@ -53,6 +54,7 @@ settings.tk-multi-workfiles2: &settings_tk-multi-workfiles2
 
 # launches at startup.
 settings.tk-multi-workfiles2.launch_at_startup:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   launch_at_startup: true
   entities:
   - caption: Assets
@@ -80,11 +82,13 @@ settings.tk-multi-workfiles2.launch_at_startup:
 # ---- 3dsmax
 
 settings.tk-multi-workfiles2.3dsmax:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   <<: *settings_tk-multi-workfiles2
   ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
 
 settings.tk-multi-workfiles2.3dsmax.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   template_publish: max_asset_publish
@@ -113,6 +117,7 @@ settings.tk-multi-workfiles2.3dsmax.asset_step:
   location: "@apps.tk-multi-workfiles2.location"
 
 settings.tk-multi-workfiles2.3dsmax.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   ui_config_hook: '{self}/ui_config.py:{engine}/tk-multi-workfiles2/basic/ui_config.py'
   hook_scene_operation: "{engine}/tk-multi-workfiles2/basic/scene_operation.py"
   template_publish: max_shot_publish
@@ -145,6 +150,7 @@ settings.tk-multi-workfiles2.3dsmax.shot_step:
 # ---- hiero/nukestudio
 
 settings.tk-multi-workfiles2.hiero:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Projects
     entity_type: Project
@@ -163,6 +169,7 @@ settings.tk-multi-workfiles2.hiero:
 
 # project
 settings.tk-multi-workfiles2.houdini:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Assets
     entity_type: Asset
@@ -187,6 +194,7 @@ settings.tk-multi-workfiles2.houdini:
 
 # Houdini launches at startup.
 settings.tk-multi-workfiles2.houdini.launch_at_startup:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   launch_at_startup: true
   entities:
   - caption: Assets
@@ -212,6 +220,7 @@ settings.tk-multi-workfiles2.houdini.launch_at_startup:
 
 # asset_step
 settings.tk-multi-workfiles2.houdini.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: houdini_asset_publish
   template_publish_area: asset_publish_area_houdini
   template_work: houdini_asset_work
@@ -240,6 +249,7 @@ settings.tk-multi-workfiles2.houdini.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.houdini.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: houdini_shot_publish
   template_publish_area: shot_publish_area_houdini
   template_work: houdini_shot_work
@@ -272,6 +282,7 @@ settings.tk-multi-workfiles2.houdini.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.maya.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   launch_at_startup: true
   template_publish: maya_asset_publish
   template_publish_area: asset_publish_area_maya
@@ -300,6 +311,7 @@ settings.tk-multi-workfiles2.maya.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.maya.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   launch_at_startup: true
   template_publish: maya_shot_publish
   template_publish_area: shot_publish_area_maya
@@ -332,6 +344,7 @@ settings.tk-multi-workfiles2.maya.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.nuke.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   # Nuke Indie always runs in Foundry's "Studio" app mode, which makes the
   # stock hook treat File Save/Open as a Hiero Project operation and
   # demand a single selected Project Bin ("Please select a single
@@ -366,6 +379,7 @@ settings.tk-multi-workfiles2.nuke.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.nuke.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   # See the comment on settings.tk-multi-workfiles2.nuke.asset_step above -
   # same Nuke Indie / Studio-mode fix.
   hook_scene_operation: "{config}/tk-multi-workfiles2/scene_operation_tk-nuke_comp_only.py"
@@ -400,6 +414,7 @@ settings.tk-multi-workfiles2.nuke.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.photoshop.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: photoshop_asset_publish
   template_publish_area: asset_publish_area_photoshop
   template_work: photoshop_asset_work
@@ -427,6 +442,7 @@ settings.tk-multi-workfiles2.photoshop.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.photoshop.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: photoshop_shot_publish
   template_publish_area: shot_publish_area_photoshop
   template_work: photoshop_shot_work
@@ -469,6 +485,7 @@ settings.tk-multi-workfiles2.photoshop.shot_step:
 
 # asset_step
 settings.tk-multi-workfiles2.illustrator.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-illustrator.py"
   template_publish: illustrator_asset_publish
   template_publish_area: asset_publish_area_illustrator
@@ -497,6 +514,7 @@ settings.tk-multi-workfiles2.illustrator.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.illustrator.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   hook_scene_operation: "{engine}/tk-multi-workfiles2/scene_operation_tk-illustrator.py"
   template_publish: illustrator_shot_publish
   template_publish_area: shot_publish_area_illustrator
@@ -529,6 +547,7 @@ settings.tk-multi-workfiles2.illustrator.shot_step:
 
 # project
 settings.tk-multi-workfiles2.aftereffects:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Assets
     entity_type: Asset
@@ -553,6 +572,7 @@ settings.tk-multi-workfiles2.aftereffects:
 
 # asset_step
 settings.tk-multi-workfiles2.aftereffects.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: aftereffects_asset_publish
   template_publish_area: asset_publish_area_aftereffects
   template_work: aftereffects_asset_work
@@ -581,6 +601,7 @@ settings.tk-multi-workfiles2.aftereffects.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.aftereffects.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: aftereffects_shot_publish
   template_publish_area: shot_publish_area_aftereffects
   template_work: aftereffects_shot_work
@@ -612,6 +633,7 @@ settings.tk-multi-workfiles2.aftereffects.shot_step:
 # ---- motion builder
 
 settings.tk-multi-workfiles2.motionbuilder.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: mobu_asset_publish
   template_publish_area: asset_publish_area_mobu
   template_work: mobu_asset_work
@@ -638,6 +660,7 @@ settings.tk-multi-workfiles2.motionbuilder.asset_step:
   location: "@apps.tk-multi-workfiles2.location"
 
 settings.tk-multi-workfiles2.motionbuilder.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: mobu_shot_publish
   template_publish_area: shot_publish_area_mobu
   template_work: mobu_shot_work
@@ -669,6 +692,7 @@ settings.tk-multi-workfiles2.motionbuilder.shot_step:
 
 # project
 settings.tk-multi-workfiles2.alias:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   launch_at_startup: true
   entities:
   - caption: Assets
@@ -690,6 +714,7 @@ settings.tk-multi-workfiles2.alias:
 
 # asset_step
 settings.tk-multi-workfiles2.alias.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: alias_asset_publish
   template_publish_area: asset_publish_area_alias
   template_work: alias_asset_work
@@ -718,6 +743,7 @@ settings.tk-multi-workfiles2.alias.asset_step:
 
 # project
 settings.tk-multi-workfiles2.vred:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   launch_at_startup: true
   entities:
   - caption: Assets
@@ -739,6 +765,7 @@ settings.tk-multi-workfiles2.vred:
 
 # asset_step
 settings.tk-multi-workfiles2.vred.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   template_publish: vred_asset_publish
   template_publish_area: asset_publish_area_vred
   template_work: vred_asset_work
@@ -766,6 +793,7 @@ settings.tk-multi-workfiles2.vred.asset_step:
 # ---- Mari
 
 settings.tk-multi-workfiles2.mari:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   show_change_context: true
   show_file_open: false
   show_file_save: false
@@ -788,6 +816,7 @@ settings.tk-multi-workfiles2.mari:
 # -- harmony
 
 settings.tk-multi-workfiles2.harmony.project:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   allow_task_creation: true
   create_new_task_hook: "{self}/create_new_task.py"
   custom_actions_hook: "{self}/custom_actions.py"
@@ -827,6 +856,7 @@ settings.tk-multi-workfiles2.harmony.project:
 
 # asset_step
 settings.tk-multi-workfiles2.harmony.asset_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Assets
     entity_type: Task
@@ -857,6 +887,7 @@ settings.tk-multi-workfiles2.harmony.asset_step:
 
 # shot_step
 settings.tk-multi-workfiles2.harmony.shot_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Assets
     entity_type: Task
@@ -887,6 +918,7 @@ settings.tk-multi-workfiles2.harmony.shot_step:
 
 # sequence_step
 settings.tk-multi-workfiles2.harmony.sequence_step:
+  user_login_hook: "{config}/tk-multi-workfiles2/user_login.py"
   entities:
   - caption: Assets
     entity_type: Task
