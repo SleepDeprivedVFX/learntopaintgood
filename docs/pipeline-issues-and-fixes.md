@@ -8,6 +8,87 @@ for [Vikki](../team/vikki.md).
 
 ---
 
+## 2026-09-09 — File Open showing "Unknown" for work file saves (all DCCs)
+
+**Reported by:** Adam Benson, screenshot of File Open for `LPG101_003_220_CMP`
+v001 — the "modified by" field showed "Unknown" instead of his name.
+
+**Symptom:** Work files (unregistered, not yet published) listed in File
+Open's "All"/"Working" tabs showed "Unknown" for who last touched them,
+across DCCs. Publishes were unaffected — those pull `published_by` straight
+from ShotGrid.
+
+**Root cause — two problems stacked, found in that order:**
+
+1. **Naive OS-name-to-login matching.** The stock `tk-multi-workfiles2`
+   `user_login` hook resolves the OS/filesystem owner of a work file (Windows:
+   NTFS owner via a Win32 API call; Mac/Linux: the file's Unix uid via `pwd`)
+   and matches that name **directly** against ShotGrid's `HumanUser.login` —
+   assumes computer usernames and ShotGrid logins are identical strings, which
+   they aren't on this project.
+2. **The dominant cause, found testing against the actual file from the
+   screenshot:** the OS-owner lookup often returns nothing at all, before any
+   name-matching even happens. This project has no Active Directory, so every
+   machine keeps its own private local Windows account database — a file's
+   NTFS owner isn't a name, it's a machine-specific SID, only resolvable back
+   to a name on the exact machine that issued it. A file saved on one machine
+   and later browsed from a different machine fails to resolve **even if both
+   machines happen to have a same-named local account** ("sleep" on one box
+   and "sleep" on another are different SIDs). Confirmed independent of this
+   hook's own code — Windows' own `icacls` also failed to resolve the same
+   file's owner, raw numeric SID only. Windows error `1332`
+   (`ERROR_NONE_MAPPED`). Given this pipeline is routinely used from more than
+   one physical machine, this is the dominant cause, not just a naming
+   mismatch.
+
+**Fix applied:** Config-local override,
+`config/hooks/tk-multi-workfiles2/user_login.py`:
+- `save_user()` now stamps the real ShotGrid login — via
+  `sgtk.util.get_current_user()`, resolved from the authenticated ShotGrid
+  session, not any OS identity — into a hidden sidecar file
+  (`.<filename>.sg_saved_by`, dot-prefixed for Mac/Linux convention *and*
+  given the Windows hidden attribute) next to the work file at save time.
+  Correct regardless of which machine/OS account did the saving. Primary
+  path going forward.
+- `get_login()` reads that stamp back first; falls back to the legacy
+  OS-owner-lookup + a new site-wide `HumanUser.sg_sg_os_logins` field
+  translation for files saved before this hook existed (degrades to the old
+  `"<name> (System)"` label if neither resolves — never breaks a save).
+  `sg_sg_os_logins` is a ShotGrid `list` field (single-select; the doubled
+  `sg_` in the field code is ShotGrid auto-prefixing what was typed as
+  `sg_os_logins`) — fine for now since both current people (Adam, Laura) use
+  one OS account consistently across their own machines via cloud-synced
+  logins (Microsoft account / Apple ID), not per-machine local ones.
+- Wired via `user_login_hook` in every DCC/step block of the shared
+  `config/env/includes/settings/tk-multi-workfiles2.yml` — one file, all
+  DCCs. **Real mistake made and caught in the same session:** first attempt
+  used the setting name `hook_user_login` (copied the `hook_scene_operation`
+  naming pattern without checking) — silently ignored by Toolkit since it
+  doesn't match the app's actual manifest key, `user_login_hook`. All 32
+  blocks were quiet no-ops until this was found via `grep`ping the app's
+  `info.yml` directly. Worth remembering: verify a hook's actual settings key
+  against its manifest rather than assuming a naming convention holds.
+
+**Status: Resolved (2026-09-09).** Live-tested against a real Nuke Save As —
+confirmed working. Also rolled out (same hook file + wiring) to
+`lpg_merchandizing`, `samebrainproductions`, and `the_woodlands` — structurally
+verified (correct manifest version, YAML valid, no existing overrides
+disturbed) but not live-tested in a DCC on those three specifically.
+
+- **Technical (Tom):** `sg_sg_os_logins` being single-select is a real
+  constraint if someone ever needs multiple *different* OS account names
+  mapped to one ShotGrid login (e.g. a genuinely different local login per
+  machine, no cloud sync) — not needed today, but if it comes up, ShotGrid's
+  `Tag List` field type is the fix (a real multi-value type list doesn't
+  have), not a workaround in the hook.
+- **Policy (Vikki):** onboarding a new artist now needs one extra step
+  beyond the normal ShotGrid HumanUser setup: register their OS account
+  name(s) as valid value(s) on `sg_sg_os_logins` and select it on their
+  record — only matters for attributing *pre-existing* files correctly,
+  since every new save is stamped automatically regardless.
+
+---
+
 ## 2026-09-06 — Nuke Indie integration: File Save/Open failure + Nuke Studio scaffolding
 
 **Reported by:** Adam Benson, comping in Nuke Indie against `LPG101_003_210`, CMP step.
