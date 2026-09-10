@@ -139,6 +139,24 @@ Also done in the same session, as prerequisite/adjacent work:
 working by Adam against a real shot comp. Committed on
 `feature/publish-schema-restructure` (`2a60243`), pushed.
 
+**Update 2026-09-10:** ported to `samebrainproductions`
+(`S:\Pipeline\samebrainproductions`, same tools, older single-root schema —
+not a template lineage of `learntopaintgood`, a separate standalone
+installation, untracked by git same as it was for the "Unknown" user fix). All
+five pieces applied: the comp-only `scene_operation_tk-nuke_comp_only.py`
+hook (copied verbatim, wired via `hook_scene_operation` on
+`tk-multi-workfiles2.nuke.asset_step`/`.shot_step`, alongside the existing
+`user_login_hook` from the previous fix), `--indie` launcher args, the
+`tk-nukestudio.asset_step`/`.shot_step` blocks uncommented in `tk-nuke.yml`
+(Project-level block left deferred, same as the source), `tk-multi-snapshot.hiero`
+uncommented, and `editorial_root`/`hiero_project_*` templates added to
+`templates.yml` (adapted to this config's flat `Seq/Shot` root naming — no
+`root_name` overrides needed, same as the source since Editorial is a
+project-level root not tied to Asset/Shot). YAML validated and the hook
+byte-compiled; **not yet live-tested in an actual Nuke Indie session on
+this project** — structural port only, same caveat as the "Unknown" user
+fix's rollout to this project.
+
 - **Technical (Tom):** the `tk-nukestudio` engine instance is scaffolded but
   currently **unreachable** — the single "Nuke" launcher hardcodes
   `engine: tk-nuke`, so Toolkit never bootstraps as `tk-nukestudio` regardless
