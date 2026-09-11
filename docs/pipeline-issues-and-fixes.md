@@ -153,9 +153,9 @@ uncommented, and `editorial_root`/`hiero_project_*` templates added to
 `templates.yml` (adapted to this config's flat `Seq/Shot` root naming — no
 `root_name` overrides needed, same as the source since Editorial is a
 project-level root not tied to Asset/Shot). YAML validated and the hook
-byte-compiled; **not yet live-tested in an actual Nuke Indie session on
-this project** — structural port only, same caveat as the "Unknown" user
-fix's rollout to this project.
+byte-compiled at port time; **confirmed working live by Adam (2026-09-10)** —
+File Save/Open tested in a real Nuke Indie session on `samebrainproductions`,
+no issues. Committed on `main` (`c9e4e0d`), pushed.
 
 - **Technical (Tom):** the `tk-nukestudio` engine instance is scaffolded but
   currently **unreachable** — the single "Nuke" launcher hardcodes
