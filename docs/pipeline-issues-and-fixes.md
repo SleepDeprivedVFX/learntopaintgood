@@ -8,6 +8,76 @@ for [Vikki](../team/vikki.md).
 
 ---
 
+## 2026-09-13 — Scripts (CustomEntity09) Desktop Publisher integration
+
+**Requested by:** Vikki — a new "Scripts" section on the SG site for Final
+Draft (`.fdx`) and PDF screenplay documents, publisher-only integration.
+Target path: `PreProduction/Scripts/{CustomEntity09.code}/{code}_{Step}_
+v{version}.{ext}`.
+
+**Design decision — no `tk-finaldraft` engine.** Final Draft has no
+scripting/plugin API, so there's nothing for a custom engine to hook into
+while it's running (no in-app menus, no scene save/open callbacks the way
+Nuke/Maya get). A full DCC-integrated solution isn't just premature here, it
+isn't applicable — publisher-only is the right scope, not a stepping stone
+to something bigger.
+
+**Confirmed via read-only ShotGrid query (project 91 only) before building:**
+CustomEntity09's display name is "Scripts", with 4 real Steps already in
+active use — **Draft (DFT) → Polish (PLSH) → FinalDraft (FDFT) → ShootDraft
+(SDFT)** — matching production reality, so `{Step}` in the template had a
+real source to resolve from. `.docx`/`.gdoc` deliberately deferred (Vikki's
+call) — `.gdoc` is a Google Drive shortcut stub, not real document content;
+`.docx` can be added later with no structural change.
+
+**Implementation — pure config, no custom hook.** Initially scoped as
+needing a small custom `tk-multi-publish2` collector hook (comparable to the
+Nuke Indie/"Unknown"-user fixes below). Turned out unnecessary: the *stock*
+collector already ships a `Publish Templates` setting (publish-type label →
+template name) that it stamps onto every collected file item, and the stock
+`publish_file.py` hook's no-work-template code path already resolves
+`{Script}`/`{Step}` via `Context.as_template_fields()` and auto-fills
+`version`/`extension` when missing. Everything below is YAML config only:
+
+- `config/core/templates.yml` — new `Script` key (linked to
+  `CustomEntity09.code`), `script_extension` key (`fdx`/`pdf`),
+  `script_entity_root`, `script_publish` path.
+- `config/core/hooks/pick_environment.py` — routes `CustomEntity09` (+step)
+  to new `script`/`script_step` environments, same pattern as Song/SoundFX.
+- `config/core/schema/project/PreProduction/Scripts/script.yml` (+ empty
+  `script/` dir) — new entity-linked schema folder, so Create Folders
+  builds `PreProduction/Scripts/{code}/` per record. Distinct from the
+  *static* `PreProduction/Scripts` placeholder that went into the
+  `_templates/episodic` template repo on 2026-09-09 — this project didn't
+  have that folder yet, and this is real dynamic schema, not a placeholder.
+- `config/env/script.yml`, `config/env/script_step.yml` — new environments
+  modeled on `song.yml`/`song_step.yml`, but unlike Song this wires up
+  `tk-multi-publish2`.
+- `config/env/includes/settings/tk-multi-publish2.yml` and
+  `tk-shotgun.yml` — new `settings.tk-multi-publish2.script` /
+  `settings.tk-shotgun.script` / `.script_step` blocks.
+
+**Status: Resolved (2026-09-14).** Confirmed working live by Adam. Prior to
+that, validated without touching live folders: all YAML parses;
+`tk.templates['script_publish']` loads through the real Toolkit core and
+resolves to exactly the target path; both environments load cleanly via
+`sgtk.platform.environment.Environment` with the expected settings; field
+resolution correctly requires folders to exist first via the path cache
+(normal Toolkit behavior, identical to every existing Asset/Shot template,
+not a defect). Full reasoning trail in `DEVELOPMENT_NOTES.md` (2026-09-13
+entry).
+
+- **Technical (Tom):** No Software-entity launcher was wired up for Scripts
+  (unlike Song/Pro Tools) — wasn't asked for. Trivial to add later
+  (`tk-multi-launchapp` + a Final Draft Software entity in SG) if double-
+  click-to-launch from Desktop becomes useful.
+- **Policy (Vikki):** `.docx`/`.gdoc` support is a config-only addition
+  whenever it's wanted — no re-architecture needed, just extend the
+  `script_extension` choices and the two `File Types`/`Publish Templates`
+  lists.
+
+---
+
 ## 2026-09-09 — File Open showing "Unknown" for work file saves (all DCCs)
 
 **Reported by:** Adam Benson, screenshot of File Open for `LPG101_003_220_CMP`
