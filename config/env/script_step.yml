@@ -1,0 +1,25 @@
+description: Apps and engines loaded when a Script (CustomEntity09) with a
+  task/step context is loaded (Draft, Polish, FinalDraft, ShootDraft). This is
+  the normal entry point for publishing - an artist selects the Task/Step in
+  Desktop, opens Publish, and drags/browses in the .fdx or .pdf. No DCC
+  integration - show-in-filesystem plus tk-multi-publish2 only. Create
+  Folders for the {Script} folder itself is triggered from the Script entity
+  (env/script.yml), not from this step-scoped context - same pattern as
+  song_step.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a script_step context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.script_step"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

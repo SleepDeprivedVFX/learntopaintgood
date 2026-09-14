@@ -1,0 +1,24 @@
+description: Apps and engines loaded when a Script (CustomEntity09) is loaded.
+  Unlike Song/SoundFX, this DOES wire up tk-multi-publish2 - Final Draft
+  (.fdx) and PDF screenplay documents are meant to be filed into
+  PreProduction/Scripts/{Script}/ by the Desktop Publisher, not placed there
+  manually. No DCC integration otherwise - Create Folders and
+  show-in-filesystem, same as Song/SoundFX. See DEVELOPMENT_NOTES.md for the
+  design reasoning.
+
+################################################################################
+
+includes:
+- ./includes/frameworks.yml
+- ./includes/settings/tk-shotgun.yml
+
+################################################################################
+# configuration for all engines to load in a script context
+
+engines:
+  tk-shotgun: "@settings.tk-shotgun.script"
+
+################################################################################
+# reference all of the common frameworks
+
+frameworks: "@frameworks"

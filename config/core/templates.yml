@@ -102,6 +102,28 @@ keys:
             aiff: Audio Interchange File Format (.aiff)
             mp3: MP3 Audio (.mp3)
 
+    # Scripts entity folder-name token (Scripts = CustomEntity09). Unlike
+    # Song/SoundFX above, Script IS wired through tk-multi-publish2 (see
+    # env/script.yml, env/script_step.yml) - shotgun_entity_type/
+    # shotgun_field_name let Context.as_template_fields() resolve this
+    # automatically from a CustomEntity09 context, same mechanism as
+    # asset_name below for Asset.
+    Script:
+        type: str
+        shotgun_entity_type: CustomEntity09
+        shotgun_field_name: code
+
+    # Final Draft / PDF screenplay documents (see Script key above). docx/
+    # gdoc deliberately deferred (confirmed with Adam 2026-09-13) - gdoc is
+    # just a Google Drive shortcut stub, not real document content; docx can
+    # be added here later with no structural change needed.
+    script_extension:
+        alias: extension
+        type: str
+        choices:
+            fdx: Final Draft (.fdx)
+            pdf: PDF (.pdf)
+
     # Represents a frame sequence exported from Flame
     flame.frame:
         type: sequence
@@ -244,6 +266,14 @@ paths:
     soundfx_entity_root: Audio/SoundFX/{SoundFX}
     soundfx_step_root: '@soundfx_entity_root/tasks/{Step}'
     soundfx_publish_area: '@soundfx_entity_root/publish/{Step}'
+
+    # Scripts (PreProduction/Scripts - Final Draft/PDF screenplay documents,
+    # CustomEntity09). Unlike Song/SoundFX above, this DOES have live
+    # tk-multi-publish2 integration - see env/script.yml, env/script_step.yml
+    # and settings.tk-multi-publish2.script in tk-multi-publish2.yml. No
+    # separate work/publish split - there's no DCC session driving a work
+    # area, the Desktop Publisher files finished documents straight in here.
+    script_entity_root: PreProduction/Scripts/{Script}
 
     # Nuke Studio / Indie editorial. Project-wide, not per-Shot/Asset - this
     # is the Studio Timeline (.hrox) document itself, distinct from the
@@ -745,6 +775,18 @@ paths:
         definition: '@soundfx_step_root/{SoundFX}_{Step}_v{version}.{audio_extension}'
     soundfx_audio_publish:
         definition: '@soundfx_publish_area/{SoundFX}_{Step}_v{version}.{audio_extension}'
+
+    #
+    # Scripts pipeline (Final Draft / PDF screenplay documents)
+    #
+    # Unlike Song/SoundFX above, this DOES flow through tk-multi-publish2 -
+    # see env/script.yml, env/script_step.yml and
+    # settings.tk-multi-publish2.script in tk-multi-publish2.yml. Added
+    # 2026-09-13 (Adam/Vikki request) - see DEVELOPMENT_NOTES.md.
+    #
+
+    script_publish:
+        definition: '@script_entity_root/{Script}_{Step}_v{version}.{script_extension}'
 
 
 #

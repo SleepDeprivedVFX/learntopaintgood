@@ -56,6 +56,9 @@ class PickEnvironment(Hook):
             if context.entity["type"] == "CustomEntity02":
                 # SoundFX
                 return "soundfx"
+            if context.entity["type"] == "CustomEntity09":
+                # Scripts
+                return "script"
 
         if context.entity and context.step:
             # We have a step and an entity.
@@ -75,5 +78,8 @@ class PickEnvironment(Hook):
             if context.entity["type"] == "CustomEntity02":
                 # SoundFX
                 return "soundfx_step"
+            if context.entity["type"] == "CustomEntity09":
+                # Scripts
+                return "script_step"
 
         return None

@@ -168,6 +168,26 @@ settings.tk-shotgun.soundfx_step:
     tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
   location: "@engines.tk-shotgun.location"
 
+# script (PreProduction/Scripts - Final Draft/PDF screenplay documents,
+# CustomEntity09). Unlike song/soundfx above, this DOES include
+# tk-multi-publish2 - see settings.tk-multi-publish2.script. No
+# tk-multi-launchapp - no Software-entity launcher requested for this entity
+# yet, easy to add later (same pattern as song/soundfx's Pro Tools) if
+# wanted.
+settings.tk-shotgun.script:
+  apps:
+    tk-multi-publish2: "@settings.tk-multi-publish2.script"
+    tk-shotgun-folders: "@settings.tk-shotgun-folders"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
+# script_step
+settings.tk-shotgun.script_step:
+  apps:
+    tk-multi-publish2: "@settings.tk-multi-publish2.script"
+    tk-shotgun-launchfolder: "@settings.tk-shotgun-launchfolder"
+  location: "@engines.tk-shotgun.location"
+
 # version
 settings.tk-shotgun.version:
   apps:

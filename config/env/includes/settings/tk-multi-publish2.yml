@@ -35,6 +35,35 @@ settings.tk-multi-publish2.standalone:
 
 ################################################################################
 
+# ---- Scripts (Final Draft / PDF screenplay documents, CustomEntity09)
+
+# No custom hooks - the stock collector's "Publish Templates" setting maps a
+# File Types label straight to a template name, and Context.as_template_fields
+# resolves {Script}/{Step} automatically (see the Script key in
+# templates.yml), so publish_file.py's own no-work-template code path handles
+# the rest (version bumping, extension) with no code of our own. Used by both
+# settings.tk-shotgun.script and settings.tk-shotgun.script_step - see
+# env/script.yml, env/script_step.yml. No "Upload for review" plugin -
+# screenplay documents don't need a review Version. Added 2026-09-13
+# (Adam/Vikki request) - see DEVELOPMENT_NOTES.md.
+settings.tk-multi-publish2.script:
+  collector: "{self}/collector.py"
+  collector_settings:
+      Publish Templates:
+          Final Draft Script: script_publish
+          PDF: script_publish
+  publish_plugins:
+  - name: Publish to Flow Production Tracking
+    hook: "{self}/publish_file.py"
+    settings:
+        File Types:
+        - [Final Draft Script, fdx]
+        - [PDF, pdf]
+  help_url: *help_url
+  location: "@apps.tk-multi-publish2.location"
+
+################################################################################
+
 # ---- 3dsMax
 
 # asset step
