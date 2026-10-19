@@ -86,10 +86,12 @@ settings.tk-multi-loader2.maya:
 
 # nuke
 settings.tk-multi-loader2.nuke:
+  actions_hook: '{self}/tk-nuke_actions.py'
   action_mappings:
     Alembic Cache: [read_node]
     Flame Render: [read_node]
     Flame Quicktime: [read_node]
+    Harmony Camera Data: [import_camera]
     Image: [read_node]
     Movie: [read_node]
     Nuke Script: [script_import]

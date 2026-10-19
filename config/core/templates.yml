@@ -524,6 +524,14 @@ paths:
     harmony_asset_publish:
         definition: '@asset_publish_area_harmony/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}/{code}_{Asset}_{sg_asset_type}_{Step}_v{version}.xstage'
 
+    # Harmony camera data - a camera's transform animation, exported as a
+    # JSON file (source of truth) and a Nuke .chan file (Nuke's own native
+    # Camera > Import chan file format).
+    harmony_asset_camera_data_json:
+        definition: '@asset_publish_area_harmony/camera/{Asset}_{name}.v{version}.json'
+    harmony_asset_camera_data_chan:
+        definition: '@asset_publish_area_harmony/camera/{Asset}_{name}.v{version}.chan'
+
     # Harmony render output now joins the shared renders pool instead of a
     # harmony-only renders folder - a Harmony render and (say) a Toon
     # Boom/other-software render for the same Step now land in the same
@@ -557,6 +565,12 @@ paths:
     # The location of published harmony files - shared publish pool.
     harmony_shot_publish:
         definition: '@shot_publish_area_harmony/{Shot}_{Step}_v{version}/{Shot}_{Step}_v{version}.xstage'
+
+    # Harmony camera data - see comment on harmony_asset_camera_data_json above.
+    harmony_shot_camera_data_json:
+        definition: '@shot_publish_area_harmony/camera/{Shot}_{name}.v{version}.json'
+    harmony_shot_camera_data_chan:
+        definition: '@shot_publish_area_harmony/camera/{Shot}_{name}.v{version}.chan'
 
     # Harmony render output - see comment on harmony_asset_render_area above.
     harmony_shot_render_area:

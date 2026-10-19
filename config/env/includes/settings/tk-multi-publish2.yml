@@ -650,6 +650,11 @@ settings.tk-multi-publish2.harmony.asset_step:
         Render Movie Template: harmony_asset_render_movie
         Main Render Pass Name: Comp
         FFmpeg Path: ffmpeg
+  - name: Publish Harmony Camera Data
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_camera_data.py"
+    settings:
+        Camera Data JSON Template: harmony_asset_camera_data_json
+        Camera Data Chan Template: harmony_asset_camera_data_chan
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 
@@ -703,5 +708,10 @@ settings.tk-multi-publish2.harmony.shot_step:
         Render Movie Template: harmony_shot_render_movie
         Main Render Pass Name: Comp
         FFmpeg Path: ffmpeg
+  - name: Publish Harmony Camera Data
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_camera_data.py"
+    settings:
+        Camera Data JSON Template: harmony_shot_camera_data_json
+        Camera Data Chan Template: harmony_shot_camera_data_chan
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"

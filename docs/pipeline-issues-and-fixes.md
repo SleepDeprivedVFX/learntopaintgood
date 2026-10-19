@@ -8,6 +8,40 @@ for [Vikki](../team/vikki.md).
 
 ---
 
+## 2026-10-19 — Harmony disappeared from Windows Desktop
+
+**Reported by:** Adam — Harmony suddenly missing from Flow Production
+Tracking Desktop on Windows, shortly after the Session 21 Mac support pass
+(see `S:\Pipeline\tk_TOOLS\tk_Harmony\DEVELOPMENT_NOTES.txt`).
+
+**Root cause:** During the Mac work, the Mac install path had been
+temporarily parked in the Harmony Software entity's **Linux Path** field
+as a place to store it. Once a Software entity has an explicit path set,
+`tk-multi-launchapp` launches from those explicit paths instead of
+auto-discovering through `startup.py`'s `scan_software()`. With no Windows
+Path set, there was no Windows launcher to register, so Harmony vanished
+from the Windows software list.
+
+**Ruled out first:** the uncommitted Session 21 `startup.py` change only
+touches the `darwin` `EXECUTABLE_TEMPLATES` entries and parses cleanly; the
+Windows install (`HarmonyPremium.exe` under `Toon Boom Harmony 25.2
+Premium\win64\bin`) still matches the `win32` template; and nothing in
+`tk-desktop.log` since 2026-10-11 points at Harmony.
+
+**Fix:** Adam cleared the parked path out of the Linux Path field.
+**Status: Resolved (2026-10-19)** (found and fixed by Adam).
+
+- **Policy (Vikki):** don't use Software entity path fields as scratch
+  storage, since any value there changes launch behavior for every
+  platform. Park notes in `DEVELOPMENT_NOTES.txt` instead. This also ties into
+  Session 21's next step #3: if a Mac Path is ever set on that entity, a
+  Windows Path must be set alongside it, or Windows will lose Harmony again.
+- **Open (Tom):** tk-harmony is still on the Session 20 temporary `dev`
+  descriptor with uncommitted changes in both repos. Commit/push and
+  switch back to a pinned `git_branch` SHA once the Mac work is validated.
+
+---
+
 ## 2026-09-13 — Scripts (CustomEntity09) Desktop Publisher integration
 
 **Requested by:** Vikki — a new "Scripts" section on the SG site for Final
